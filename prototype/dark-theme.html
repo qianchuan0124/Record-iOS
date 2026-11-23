@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>记账清单 · 暗色搭配</title>
+<style>
+  :root{
+    --bg:#0F1115; --surface:#171A21; --elevated:#1E222B; --subtle:#1B1F27;
+    --border:#2A2F3A; --track:#242832;
+    --text:#F2F4F8; --text2:#A6ADBB; --text3:#6F7787;
+    --brand:#9B8CFF; --brand-deep:#6C5DD3; --brand-soft:#2A2440;
+    --expense:#FF6B76; --income:#3FD39A;
+  }
+  *{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:56px 40px 80px}
+  .brandline{display:flex;align-items:center;gap:10px;color:var(--brand);font-size:13px;font-weight:600}
+  .brandline .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#8B7BF0,#6C5DD3);display:grid;place-items:center;color:#fff;font-size:13px;font-weight:700}
+  h1{font-size:36px;letter-spacing:-.02em;margin:18px 0 10px}
+  .lead{margin:0;max-width:720px;font-size:14.5px;line-height:1.7;color:var(--text2)}
+  h2{font-size:19px;margin:48px 0 6px;letter-spacing:-.01em}
+  .sub{margin:0 0 18px;font-size:12.5px;color:var(--text3);line-height:1.6}
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:12px}
+  .sw{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+  .sw .chip{height:66px}
+  .sw .meta{padding:10px 12px}
+  .sw .name{font-size:12.5px;font-weight:600}
+  .sw .hex{font-size:10.5px;color:var(--text3);margin-top:2px;font-variant-numeric:tabular-nums}
+  .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+  .cat .it{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px}
+  .cat .dot{width:22px;height:22px;border-radius:7px}
+  .cat .nm{font-size:12px;color:var(--text2)}
+  .cat .hx{font-size:10px;color:var(--text3);margin-top:1px}
+  .shots{display:flex;gap:26px;flex-wrap:wrap}
+  .shot{width:300px}
+  .shot img{width:300px;border-radius:26px;display:block;box-shadow:0 0 0 1px var(--border),0 20px 40px rgba(0,0,0,.4)}
+  .shot .cap{margin-top:10px;font-size:12px;color:var(--text3);line-height:1.55}
+  .shot .cap b{color:var(--text2);font-weight:600;display:block;margin-bottom:2px}
+  .rules{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+  .rule{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px;font-size:12.5px;line-height:1.7;color:var(--text2)}
+  .rule b{color:var(--text);font-size:13px;display:block;margin-bottom:4px}
+  .foot{margin-top:48px;font-size:11.5px;color:var(--text3)}
+  .pill{display:inline-block;font-size:11px;color:var(--brand);background:var(--brand-soft);border-radius:5px;padding:2px 7px;margin-left:6px;vertical-align:1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brandline"><span class="dot">记</span>记账清单 · Record</div>
+  <h1>暗色搭配 <span class="pill">Dark Theme v1</span></h1>
+  <p class="lead">底色不用纯黑，用带蓝调的 #0F1115 做底、#171A21 做卡片、#1E222B 做浮起层，靠明度差分层；品牌紫在暗色下提亮到 #9B8CFF，支出/收入也同步提高明度，保证在深色底上的可读性。</p>
+
+  <h2>基础色板</h2>
+  <p class="sub">浅色值仍用于浅色模式，两套通过 UIColor dynamic provider 自动切换。</p>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#0F1115"></div><div class="meta"><div class="name">背景 Background</div><div class="hex">#0F1115 · light #F4F5F7</div></div></div>
+    <div class="sw"><div class="chip" style="background:#171A21"></div><div class="meta"><div class="name">卡片 Surface</div><div class="hex">#171A21 · light #FFFFFF</div></div></div>
+    <div class="sw"><div class="chip" style="background:#1E222B"></div><div class="meta"><div class="name">浮起 Surface Elevated</div><div class="hex">#1E222B</div></div></div>
+    <div class="sw"><div class="chip" style="background:#1B1F27"></div><div class="meta"><div class="name">日期条 / 弱底 Subtle</div><div class="hex">#1B1F27 · light #F7F8FB</div></div></div>
+    <div class="sw"><div class="chip" style="background:#2A2F3A"></div><div class="meta"><div class="name">描边 Border</div><div class="hex">#2A2F3A · light #EBECF0</div></div></div>
+    <div class="sw"><div class="chip" style="background:#F2F4F8"></div><div class="meta"><div class="name">主文字 Text</div><div class="hex">#F2F4F8 · light #1B1F27</div></div></div>
+    <div class="sw"><div class="chip" style="background:#A6ADBB"></div><div class="meta"><div class="name">次文字 Text 2</div><div class="hex">#A6ADBB · light #5A6274</div></div></div>
+    <div class="sw"><div class="chip" style="background:#6F7787"></div><div class="meta"><div class="name">弱文字 Text 3</div><div class="hex">#6F7787 · light #8A90A0</div></div></div>
+    <div class="sw"><div class="chip" style="background:#9B8CFF"></div><div class="meta"><div class="name">品牌 Brand</div><div class="hex">#9B8CFF · light #6C5DD3</div></div></div>
+    <div class="sw"><div class="chip" style="background:#2A2440"></div><div class="meta"><div class="name">品牌浅底 Brand Soft</div><div class="hex">#2A2440 · light #EFECFB</div></div></div>
+    <div class="sw"><div class="chip" style="background:#FF6B76"></div><div class="meta"><div class="name">支出 Expense</div><div class="hex">#FF6B76 · light #E2434F</div></div></div>
+    <div class="sw"><div class="chip" style="background:#3FD39A"></div><div class="meta"><div class="name">收入 Income</div><div class="hex">#3FD39A · light #18A472</div></div></div>
+  </div>
+
+  <h2>分类色 · 暗色提亮版</h2>
+  <p class="sub">只提高明度与饱和度，不改变色相，保证和浅色模式的分类认知一致。</p>
+  <div class="cat">
+    <div class="it"><span class="dot" style="background:#FF9A66"></span><div><div class="nm">餐饮</div><div class="hx">#FF9A66</div></div></div>
+    <div class="it"><span class="dot" style="background:#6CA6FF"></span><div><div class="nm">交通</div><div class="hx">#6CA6FF</div></div></div>
+    <div class="it"><span class="dot" style="background:#FF7AB8"></span><div><div class="nm">购物</div><div class="hx">#FF7AB8</div></div></div>
+    <div class="it"><span class="dot" style="background:#45D6A8"></span><div><div class="nm">居家</div><div class="hx">#45D6A8</div></div></div>
+    <div class="it"><span class="dot" style="background:#FFC15C"></span><div><div class="nm">人情</div><div class="hx">#FFC15C</div></div></div>
+    <div class="it"><span class="dot" style="background:#FF7A7A"></span><div><div class="nm">医疗</div><div class="hx">#FF7A7A</div></div></div>
+    <div class="it"><span class="dot" style="background:#45D6E6"></span><div><div class="nm">娱乐</div><div class="hx">#45D6E6</div></div></div>
+    <div class="it"><span class="dot" style="background:#A98BFF"></span><div><div class="nm">学习</div><div class="hx">#A98BFF</div></div></div>
+    <div class="it"><span class="dot" style="background:#3FD6C6"></span><div><div class="nm">金融</div><div class="hx">#3FD6C6</div></div></div>
+    <div class="it"><span class="dot" style="background:#93A1B5"></span><div><div class="nm">快递</div><div class="hx">#93A1B5</div></div></div>
+    <div class="it"><span class="dot" style="background:#8C97A8"></span><div><div class="nm">其他</div><div class="hx">#8C97A8</div></div></div>
+  </div>
+
+  <h2>界面效果</h2>
+  <p class="sub">真机 / 模拟器截图，通过设置 → 个性化 → 外观切到深色，或跟随系统。</p>
+  <div class="shots">
+    <div class="shot"><img src="shots/ios-dark-ledger.png" alt="账单暗色"><div class="cap"><b>账单</b>卡片 #171A21、日期条 #1B1F27、描边 #2A2F3A；金额用提亮后的红/绿。</div></div>
+    <div class="shot"><img src="shots/ios-dark-analysis.png" alt="分析暗色"><div class="cap"><b>分析 · 概览</b>环形图与比例条使用提亮后的分类色，条形底轨 #242832。</div></div>
+    <div class="shot"><img src="shots/ios-dark-yearly.png" alt="年度暗色"><div class="cap"><b>年度</b>结余卡 #171A21；当前月用 #2A2440 品牌浅底；柱状图非当前年 #2A2F3A。</div></div>
+    <div class="shot"><img src="shots/ios-dark-assets.png" alt="资产暗色"><div class="cap"><b>资产 · 存款</b>银行图标用品牌色，金额主文字 #F2F4F8，利息 #3FD39A。</div></div>
+    <div class="shot"><img src="shots/ios-dark-settings.png" alt="设置暗色"><div class="cap"><b>设置</b>系统分组列表自动适配；外观可选跟随系统 / 浅色 / 深色。</div></div>
+  </div>
+
+  <h2>规则</h2>
+  <div class="rules">
+    <div class="rule"><b>1 · 不用纯黑</b>背景 #0F1115，卡片 #171A21，浮起 #1E222B。三层明度差各约 4%，既分层又不刺眼。</div>
+    <div class="rule"><b>2 · 描边优先于阴影</b>暗色下阴影几乎不可见，卡片靠 1px #2A2F3A 描边区分边界；只有「＋」保留柔和投影。</div>
+    <div class="rule"><b>3 · 品牌色提亮</b>#6C5DD3 在深底对比不足，暗色改用 #9B8CFF；浅底文字用 #C4BAFF，避免纯白加紫。</div>
+    <div class="rule"><b>4 · 语义色同向调整</b>支出 #FF6B76、收入 #3FD39A，色相不变、明度提升，与分类色区分。</div>
+    <div class="rule"><b>5 · 图表底轨另设</b>比例条底轨 #242832，比卡片略亮，保证空槽可见；非当前年柱 #2A2F3A。</div>
+    <div class="rule"><b>6 · 大色块降饱和</b>品牌浅底 #2A2440、摘要卡渐变 #1F1A33→#171A21，避免大面积高饱和紫。</div>
+  </div>
+
+  <div class="foot">实现：SwiftUI 动态颜色（Color(light:dark:)）+ 主题 token；设置 → 个性化 → 外观 可切换。截图设备 iPhone 18 Pro Max · iOS 27。</div>
+</div>
+</body>
+</html>

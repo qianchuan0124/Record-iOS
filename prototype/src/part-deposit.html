@@ -1,0 +1,181 @@
+<section class="group" id="g-deposit" data-group="deposit">
+  <div class="group-head">
+    <span class="group-num">04</span>
+    <h2>资产 · 存款</h2>
+    <p>银行 / 存款 / 到期与利息</p>
+  </div>
+  <div class="screens">
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="large"><h3>资产</h3><div class="icons"><svg class="ico"><use href="#i-plus"/></svg></div></div>
+        <div style="padding:0 16px 10px"><div class="seg"><span class="on">存款</span><span>薪酬</span><span>预算</span></div></div>
+        <div class="body">
+          <div class="stat-row">
+            <div class="stat"><span class="k">银行</span><span class="v">4</span></div>
+            <div class="stat"><span class="k">存款笔数</span><span class="v">6</span></div>
+            <div class="stat"><span class="k">总金额</span><span class="v sm">380,000</span></div>
+            <div class="stat"><span class="k">总利息</span><span class="v sm inc">+12,450</span></div>
+          </div>
+
+          <div class="flexb" style="padding:16px 4px 8px">
+            <span class="t13 b600">存款列表</span>
+            <span class="t115 muted">按银行分组</span>
+          </div>
+
+          <div class="group-card">
+            <div style="padding:12px 14px;border-bottom:1px solid var(--divider-soft)">
+              <div class="hstack" style="gap:10px">
+                <span class="bank-logo" style="background:#D7261E">招</span>
+                <div class="grow">
+                  <div class="t14 b600">招商银行 · 3 年定期</div>
+                  <div class="t115 muted" style="margin-top:2px">2025.03.01 起 · 2028.03.01 到期</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="amt" style="font-size:16px">100,000.00</div>
+                  <div class="t11 inc">+8,250.00</div>
+                </div>
+              </div>
+              <div class="hstack" style="gap:16px;margin-top:9px;padding-left:44px;font-size:11.5px;color:var(--text3)">
+                <span>利率 <b style="color:var(--text2)">2.750%</b></span><span>年限 <b style="color:var(--text2)">3 年</b></span><span>利息 <b class="inc">8,250.00</b></span>
+              </div>
+            </div>
+            <div style="padding:12px 14px;border-bottom:1px solid var(--divider-soft)">
+              <div class="hstack" style="gap:10px">
+                <span class="bank-logo" style="background:#0066B3">建</span>
+                <div class="grow">
+                  <div class="t14 b600">建设银行 · 1 年定期</div>
+                  <div class="t115 muted" style="margin-top:2px">2026.06.15 起 · 2027.06.15 到期</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="amt" style="font-size:16px">80,000.00</div>
+                  <div class="t11 inc">+1,400.00</div>
+                </div>
+              </div>
+              <div class="hstack" style="gap:16px;margin-top:9px;padding-left:44px;font-size:11.5px;color:var(--text3)">
+                <span>利率 <b style="color:var(--text2)">1.750%</b></span><span>年限 <b style="color:var(--text2)">1 年</b></span><span>利息 <b class="inc">1,400.00</b></span>
+              </div>
+            </div>
+            <div style="padding:12px 14px">
+              <div class="hstack" style="gap:10px">
+                <span class="bank-logo" style="background:#C8102E">工</span>
+                <div class="grow">
+                  <div class="t14 b600">工商银行 · 2 年定期</div>
+                  <div class="t115 muted" style="margin-top:2px">2026.01.10 起 · 2028.01.10 到期</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="amt" style="font-size:16px">120,000.00</div>
+                  <div class="t11 inc">+2,800.00</div>
+                </div>
+              </div>
+              <div class="hstack" style="gap:16px;margin-top:9px;padding-left:44px;font-size:11.5px;color:var(--text3)">
+                <span>利率 <b style="color:var(--text2)">2.100%</b></span><span>年限 <b style="color:var(--text2)">2 年</b></span><span>利息 <b class="inc">2,800.00</b></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="chips mt14">
+            <span class="chip">招商银行 <span class="n">2</span></span>
+            <span class="chip">建设银行 <span class="n">1</span></span>
+            <span class="chip">工商银行 <span class="n">1</span></span>
+            <span class="chip">自定义 <span class="n">2</span></span>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:14px">
+            <div class="btn sm grow">增加银行</div>
+            <div class="btn sm primary grow">增加存款</div>
+          </div>
+        </div>
+        {{TABS:deposit}}
+      </div>
+      <figcaption><b>资产 · 存款 <span class="tagline">4 Tab 首页</span></b>导航改为「账单 / 分析 / ＋ / 资产 / 设置」，薪酬与存款合并进资产。桌面版 10 列表格改为「一笔存款一张卡」，顶部四个汇总与桌面一致。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        <div class="under">
+          <div class="under-nav"></div>
+          <div class="under-block"></div>
+          <div class="under-row"></div><div class="under-row"></div><div class="under-row"></div>
+        </div>
+        <div class="sheet-scrim"></div>
+        <div class="sheet" style="height:760px">
+          <div class="grabber"></div>
+          <div class="sheet-head"><span class="link">取消</span><span class="st">增加存款</span><span class="link strong">保存</span></div>
+          <div class="sheet-body">
+            <div class="group-label" style="padding-top:2px">银行</div>
+            <div class="bank-grid">
+              <div class="b on"><span class="bank-logo" style="background:#D7261E">招</span>招商</div>
+              <div class="b"><span class="bank-logo" style="background:#0066B3">建</span>建设</div>
+              <div class="b"><span class="bank-logo" style="background:#C8102E">工</span>工商</div>
+              <div class="b"><span class="bank-logo" style="background:#00703C">农</span>农业</div>
+              <div class="b"><span class="bank-logo" style="background:#00529C">中</span>中国</div>
+              <div class="b"><span class="bank-logo" style="background:#1B7F79">自</span>自定义</div>
+            </div>
+
+            <div class="group-label">存款信息</div>
+            <div class="group-card">
+              <div class="field"><span class="lb">金额</span><span class="vl nums b600">100,000.00</span></div>
+              <div class="field"><span class="lb">存款时间</span><span class="vl">2026-11-19 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field"><span class="lb">存款年限</span><span class="vl"><span class="muted">−</span><span class="nums" style="margin:0 10px">3.00 年</span><span class="muted">+</span></span></div>
+              <div class="field"><span class="lb">利率</span><span class="vl nums">2.750%</span></div>
+            </div>
+
+            <div class="card mt12" style="padding:13px 16px">
+              <div class="flexb">
+                <span class="t12" style="color:var(--text2)">利息（自动计算）</span>
+                <span class="inc" style="font-size:18px;font-weight:700;font-variant-numeric:tabular-nums">+8,250.00</span>
+              </div>
+              <div class="t115 muted" style="margin-top:6px">按 金额 × 利率 × 年限 计算，可手动覆盖；到期时间 2029-11-19。</div>
+            </div>
+
+            <div class="btn primary mt16">保存存款</div>
+          </div>
+        </div>
+      </div>
+      <figcaption><b>新增存款 <span class="tagline">自动算息</span></b>银行用图标网格选择（内置 60+ 家，支持自定义）；金额、时间、年限、利率四项输入后自动算出利息与到期日，仍允许手改。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        <div class="under">
+          <div class="under-nav"></div>
+          <div class="under-block"></div>
+          <div class="under-row"></div><div class="under-row"></div><div class="under-row"></div>
+        </div>
+        <div class="sheet-scrim"></div>
+        <div class="sheet" style="height:700px">
+          <div class="grabber"></div>
+          <div class="sheet-head"><span class="link">关闭</span><span class="st">银行管理</span><span class="link strong">完成</span></div>
+          <div class="sheet-body">
+            <div class="group-label" style="padding-top:2px">已添加（拖动排序）</div>
+            <div class="group-card">
+              <div class="field"><span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="bank-logo sm" style="background:#D7261E">招</span>招商银行</span><span class="vl muted t12">2 笔 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field"><span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="bank-logo sm" style="background:#0066B3">建</span>建设银行</span><span class="vl muted t12">1 笔 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field"><span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="bank-logo sm" style="background:#C8102E">工</span>工商银行</span><span class="vl muted t12">1 笔 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field"><span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="bank-logo sm" style="background:#1B7F79">宁</span>宁波银行（自定义）</span><span class="vl muted t12">2 笔 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+            </div>
+
+            <div class="group-label">内置银行</div>
+            <div class="bank-grid">
+              <div class="b"><span class="bank-logo" style="background:#00703C">农</span>农业</div>
+              <div class="b"><span class="bank-logo" style="background:#00529C">中</span>中国</div>
+              <div class="b"><span class="bank-logo" style="background:#004B8D">交</span>交通</div>
+              <div class="b"><span class="bank-logo" style="background:#E60012">邮</span>邮储</div>
+              <div class="b"><span class="bank-logo" style="background:#005BAC">浦</span>浦发</div>
+              <div class="b"><span class="bank-logo" style="background:#CF142B">信</span>中信</div>
+              <div class="b"><span class="bank-logo" style="background:#E8112D">光</span>光大</div>
+              <div class="b"><span class="bank-logo" style="background:#004F9F">民</span>民生</div>
+            </div>
+
+            <div class="btn ghost mt16"><svg class="ico sm"><use href="#i-plus"/></svg>增加自定义银行</div>
+            <div class="note">自定义银行使用默认图标，可填写任意名称；内置银行无需重复添加。</div>
+          </div>
+        </div>
+      </div>
+      <figcaption><b>银行管理 <span class="tagline">排序 + 内置库</span></b>保留桌面版的拖动排序与内置银行库（60+ 家）。手机端用长按拖动替代 HTML5 drag，新增自定义银行只填名称即可。</figcaption>
+    </figure>
+
+  </div>
+</section>

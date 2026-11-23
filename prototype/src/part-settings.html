@@ -1,0 +1,295 @@
+<section class="group" id="g-settings" data-group="settings">
+  <div class="group-head">
+    <span class="group-num">05</span>
+    <h2>设置</h2>
+    <p>数据、同步、分类与反馈</p>
+  </div>
+  <div class="screens">
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="large"><h3>设置</h3></div>
+        <div class="body">
+          <div class="settings-group">
+            <div class="group-label" style="padding-top:0">数据</div>
+            <div class="group-card">
+              <div class="field">
+                <span class="fl"><span class="sf-ico" style="background:#3B82F6"><svg class="ico"><use href="#i-doc"/></svg></span>数据处理</span>
+                <span class="vl muted t12">导出 / 导入 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+              </div>
+              <div class="field">
+                <span class="fl"><span class="sf-ico" style="background:#10B981"><svg class="ico"><use href="#i-cloud"/></svg></span>iCloud 同步</span>
+                <span class="vl muted t12">2 分钟前 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <div class="group-label">个性化</div>
+            <div class="group-card">
+              <div class="field">
+                <span class="fl"><span class="sf-ico" style="background:#8B5CF6"><svg class="ico"><use href="#i-tag"/></svg></span>自定义分类</span>
+                <span class="vl muted t12">11 类 · 96 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <div class="group-label">其他</div>
+            <div class="group-card">
+              <div class="field">
+                <span class="fl"><span class="sf-ico" style="background:#F59E0B"><svg class="ico"><use href="#i-bulb"/></svg></span>反馈与更新</span>
+                <span class="vl muted t12">v0.0.4 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+              </div>
+              <div class="field">
+                <span class="fl"><span class="sf-ico" style="background:#94A3B8"><svg class="ico"><use href="#i-phone"/></svg></span>关于记账清单</span>
+                <span class="vl muted t12"><svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align:center;font-size:11px;color:var(--text3);margin-top:6px">记账清单 iOS 1.0.0 (1)</div>
+        </div>
+        {{TABS:settings}}
+      </div>
+      <figcaption><b>设置首页 <span class="tagline">分组列表</span></b>沿用 iOS 设置页的分组列表，替代桌面版的三栏卡片。已确认不做应用锁、只支持竖屏，因此安全分组移除；其余入口与桌面一一对应。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="nav"><span class="back"><svg class="ico sm"><use href="#i-back"/></svg>设置</span><span class="nav-title">iCloud 同步</span><span style="width:44px"></span></div>
+        <div class="body" style="padding-top:6px">
+          <div class="card" style="padding:14px 16px;display:flex;align-items:center;gap:12px">
+            <span class="sf-ico" style="width:38px;height:38px;border-radius:11px;background:#10B981"><svg class="ico" style="width:20px;height:20px"><use href="#i-cloud"/></svg></span>
+            <div class="grow">
+              <div class="t14 b600">iCloud 云盘</div>
+              <div class="t115 muted" style="margin-top:2px">记账清单 / 已同步 · 2 分钟前</div>
+            </div>
+            <svg class="ico xs chev"><use href="#i-chev"/></svg>
+          </div>
+
+          <div class="group-label">状态</div>
+          <div class="group-card">
+            <div class="field"><span class="lb">本机记录</span><span class="vl nums">1,286 条</span></div>
+            <div class="field"><span class="lb">云端记录</span><span class="vl nums">1,280 条 <span class="muted t115">(−6)</span></span></div>
+            <div class="field"><span class="lb">上次备份</span><span class="vl muted t13">今天 09:12 · 2.4 MB</span></div>
+            <div class="field"><span class="lb">自动同步</span><span class="toggle"></span></div>
+          </div>
+          <div class="note">开启后：启动与前台切换时检查；本机有改动自动备份，云端更新时自动拉取最新一份。关闭则完全手动。</div>
+
+          <div class="btn primary mt16"><svg class="ico sm"><use href="#i-sync"/></svg>同步数据</div>
+          <div class="btn ghost mt10">更改同步目录</div>
+
+          <div class="group-label">最近备份</div>
+          <div class="group-card">
+            <div class="field"><span class="fl"><span>iPhone 15 Pro</span></span><span class="vl muted t12">今天 09:12 · 2.4 MB</span></div>
+            <div class="field"><span class="fl"><span>MacBook Pro</span></span><span class="vl muted t12">11月18日 22:40 · 2.3 MB</span></div>
+            <div class="field"><span class="fl"><span>iPhone 15 Pro</span></span><span class="vl muted t12">11月17日 08:30 · 2.3 MB</span></div>
+          </div>
+        </div>
+      </div>
+      <figcaption><b>iCloud 同步 <span class="tagline">手动优先</span></b>对齐桌面版「完全手动、不自动覆盖」的设计：本机/云端记录数对比、上次备份与最近三份快照。点「同步数据」进入版本选择。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        <div class="under">
+          <div class="under-nav"></div>
+          <div class="under-block"></div>
+          <div class="under-row"></div><div class="under-row"></div><div class="under-row"></div><div class="under-row"></div>
+        </div>
+        <div class="sheet-scrim"></div>
+        <div class="sheet" style="height:640px">
+          <div class="grabber"></div>
+          <div class="sheet-head"><span class="link">取消</span><span class="st">选择要同步到的版本</span><span style="width:30px"></span></div>
+          <div class="sheet-body">
+            <div class="group-label" style="padding-top:6px">本机</div>
+            <div class="card" style="padding:14px 16px;border-color:#C9BFF2;background:var(--summary-bg)">
+              <div class="flexb">
+                <div class="hstack" style="gap:10px">
+                  <span class="sf-ico" style="width:34px;height:34px;border-radius:10px;background:var(--brand)"><svg class="ico" style="width:18px;height:18px"><use href="#i-phone"/></svg></span>
+                  <div>
+                    <div class="t14 b600">本机当前数据</div>
+                    <div class="t115 muted" style="margin-top:2px">1,286 条记录 · 2.4 MB</div>
+                  </div>
+                </div>
+                <span class="tag" style="color:var(--brand);background:var(--brand-soft)">当前</span>
+              </div>
+              <div class="btn sm primary mt12">备份本机数据到云端</div>
+            </div>
+
+            <div class="group-label">云端备份</div>
+            <div class="group-card">
+              <div class="field" style="align-items:flex-start;padding:13px 14px">
+                <div class="grow">
+                  <div class="hstack" style="gap:8px"><span class="t14 b600">iPhone 15 Pro</span><span class="tag" style="color:var(--inc);background:#E7F6F0">最新</span></div>
+                  <div class="t115 muted" style="margin-top:4px">今天 09:12 · 1,280 条 · 2.4 MB</div>
+                </div>
+                <span class="btn sm" style="height:32px;padding:0 12px;color:var(--brand);border-color:var(--brand-border)">恢复到本机</span>
+              </div>
+              <div class="field" style="align-items:flex-start;padding:13px 14px">
+                <div class="grow">
+                  <div class="t14 b600">MacBook Pro</div>
+                  <div class="t115 muted" style="margin-top:4px">11月18日 22:40 · 1,280 条 · 2.3 MB</div>
+                </div>
+                <span class="btn sm" style="height:32px;padding:0 12px;color:var(--brand);border-color:var(--brand-border)">恢复到本机</span>
+              </div>
+              <div class="field" style="align-items:flex-start;padding:13px 14px">
+                <div class="grow">
+                  <div class="t14 b600">iPhone 15 Pro</div>
+                  <div class="t115 muted" style="margin-top:4px">11月17日 08:30 · 1,268 条 · 2.3 MB</div>
+                </div>
+                <span class="btn sm" style="height:32px;padding:0 12px;color:var(--brand);border-color:var(--brand-border)">恢复到本机</span>
+              </div>
+            </div>
+            <div class="note">恢复前会自动把本机数据库备份到「设置 → 数据处理」，误操作可回退；括号内为相对本机的记录数差异。</div>
+          </div>
+        </div>
+      </div>
+      <figcaption><b>版本选择 <span class="tagline">上行 / 下行</span></b>沿用桌面版「选择版本」流程：本机数据单独成卡（只能上行备份），云端快照逐条列出（只能下行恢复）。避免「同步」一词带来的双向覆盖歧义。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="nav"><span class="back"><svg class="ico sm"><use href="#i-back"/></svg>设置</span><span class="nav-title">自定义分类</span><span class="link">编辑</span></div>
+        <div class="body" style="padding-top:4px">
+          <div class="note" style="padding-top:0;padding-bottom:10px">长按左侧手柄拖动排序，点分类右侧可新增子分类；删除采用「归档」，历史账单保留原分类名。</div>
+
+          <div class="group-card">
+            <div class="field" style="padding:12px 14px">
+              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><i class="cat sm" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i><span class="t14 b600">餐饮</span></span>
+              <span class="vl t115 muted">12 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+            </div>
+            <div style="padding:4px 14px 10px 46px">
+              <div class="flexb divide-t" style="padding:9px 0"><span class="t135">三餐</span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
+              <div class="flexb divide-t" style="padding:9px 0"><span class="t135">早餐</span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
+              <div class="flexb divide-t" style="padding:9px 0"><span class="t135">中餐</span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
+              <div class="flexb divide-t" style="padding:9px 0"><span class="t135">晚餐</span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
+              <div class="flexb divide-t" style="padding:9px 0;color:var(--brand)"><span class="t135">+ 新增子分类</span></div>
+            </div>
+          </div>
+
+          <div class="group-card mt12">
+            <div class="field" style="padding:12px 14px">
+              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><i class="cat sm" style="--c:#3B82F6;--bgc:#E8F1FE">交</i><span class="t14 b600">交通</span></span>
+              <span class="vl t115 muted">8 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+            </div>
+            <div class="field" style="padding:12px 14px">
+              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><i class="cat sm" style="--c:#EC4899;--bgc:#FDEBF5">购</i><span class="t14 b600">购物</span></span>
+              <span class="vl t115 muted">10 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+            </div>
+            <div class="field" style="padding:12px 14px">
+              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><i class="cat sm" style="--c:#10B981;--bgc:#E6F7F1">居</i><span class="t14 b600">居家</span></span>
+              <span class="vl t115 muted">9 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+            </div>
+            <div class="field" style="padding:12px 14px">
+              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><i class="cat sm" style="--c:#F59E0B;--bgc:var(--bonus-bg)">人</i><span class="t14 b600">人情</span></span>
+              <span class="vl t115 muted">7 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+            </div>
+          </div>
+
+          <div class="btn ghost mt16">恢复系统默认分类</div>
+          <div class="note">恢复默认只重置分类树，不会删除已产生的账单；已删除分类的历史账单仍可正常显示。</div>
+        </div>
+      </div>
+      <figcaption><b>自定义分类 <span class="tagline">树形编辑</span></b>分类完全放开：可增删改、拖拽排序。删除不物理清除，避免历史账单丢分类；具体策略见下一屏。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        <div class="under">
+          <div class="under-nav"></div>
+          <div class="under-block"></div>
+          <div class="under-row"></div><div class="under-row"></div><div class="under-row"></div>
+        </div>
+        <div class="sheet-scrim"></div>
+        <div class="sheet" style="height:640px">
+          <div class="grabber"></div>
+          <div class="sheet-head"><span class="link">取消</span><span class="st">删除分类</span><span style="width:30px"></span></div>
+          <div class="sheet-body">
+            <div class="card" style="padding:14px 16px">
+              <div class="hstack" style="gap:10px">
+                <i class="cat" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i>
+                <div class="grow">
+                  <div class="t14 b600">下午茶</div>
+                  <div class="t115 muted" style="margin-top:2px">餐饮下的子分类 · 12 笔历史账单</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="group-label">历史账单怎么处理？</div>
+            <div class="group-card">
+              <div class="field" style="align-items:flex-start;background:var(--summary-bg)">
+                <span class="grow">
+                  <span class="t14 b600">归档分类（推荐）</span>
+                  <span class="t115 muted" style="display:block;margin-top:3px;line-height:1.5">历史账单保留「下午茶」，汇总归入「已归档」；新增时不再出现。</span>
+                </span>
+                <span class="tag" style="color:var(--brand);background:var(--brand-soft)">推荐</span>
+              </div>
+              <div class="field" style="align-items:flex-start">
+                <span class="grow">
+                  <span class="t14">合并到「未分类」</span>
+                  <span class="t115 muted" style="display:block;margin-top:3px;line-height:1.5">12 笔账单改挂到「未分类」，会改变历史汇总。</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="note">「未分类」是系统兜底分组，不可删除、不可重命名，只在归档或数据异常时出现；账单列表仍显示原始分类快照，不会变成空白。</div>
+
+            <div style="display:flex;gap:10px;margin-top:16px">
+              <div class="btn ghost grow">取消</div>
+              <div class="btn primary" style="flex:2">归档分类</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption><b>删除分类 <span class="tagline">归档 / 未分类</span></b>不物理删除：默认「归档」保留历史语义，汇总中单独成组；需要强制统一时才合并到「未分类」。比一律显示未分类更可逆，也不会破坏往年报表。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="nav"><span class="back"><svg class="ico sm"><use href="#i-back"/></svg>设置</span><span class="nav-title">数据处理</span><span style="width:44px"></span></div>
+        <div class="body" style="padding-top:4px">
+          <div class="card" style="padding:16px">
+            <div class="hstack" style="gap:12px">
+              <span class="sf-ico" style="width:38px;height:38px;border-radius:11px;background:#3B82F6"><svg class="ico" style="width:20px;height:20px"><use href="#i-download"/></svg></span>
+              <div class="grow">
+                <div class="t14 b600">导出账本</div>
+                <div class="t115 muted" style="margin-top:2px">导出为 Excel，可用于备份或迁移到桌面版</div>
+              </div>
+            </div>
+            <div class="btn sm mt12">导出全部账单（1,286 条）</div>
+          </div>
+
+          <div class="card mt12" style="padding:16px">
+            <div class="hstack" style="gap:12px">
+              <span class="sf-ico" style="width:38px;height:38px;border-radius:11px;background:#10B981"><svg class="ico" style="width:20px;height:20px"><use href="#i-upload"/></svg></span>
+              <div class="grow">
+                <div class="t14 b600">导入账本</div>
+                <div class="t115 muted" style="margin-top:2px">从「文件」选择 xlsx / csv，或接收桌面版导出文件</div>
+              </div>
+            </div>
+            <div style="border:1.5px dashed var(--grabber);border-radius:12px;padding:18px;text-align:center;margin-top:12px">
+              <svg class="ico" style="width:26px;height:26px;color:var(--text3)"><use href="#i-upload"/></svg>
+              <div class="t13" style="margin-top:6px">选择文件</div>
+              <div class="t11 muted" style="margin-top:3px">列：日期、金额、类型、分类、子分类、备注</div>
+            </div>
+          </div>
+
+          <div class="group-label">最近导入</div>
+          <div class="group-card">
+            <div class="field"><span class="fl"><span class="t135">record_20261116.xlsx</span></span><span class="vl t12"><span class="inc">成功 128</span><span class="exp" style="margin-left:8px">失败 2</span></span></div>
+            <div class="field"><span class="fl"><span class="t13 pri">查看失败信息</span></span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
+          </div>
+          <div class="note">导入前会先备份本机数据库；失败条目会保留原因与行号，可修正后重新导入。</div>
+        </div>
+      </div>
+      <figcaption><b>数据导入 / 导出 <span class="tagline">Files 集成</span></b>桌面版用系统文件对话框，iOS 改为系统「文件」选择器 + 分享导出。导入列格式与桌面版 Excel 保持一致，便于双向迁移。</figcaption>
+    </figure>
+
+  </div>
+</section>

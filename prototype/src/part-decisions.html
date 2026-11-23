@@ -1,0 +1,62 @@
+<section class="decisions" id="g-decisions">
+  <h2>已确认的方案</h2>
+  <p class="lead">产品决策已经全部落进原型，下面是最终口径；底部中央「＋」已选定 <b>B 悬浮圆形（无描边）</b>。</p>
+
+  <div class="decision-grid">
+    <div class="decision">
+      <h3><span class="idx">01</span>导航：4 Tab + 中央「＋」</h3>
+      <p><b>账单 / 分析 / ＋ / 资产 / 设置</b>。薪酬、存款、预算合并进「资产」，用分段控件切换；「＋」是全局唯一记账入口。</p>
+      <div class="rec"><b>已落地：</b>所有界面统一为 4 Tab；中央按钮已选定 B 悬浮圆形（无描边）。</div>
+    </div>
+
+    <div class="decision">
+      <h3><span class="idx">02</span>首版范围：全做</h3>
+      <p>账单、分析（概览/年度/时间线）、薪酬与个税、存款与银行、预算、自定义分类、Excel 导入导出、CloudKit 同步全部进 1.0。</p>
+      <div class="rec"><b>开发顺序：</b>数据层 → 账单闭环 → 分析/年度 → 资产 → 设置/同步 → 导入导出。</div>
+    </div>
+
+    <div class="decision">
+      <h3><span class="idx">03</span>同步：SwiftData + CloudKit</h3>
+      <p>设备间自动同步走 CloudKit 私有库；桌面端只通过 <b>Excel 导入/导出</b> 迁移，不读取数据库文件。</p>
+      <div class="rec"><b>实现要点：</b>首次启动把本地数据上传 CloudKit；导入 Excel 按 syncId 去重；冲突以「最后修改时间」为准。</div>
+    </div>
+
+    <div class="decision">
+      <h3><span class="idx">04</span>记账输入：自定义键盘</h3>
+      <p>类型 → 金额 → 一级分类 → 二级分类 → 日期/备注 一屏完成；数字键盘常驻。</p>
+      <div class="rec"><b>已落地：</b>中央「＋」打开全屏记一笔，保存后回到原页面。</div>
+    </div>
+
+    <div class="decision">
+      <h3><span class="idx">05</span>自定义分类：放开 + 归档</h3>
+      <p>可新增、重命名、排序、删除。删除默认「归档」：历史账单保留分类快照，汇总归入「已归档」；「未分类」只做系统兜底。</p>
+      <div class="rec"><b>为什么：</b>比一律显示未分类更可逆，也不改写往年报表。</div>
+    </div>
+
+    <div class="decision">
+      <h3><span class="idx">06</span>资产首页：分段控件</h3>
+      <p>沿用当前方案：资产 Tab 顶部用 <b>存款 / 薪酬 / 预算</b> 三段切换，不做「总览 → 二级页」的额外层级。</p>
+      <div class="rec"><b>已落地：</b>两个资产首页共享同一套头部与分段控件。</div>
+    </div>
+
+    <div class="decision">
+      <h3><span class="idx">07</span>不引入账户 / 银行卡</h3>
+      <p>删除年度页的「银行卡」筛选与交易排行里的账户信息；数据模型不加 `Account`、不加 `accountId`。</p>
+      <div class="rec"><b>影响：</b>年度页仅保留年份筛选；交易排行显示「名称 + 时间 + 金额」。</div>
+    </div>
+
+    <div class="decision">
+      <h3><span class="idx">08</span>不做「不计入」</h3>
+      <p>不新增 `excludeFromStats`，所有账单都参与收入、支出与结余统计；保留桌面版已有的「计入预算」开关。</p>
+      <div class="rec"><b>注意：</b>转账、还款会按普通收支计入；如后续需要，再作为 1.1 的字段扩展。</div>
+    </div>
+
+    <div class="decision">
+      <h3><span class="idx">09</span>安全、适配与技术底座</h3>
+      <p>不做应用锁；只支持竖屏；最低 iOS 18；SwiftUI + SwiftData + Swift Charts。</p>
+      <div class="rec"><b>已落地：</b>设置页无安全分组，原型全部 390×844 竖屏。</div>
+    </div>
+  </div>
+</section>
+
+<footer class="board-foot">静态原型 · 数据均为示意 · 交互说明见每屏下方注释 · 更新于 2026-11-19</footer>

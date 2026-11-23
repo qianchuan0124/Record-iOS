@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>中央「＋」样式方案</title>
+<link rel="stylesheet" href="src/style.css">
+<style>
+  body{background:#EDEFF3}
+  .wrap{padding:40px 48px 60px}
+  h1{margin:0 0 6px;font-size:26px;letter-spacing:-.01em}
+  .lead{margin:0 0 26px;font-size:13.5px;color:#5A6274;line-height:1.6}
+  .grid{display:grid;grid-template-columns:repeat(3,390px);gap:34px 28px}
+  .demo{width:390px;border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 0 0 1px #E3E5EA,0 14px 30px rgba(20,23,32,.10)}
+  .demo .top{height:120px;padding:16px 18px;background:linear-gradient(180deg,#FFFFFF,#F7F8FB)}
+  .demo .top .bar{height:14px;width:110px;border-radius:7px;background:#E6E8EE}
+  .demo .top .row{height:38px;border-radius:10px;background:#fff;border:1px solid #EDEFF4;margin-top:12px}
+  .cap{padding:12px 4px 0}
+  .cap b{display:block;font-size:13px;margin-bottom:3px}
+  .cap p{margin:0;font-size:12px;color:#5A6274;line-height:1.6}
+  .cap .rec{display:inline-block;margin-top:5px;font-size:11px;font-weight:600;color:#5648B3;background:#EFECFB;border-radius:5px;padding:2px 6px}
+
+  .tb{position:relative;height:84px;display:flex;align-items:flex-start;padding:7px 6px 0;border-top:1px solid #EBECF0;background:rgba(255,255,255,.96)}
+  .tb .t{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:#8A90A0;padding-top:2px}
+  .tb .t svg{width:23px;height:23px}
+  .tb .t.on{color:#6C5DD3}
+  .tb .add{display:flex;justify-content:center}
+  .tb .hb{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:#101114}
+
+  .v-pill .add{flex:0 0 106px}
+  .v-pill .btn{display:flex;align-items:center;gap:5px;height:38px;width:92px;border-radius:19px;background:linear-gradient(135deg,#7E6FE6,#5B4BC4);color:#fff;font-size:12.5px;font-weight:600;box-shadow:0 6px 14px rgba(92,75,196,.3);margin-top:-1px}
+  .v-pill .btn svg{width:18px;height:18px;stroke-width:2.2}
+
+  .v-float .btn{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#7E6FE6,#5B4BC4);color:#fff;display:grid;place-items:center;margin-top:-22px;box-shadow:0 8px 18px rgba(92,75,196,.36)}
+  .v-float .btn svg{width:24px;height:24px;stroke-width:2.2}
+
+  .v-ring .btn{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;margin-top:-14px;color:#6C5DD3;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#8B7BE8,#6C5DD3) border-box;border:2px solid transparent;box-shadow:0 6px 14px rgba(92,75,196,.18)}
+  .v-ring .btn svg{width:23px;height:23px;stroke-width:2.1}
+
+  .v-glass .btn{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.95);box-shadow:0 8px 18px rgba(27,31,39,.14);color:#6C5DD3;display:grid;place-items:center;margin-top:-14px}
+  .v-glass .btn svg{width:23px;height:23px;stroke-width:2.1}
+
+  .v-tabsquare .btn{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#7E6FE6,#5B4BC4);color:#fff;display:grid;place-items:center;margin-top:0}
+  .v-tabsquare .btn svg{width:19px;height:19px;stroke-width:2.3}
+  .v-tabsquare .add span.lb{font-size:10px;color:#6C5DD3;font-weight:600;margin-top:1px}
+
+  .v-outlinepill .add{flex:0 0 106px}
+  .v-outlinepill .btn{display:flex;align-items:center;gap:4px;height:36px;width:92px;border-radius:18px;background:#fff;color:#6C5DD3;border:1px solid #C9BFF2;font-size:12.5px;font-weight:600;margin-top:1px}
+  .v-outlinepill .btn svg{width:17px;height:17px;stroke-width:2.2}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>底部中央「＋」· 第二批</h1>
+  <p class="lead">A 胶囊、B 悬浮圆形保留；C–F 换成新的一套：渐变描边圆、毛玻璃圆、方块 Tab、描边胶囊。四者的「重量」都轻于 B，形态与 A 区分明显。</p>
+
+  <div class="grid">
+
+    <div>
+      <div class="demo v-pill">
+        <div class="top"><div class="bar"></div><div class="row"></div><div class="row"></div></div>
+        <div class="tb">
+          <div class="t on"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div>
+          <div class="t"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div>
+          <div class="t add"><span class="btn"><svg class="ico"><use href="#i-plus"/></svg>记一笔</span></div>
+          <div class="t"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div>
+          <div class="t"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div>
+          <div class="hb"></div>
+        </div>
+      </div>
+      <div class="cap"><b>A · 胶囊按钮</b><p>实心胶囊，留在 Tab 栏内、与图标同一基线；文字明确，不打断底栏节奏。</p><span class="rec">保留</span></div>
+    </div>
+
+    <div>
+      <div class="demo v-float">
+        <div class="top"><div class="bar"></div><div class="row"></div><div class="row"></div></div>
+        <div class="tb">
+          <div class="t on"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div>
+          <div class="t"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div>
+          <div class="t add"><span class="btn"><svg class="ico"><use href="#i-plus"/></svg></span></div>
+          <div class="t"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div>
+          <div class="t"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div>
+          <div class="hb"></div>
+        </div>
+      </div>
+      <div class="cap"><b>B · 悬浮圆形（无描边）</b><p>54px 渐变圆，凸起 -22px，柔和投影；最像「主操作」，但会压住内容。</p><span class="rec">保留</span></div>
+    </div>
+
+    <div>
+      <div class="demo v-ring">
+        <div class="top"><div class="bar"></div><div class="row"></div><div class="row"></div></div>
+        <div class="tb">
+          <div class="t on"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div>
+          <div class="t"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div>
+          <div class="t add"><span class="btn"><svg class="ico"><use href="#i-plus"/></svg></span></div>
+          <div class="t"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div>
+          <div class="t"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div>
+          <div class="hb"></div>
+        </div>
+      </div>
+      <div class="cap"><b>C · 渐变描边圆</b><p>白底 + 2px 品牌渐变环，只有加号是品牌色；比 B 轻，又有清晰的边界。</p></div>
+    </div>
+
+    <div>
+      <div class="demo v-glass">
+        <div class="top"><div class="bar"></div><div class="row"></div><div class="row"></div></div>
+        <div class="tb">
+          <div class="t on"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div>
+          <div class="t"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div>
+          <div class="t add"><span class="btn"><svg class="ico"><use href="#i-plus"/></svg></span></div>
+          <div class="t"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div>
+          <div class="t"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div>
+          <div class="hb"></div>
+        </div>
+      </div>
+      <div class="cap"><b>D · 毛玻璃圆</b><p>半透明 + 背景模糊，内容从按钮下透出来；比实心轻、比描边更有质感。</p></div>
+    </div>
+
+    <div>
+      <div class="demo v-tabsquare">
+        <div class="top"><div class="bar"></div><div class="row"></div><div class="row"></div></div>
+        <div class="tb">
+          <div class="t on"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div>
+          <div class="t"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div>
+          <div class="t add"><span class="btn"><svg class="ico"><use href="#i-plus"/></svg></span><span class="lb">记账</span></div>
+          <div class="t"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div>
+          <div class="t"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div>
+          <div class="hb"></div>
+        </div>
+      </div>
+      <div class="cap"><b>E · 方块 Tab</b><p>34px 圆角方块当图标，下面跟「记账」文字，和其余 Tab 完全同高；最克制。</p></div>
+    </div>
+
+    <div>
+      <div class="demo v-outlinepill">
+        <div class="top"><div class="bar"></div><div class="row"></div><div class="row"></div></div>
+        <div class="tb">
+          <div class="t on"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div>
+          <div class="t"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div>
+          <div class="t add"><span class="btn"><svg class="ico"><use href="#i-plus"/></svg>记一笔</span></div>
+          <div class="t"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div>
+          <div class="t"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div>
+          <div class="hb"></div>
+        </div>
+      </div>
+      <div class="cap"><b>F · 描边胶囊</b><p>白底 + 品牌色描边与文字，和 A 形成「实心 / 空心」对照；不抢视觉，但有明确轮廓。</p></div>
+    </div>
+
+  </div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-bill" viewBox="0 0 24 24"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v15.7l-3-1.9-3 1.9-3-1.9-3 1.9V4.5a1 1 0 0 1 1-1z"/><path d="M9 8.5h6M9 12.5h6"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v8.5h8.5"/></symbol>
+  <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 9.2 12 4l9 5.2"/><path d="M5.2 9.2v8M9.7 9.2v8M14.3 9.2v8M18.8 9.2v8"/><path d="M3 20.2h18"/></symbol>
+  <symbol id="i-set" viewBox="0 0 24 24"><path d="M4 7.5h16M4 16.5h16"/><circle cx="9" cy="7.5" r="2.4"/><circle cx="15" cy="16.5" r="2.4"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+</svg>
+</body>
+</html>

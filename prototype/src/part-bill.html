@@ -1,0 +1,293 @@
+<section class="group" id="g-bill" data-group="bill">
+  <div class="group-head">
+    <span class="group-num">01</span>
+    <h2>账单</h2>
+    <p>高频入口 · 月度账单、记账、筛选与编辑</p>
+  </div>
+  <div class="screens">
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="large">
+          <h3>2026年11月 <svg class="ico xs"><use href="#i-chev-d"/></svg></h3>
+          <div class="icons"><svg class="ico"><use href="#i-search"/></svg><svg class="ico"><use href="#i-filter"/></svg></div>
+        </div>
+        <div class="body">
+          <div class="summary">
+            <div class="col"><span class="lbl">本月支出</span><span class="num exp">8,642.50</span></div>
+            <div class="col"><span class="lbl">本月收入</span><span class="num inc">23,500.00</span></div>
+            <div class="col"><span class="lbl">结余</span><span class="num">14,857.50</span></div>
+          </div>
+
+          <div class="day-head"><span class="l"><span class="d">11月19日</span> 今天</span><span class="sum"><span class="exp">支 268.00</span></span></div>
+          <div>
+            <div class="row">
+              <i class="cat" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i>
+              <div class="row-main"><div class="row-title">三餐 · 午餐</div><div class="row-sub">公司楼下 · 12:32</div></div>
+              <b class="amt exp">-32.00</b>
+            </div>
+            <div class="row">
+              <i class="cat" style="--c:#3B82F6;--bgc:#E8F1FE">交</i>
+              <div class="row-main"><div class="row-title">打车</div><div class="row-sub">加班打车回家</div></div>
+              <b class="amt exp">-56.00</b>
+            </div>
+            <div class="row">
+              <i class="cat" style="--c:#EC4899;--bgc:#FDEBF5">购</i>
+              <div class="row-main"><div class="row-title">日用品</div><div class="row-sub">洗衣液、纸巾</div></div>
+              <b class="amt exp">-180.00</b>
+            </div>
+          </div>
+
+          <div class="day-head"><span class="l"><span class="d">11月18日</span> 周三</span><span class="sum"><span class="exp">支 528.00</span></span></div>
+          <div>
+            <div class="row">
+              <i class="cat" style="--c:#F59E0B;--bgc:var(--bonus-bg)">人</i>
+              <div class="row-main"><div class="row-title">请客</div><div class="row-sub">团队聚餐</div></div>
+              <b class="amt exp">-360.00</b>
+            </div>
+            <div class="row">
+              <i class="cat" style="--c:#10B981;--bgc:#E6F7F1">居</i>
+              <div class="row-main"><div class="row-title">话费</div><div class="row-sub">11 月套餐</div></div>
+              <b class="amt exp">-100.00</b>
+            </div>
+            <div class="row">
+              <i class="cat" style="--c:#EF4444;--bgc:#FDECEC">医</i>
+              <div class="row-main"><div class="row-title">药品</div><div class="row-sub">退烧药</div></div>
+              <b class="amt exp">-68.00</b>
+            </div>
+          </div>
+
+          <div class="day-head"><span class="l"><span class="d">11月17日</span> 周二</span><span class="sum"><span class="inc">收 23,500.00</span><span class="exp">支 57.60</span></span></div>
+          <div>
+            <div class="row">
+              <i class="cat" style="--c:var(--inc);--bgc:#E7F6F0">薪</i>
+              <div class="row-main"><div class="row-title">工资</div><div class="row-sub">10 月工资到账</div></div>
+              <b class="amt inc">+23,500.00</b>
+            </div>
+          </div>
+        </div>
+
+        {{TABS:bill}}
+      </div>
+      <figcaption><b>账单首页 <span class="tagline">默认 Tab</span></b>沿用桌面版「按月 + 按天分组」的结构；顶部固定本月收支结余，点月份标题呼出月份面板，右上角进入搜索与筛选。底部中央「＋」是全局唯一的记账入口。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        <div class="under">
+          <div class="under-nav"></div>
+          <div class="under-block"></div>
+          <div class="under-row"></div><div class="under-row"></div><div class="under-row"></div><div class="under-row"></div><div class="under-row"></div>
+        </div>
+        <div class="sheet-scrim"></div>
+        <div class="sheet" style="height:560px">
+          <div class="grabber"></div>
+          <div class="sheet-head"><span class="link">关闭</span><span class="st">选择月份</span><span class="link strong">完成</span></div>
+          <div class="sheet-body">
+            <div class="chips" style="margin-bottom:12px">
+              <span class="chip on">2026</span><span class="chip">2025</span><span class="chip">2024</span><span class="chip">2023</span>
+            </div>
+            <div class="group-card">
+              <div class="field" style="background:var(--brand-soft)">
+                <span class="fl b600"><span>11月</span><span class="tag" style="color:var(--brand);background:var(--brand-soft)">本月</span></span>
+                <span class="vl"><span class="inc nums t13">+23,500.00</span><span class="exp nums t13" style="margin-left:8px">-8,642.50</span></span>
+              </div>
+              <div class="field"><span class="fl"><span>10月</span></span><span class="vl"><span class="inc nums t13">+23,500.00</span><span class="exp nums t13" style="margin-left:8px">-9,318.20</span></span></div>
+              <div class="field"><span class="fl"><span>9月</span></span><span class="vl"><span class="inc nums t13">+23,500.00</span><span class="exp nums t13" style="margin-left:8px">-7,205.00</span></span></div>
+              <div class="field"><span class="fl"><span>8月</span></span><span class="vl"><span class="inc nums t13">+24,800.00</span><span class="exp nums t13" style="margin-left:8px">-12,460.00</span></span></div>
+              <div class="field"><span class="fl"><span>7月</span></span><span class="vl"><span class="inc nums t13">+23,500.00</span><span class="exp nums t13" style="margin-left:8px">-6,880.40</span></span></div>
+              <div class="field"><span class="fl"><span>6月</span></span><span class="vl"><span class="inc nums t13">+23,500.00</span><span class="exp nums t13" style="margin-left:8px">-15,942.00</span></span></div>
+            </div>
+            <div class="note">月份按年分组、向下追溯；切换年份会保留滚动位置，选中后立即刷新账单列表。</div>
+          </div>
+        </div>
+      </div>
+      <figcaption><b>月份选择 <span class="tagline">底部面板</span></b>桌面版是左侧无限滚动列表，受屏幕宽度限制改为底部面板：年份横滑 + 月份纵列，每行直接给出收支小计，方便回看某月花销。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="nav"><span class="link muted">取消</span><span class="nav-title">记一笔</span><span class="link">保存</span></div>
+        <div style="padding:4px 16px 0"><div class="seg"><span class="on">支出</span><span>收入</span></div></div>
+
+        <div style="padding:10px 20px 4px;display:flex;align-items:baseline;gap:6px">
+          <span style="font-size:24px;font-weight:600;color:var(--text3)">¥</span>
+          <span style="font-size:44px;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums">128.00</span>
+          <span style="width:2px;height:34px;background:var(--brand);border-radius:1px;margin-left:2px"></span>
+        </div>
+
+        <div style="padding:4px 16px 0">
+          <div class="grid-cat">
+            <div class="it on"><i class="cat" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i><span>餐饮</span></div>
+            <div class="it"><i class="cat" style="--c:#3B82F6;--bgc:#E8F1FE">交</i><span>交通</span></div>
+            <div class="it"><i class="cat" style="--c:#EC4899;--bgc:#FDEBF5">购</i><span>购物</span></div>
+            <div class="it"><i class="cat" style="--c:#10B981;--bgc:#E6F7F1">居</i><span>居家</span></div>
+            <div class="it"><i class="cat" style="--c:#F59E0B;--bgc:var(--bonus-bg)">人</i><span>人情</span></div>
+            <div class="it"><i class="cat" style="--c:#EF4444;--bgc:#FDECEC">医</i><span>医疗</span></div>
+            <div class="it"><i class="cat" style="--c:#8B5CF6;--bgc:#F1EBFE">学</i><span>学习</span></div>
+            <div class="it"><i class="cat" style="--c:#06B6D4;--bgc:#E4F8FB">娱</i><span>娱乐</span></div>
+            <div class="it"><i class="cat" style="--c:#64748B;--bgc:#EEF1F5">工</i><span>工作</span></div>
+            <div class="it"><i class="cat" style="--c:#94A3B8;--bgc:#F1F3F6">其</i><span>其他</span></div>
+          </div>
+          <div class="chips" style="margin-top:10px">
+            <span class="chip on">三餐</span><span class="chip">早餐</span><span class="chip">中餐</span><span class="chip">晚餐</span><span class="chip">买菜</span><span class="chip">水果</span>
+          </div>
+        </div>
+
+        <div class="pad16 mt16">
+          <div class="group-card">
+            <div class="field"><span class="lb">日期</span><span class="vl">今天 · 11月19日 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+            <div class="field"><span class="lb">备注</span><span class="vl muted">添加备注</span></div>
+            <div class="field"><span class="lb">计入预算</span><span class="toggle"></span></div>
+          </div>
+        </div>
+
+        <div class="grow"></div>
+        <div class="keypad">
+          <div class="key">1</div><div class="key">2</div><div class="key">3</div>
+          <div class="key">4</div><div class="key">5</div><div class="key">6</div>
+          <div class="key">7</div><div class="key">8</div><div class="key">9</div>
+          <div class="key fn">.</div><div class="key">0</div><div class="key fn"><svg class="ico"><use href="#i-close"/></svg></div>
+        </div>
+        <div class="homebar"></div>
+      </div>
+      <figcaption><b>记一笔 <span class="tagline">全屏浮层</span></b>一屏完成：类型 → 金额 → 一级分类 → 二级分类 → 日期/备注 → 保存。数字键盘常驻，减少键盘切换；分类用网格替代桌面版下拉，点一下就能选。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        <div class="under">
+          <div class="under-nav"></div>
+          <div class="under-block"></div>
+          <div class="under-row"></div><div class="under-row"></div><div class="under-row"></div><div class="under-row"></div>
+        </div>
+        <div class="sheet-scrim"></div>
+        <div class="sheet" style="height:640px">
+          <div class="grabber"></div>
+          <div class="sheet-head"><span class="link">取消</span><span class="st">选择分类</span><span class="link strong">完成</span></div>
+          <div class="sheet-body">
+            <div class="searchbar" style="margin-bottom:12px"><svg class="ico sm"><use href="#i-search"/></svg><span>搜索分类</span></div>
+            <div style="display:flex;gap:10px;height:470px">
+              <div style="flex:0 0 108px;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+                <div style="padding:12px 10px;font-size:13.5px;background:var(--brand-soft);color:var(--brand-dark);font-weight:600;border-left:3px solid var(--brand)">餐饮</div>
+                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">交通</div>
+                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">购物</div>
+                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">居家</div>
+                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">人情</div>
+                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">医疗</div>
+                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">学习</div>
+                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">娱乐</div>
+              </div>
+              <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start">
+                <div class="chip on" style="justify-content:center;padding:11px 0">三餐</div>
+                <div class="chip" style="justify-content:center;padding:11px 0">早餐</div>
+                <div class="chip" style="justify-content:center;padding:11px 0">中餐</div>
+                <div class="chip" style="justify-content:center;padding:11px 0">晚餐</div>
+                <div class="chip" style="justify-content:center;padding:11px 0">买菜</div>
+                <div class="chip" style="justify-content:center;padding:11px 0">水果</div>
+                <div class="chip" style="justify-content:center;padding:11px 0">零食</div>
+                <div class="chip" style="justify-content:center;padding:11px 0">加餐</div>
+                <div class="chip" style="justify-content:center;padding:11px 0">下午茶</div>
+                <div class="chip" style="justify-content:center;padding:11px 0">夜宵</div>
+                <div class="chip" style="justify-content:center;padding:11px 0">外卖</div>
+                <div class="chip" style="justify-content:center;padding:11px 0">聚餐</div>
+              </div>
+            </div>
+            <div class="note">左列一级分类固定，右列二级分类随选择切换；「自定义分类」中新增的项会实时出现在这里。</div>
+          </div>
+        </div>
+      </div>
+      <figcaption><b>分类选择 <span class="tagline">二级联动</span></b>桌面版用树形下拉，手机上改为左右两栏：左侧一级分类、右侧二级分类。选中后回到记一笔页，保留当前金额与备注。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        <div class="under">
+          <div class="under-nav"></div>
+          <div class="under-block"></div>
+          <div class="under-row"></div><div class="under-row"></div><div class="under-row"></div><div class="under-row"></div>
+        </div>
+        <div class="sheet-scrim"></div>
+        <div class="sheet" style="height:600px">
+          <div class="grabber"></div>
+          <div class="sheet-head"><span class="link">关闭</span><span class="st">账单详情</span><span class="link strong">保存</span></div>
+          <div class="sheet-body">
+            <div class="card" style="padding:18px 16px;display:flex;align-items:center;gap:14px">
+              <i class="cat lg" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i>
+              <div class="grow">
+                <div class="t15 b600">三餐 · 午餐</div>
+                <div class="t12 muted mt8" style="margin-top:3px">11月19日 周四 · 12:32</div>
+              </div>
+              <div class="amt exp" style="font-size:24px">-32.00</div>
+            </div>
+
+            <div class="group-card mt12">
+              <div class="field"><span class="lb">分类</span><span class="vl">餐饮 · 三餐 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field"><span class="lb">类型</span><span class="vl">支出 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field"><span class="lb">日期</span><span class="vl">2026-11-19 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field"><span class="lb">备注</span><span class="vl">公司楼下</span></div>
+              <div class="field"><span class="lb">计入预算</span><span class="toggle"></span></div>
+            </div>
+
+            <div class="note">点击任意字段就地编辑，复用「记一笔」的分类面板与数字键盘，不跳转新页面。</div>
+
+            <div style="display:flex;gap:10px;margin-top:18px">
+              <div class="btn danger grow"><svg class="ico sm"><use href="#i-trash"/></svg>删除</div>
+              <div class="btn primary" style="flex:2">保存</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption><b>账单详情 / 编辑 <span class="tagline">就地编辑</span></b>保留桌面版「点开行内展开编辑」的心智，但改用底部面板承载，避免行内挤压。删除为次要危险操作，放在左侧并二次确认。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        <div class="under">
+          <div class="under-nav"></div>
+          <div class="under-block"></div>
+          <div class="under-row"></div><div class="under-row"></div><div class="under-row"></div><div class="under-row"></div>
+        </div>
+        <div class="sheet-scrim"></div>
+        <div class="sheet" style="height:660px">
+          <div class="grabber"></div>
+          <div class="sheet-head"><span class="link">重置</span><span class="st">筛选</span><span class="link strong">查看 12 笔</span></div>
+          <div class="sheet-body">
+            <div class="group-label" style="padding-top:4px">类型</div>
+            <div class="seg"><span>全部</span><span class="on">支出</span><span>收入</span></div>
+
+            <div class="group-label">分类</div>
+            <div class="chips">
+              <span class="chip on">餐饮</span><span class="chip">交通</span><span class="chip on">购物</span><span class="chip">居家</span><span class="chip">人情</span><span class="chip">医疗</span><span class="chip">学习</span><span class="chip">娱乐</span>
+            </div>
+
+            <div class="group-label">金额范围</div>
+            <div class="hstack" style="gap:10px">
+              <div class="card grow" style="padding:11px 12px;font-size:14px;color:var(--text3)">最低金额</div>
+              <span class="muted">—</span>
+              <div class="card grow" style="padding:11px 12px;font-size:14px">500.00</div>
+            </div>
+
+            <div class="group-label">关键字</div>
+            <div class="searchbar"><svg class="ico sm"><use href="#i-search"/></svg><span>搜索备注或分类</span></div>
+
+            <div class="group-label">时间范围</div>
+            <div class="group-card">
+              <div class="field"><span class="lb">开始</span><span class="vl">2026-11-01</span></div>
+              <div class="field"><span class="lb">结束</span><span class="vl">2026-11-30</span></div>
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:18px">
+              <div class="btn ghost grow">清空条件</div>
+              <div class="btn primary" style="flex:2">应用筛选</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption><b>筛选 <span class="tagline">条件面板</span></b>桌面版筛选是一排按钮 + 浮层，手机上收敛到一个面板：类型、分类多选、金额区间、关键字、时间范围。应用后停留在账单页并在顶部显示条件标签。</figcaption>
+    </figure>
+
+  </div>
+</section>

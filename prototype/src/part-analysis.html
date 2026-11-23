@@ -1,0 +1,317 @@
+<section class="group" id="g-analysis" data-group="analysis">
+  <div class="group-head">
+    <span class="group-num">02</span>
+    <h2>分析</h2>
+    <p>概览 / 年度 / 时间线 · 从整体到单笔的下钻</p>
+  </div>
+  <div class="screens">
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="large"><h3>分析</h3><div class="icons"><svg class="ico"><use href="#i-cal"/></svg></div></div>
+        <div style="padding:0 16px 12px"><div class="seg"><span class="on">概览</span><span>年度</span><span>时间线</span></div></div>
+        <div class="hstack" style="justify-content:center;padding:0 16px 6px">
+          <div class="searchbar" style="padding:6px 14px;font-size:12.5px;color:var(--text2);background:var(--surface);border:1px solid var(--border-strong)">2026年11月 <svg class="ico xs"><use href="#i-chev-d"/></svg></div>
+        </div>
+        <div class="body">
+          <div class="donut">
+            <div class="center"><span class="k">总支出</span><span class="v">8,642.50</span></div>
+          </div>
+          <div class="legend">
+            <div class="it"><span class="sw" style="background:#FF7A45"></span><span class="nm">餐饮</span><span class="pc">32%</span></div>
+            <div class="it"><span class="sw" style="background:#3B82F6"></span><span class="nm">交通</span><span class="pc">18%</span></div>
+            <div class="it"><span class="sw" style="background:#EC4899"></span><span class="nm">购物</span><span class="pc">14%</span></div>
+            <div class="it"><span class="sw" style="background:#10B981"></span><span class="nm">居家</span><span class="pc">12%</span></div>
+            <div class="it"><span class="sw" style="background:#F59E0B"></span><span class="nm">人情</span><span class="pc">9%</span></div>
+            <div class="it"><span class="sw" style="background:#8B5CF6"></span><span class="nm">其他</span><span class="pc">15%</span></div>
+          </div>
+
+          <div class="flexb" style="padding:18px 4px 6px">
+            <span class="t13 b600">分类明细</span>
+            <span class="t115 muted">点击查看子分类</span>
+          </div>
+          <div class="bar-list">
+            <div class="bar-item">
+              <div class="bar-top"><span class="n"><i class="cat sm" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i>餐饮</span><span class="v">2,765.60</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:32%;--c:#FF7A45"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-top"><span class="n"><i class="cat sm" style="--c:#3B82F6;--bgc:#E8F1FE">交</i>交通</span><span class="v">1,555.65</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:18%;--c:#3B82F6"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-top"><span class="n"><i class="cat sm" style="--c:#EC4899;--bgc:#FDEBF5">购</i>购物</span><span class="v">1,210.00</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:14%;--c:#EC4899"></div></div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-top"><span class="n"><i class="cat sm" style="--c:#10B981;--bgc:#E6F7F1">居</i>居家</span><span class="v">1,037.10</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:12%;--c:#10B981"></div></div>
+            </div>
+          </div>
+        </div>
+        {{TABS:analysis}}
+      </div>
+      <figcaption><b>分析 · 概览 <span class="tagline">环形图</span></b>桌面版是 ECharts 饼图 + 右侧滑出详情树。手机端用环形图占位更省高度，图例与分类条形列表同时承担「看比例」和「点进去」两个作用。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="nav">
+          <span class="back"><svg class="ico sm"><use href="#i-back"/></svg>概览</span>
+          <span class="nav-title">餐饮</span>
+          <svg class="ico"><use href="#i-search"/></svg>
+        </div>
+        <div class="body" style="padding-top:4px">
+          <div class="card" style="padding:14px 16px;display:flex;align-items:flex-end;gap:14px">
+            <div class="grow">
+              <div class="t115 muted">餐饮 · 11月支出</div>
+              <div style="font-size:26px;font-weight:700;letter-spacing:-.02em;margin-top:3px">2,765.60</div>
+            </div>
+            <div style="text-align:right;font-size:11.5px;color:var(--text3)">占本月支出<br><span class="t15 b600" style="color:var(--text)">32%</span></div>
+          </div>
+
+          <div class="group-label" style="padding-top:16px">子分类</div>
+          <div class="card" style="padding:6px 14px">
+            <div class="bar-item" style="padding:10px 0">
+              <div class="bar-top"><span class="n">三餐</span><span class="v">1,286.00 <span class="muted">· 46%</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:46%;--c:#FF7A45"></div></div>
+            </div>
+            <div class="bar-item divide-t" style="padding:10px 0;margin-top:0">
+              <div class="bar-top"><span class="n">外卖</span><span class="v">642.00 <span class="muted">· 23%</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:23%;--c:#FF9F6E"></div></div>
+            </div>
+            <div class="bar-item divide-t" style="padding:10px 0">
+              <div class="bar-top"><span class="n">水果</span><span class="v">418.60 <span class="muted">· 15%</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:15%;--c:#FFC09B"></div></div>
+            </div>
+            <div class="bar-item divide-t" style="padding:10px 0">
+              <div class="bar-top"><span class="n">下午茶</span><span class="v">258.00 <span class="muted">· 9%</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:9%;--c:#FFD6BC"></div></div>
+            </div>
+          </div>
+
+          <div class="flexb" style="padding:18px 4px 8px">
+            <span class="t13 b600">三餐 · 明细</span>
+            <span class="t115 pri">全部 26 笔</span>
+          </div>
+          <div class="card" style="padding:2px 14px">
+            <div class="row">
+              <i class="cat sm" style="--c:#FF7A45;--bgc:#FFF0E9">午</i>
+              <div class="row-main"><div class="row-title t135">11月19日 · 午餐</div><div class="row-sub">公司楼下</div></div>
+              <b class="amt exp t14">-32.00</b>
+            </div>
+            <div class="row">
+              <i class="cat sm" style="--c:#FF7A45;--bgc:#FFF0E9">晚</i>
+              <div class="row-main"><div class="row-title t135">11月18日 · 晚餐</div><div class="row-sub">外卖</div></div>
+              <b class="amt exp t14">-48.00</b>
+            </div>
+            <div class="row">
+              <i class="cat sm" style="--c:#FF7A45;--bgc:#FFF0E9">午</i>
+              <div class="row-main"><div class="row-title t135">11月17日 · 午餐</div><div class="row-sub">食堂</div></div>
+              <b class="amt exp t14">-26.00</b>
+            </div>
+          </div>
+        </div>
+        {{TABS:analysis}}
+      </div>
+      <figcaption><b>分类下钻 <span class="tagline">二级 + 单笔</span></b>桌面版详情树做了三层，手机端拆成可连续下钻的页面：分类 → 子分类条形 → 该子分类的账单列表。返回时保留滚动位置。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="large"><h3>分析</h3><div class="icons"><svg class="ico"><use href="#i-cal"/></svg></div></div>
+        <div style="padding:0 16px 8px"><div class="seg"><span>概览</span><span class="on">年度</span><span>时间线</span></div></div>
+        <div class="body">
+          <div class="hstack" style="gap:8px;padding:2px 2px 10px">
+            <span class="chip" style="padding:5px 10px;font-size:12px">2026 <svg class="ico xs"><use href="#i-chev-d"/></svg></span>
+          </div>
+
+          <div class="card" style="padding:13px 16px 10px">
+            <div class="flexb">
+              <span class="t115 muted">结余</span>
+              <span class="chip" style="font-size:10.5px;padding:3px 9px;color:var(--text2)">创建年结余目标</span>
+            </div>
+            <div style="font-size:29px;font-weight:700;letter-spacing:-.02em;margin:1px 0 10px">-¥ 36,708.74</div>
+            <div class="hstack" style="gap:20px;font-size:11.5px">
+              <span class="hstack" style="gap:5px"><i class="dot" style="background:#3B82F6"></i>收入 <b class="t13">1,055,261.60</b></span>
+              <span class="hstack" style="gap:5px"><i class="dot" style="background:#FF7A45"></i>支出 <b class="t13">1,091,970.34</b></span>
+            </div>
+            <div style="display:flex;align-items:flex-end;gap:10px;height:66px;margin-top:14px;padding:0 2px">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="hstack" style="gap:2px;align-items:flex-end;height:40px">
+                  <span style="width:3px;height:18px;background:#FFB59B;border-radius:2px"></span>
+                  <span style="width:3px;height:26px;background:#9CC3F8;border-radius:2px"></span>
+                </div>
+                <span class="t11 muted">2022</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="hstack" style="gap:2px;align-items:flex-end;height:40px">
+                  <span style="width:3px;height:14px;background:#FFB59B;border-radius:2px"></span>
+                  <span style="width:3px;height:12px;background:#9CC3F8;border-radius:2px"></span>
+                </div>
+                <span class="t11 muted">2023</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="hstack" style="gap:2px;align-items:flex-end;height:40px">
+                  <span style="width:3px;height:28px;background:#FFB59B;border-radius:2px"></span>
+                  <span style="width:3px;height:24px;background:#9CC3F8;border-radius:2px"></span>
+                </div>
+                <span class="t11 muted">2024</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div class="hstack" style="gap:2px;align-items:flex-end;height:40px">
+                  <span style="width:3px;height:20px;background:#FFB59B;border-radius:2px"></span>
+                  <span style="width:3px;height:22px;background:#9CC3F8;border-radius:2px"></span>
+                </div>
+                <span class="t11 muted">2025</span>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;background:var(--summary-bg);border-radius:8px;padding:3px 0 2px">
+                <div class="hstack" style="gap:2px;align-items:flex-end;height:40px">
+                  <span style="width:3px;height:34px;background:#FF7A45;border-radius:2px"></span>
+                  <span style="width:3px;height:32px;background:#3B82F6;border-radius:2px"></span>
+                </div>
+                <span class="t11" style="color:var(--text);font-weight:600">2026</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="group-label" style="padding:12px 4px 7px">结余月历</div>
+          <div class="card" style="padding:8px">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+              <div class="mcell"><span class="m">1月</span><span class="v">-200.10</span></div>
+              <div class="mcell"><span class="m">2月</span><span class="v">-2.63万</span></div>
+              <div class="mcell"><span class="m">3月</span><span class="v">-1.32万</span></div>
+              <div class="mcell on"><span class="m">4月</span><span class="v">209.41</span></div>
+              <div class="mcell"><span class="m">5月</span><span class="v">-25.08</span></div>
+              <div class="mcell"><span class="m">6月</span><span class="v">2,946.43</span></div>
+              <div class="mcell"><span class="m">7月</span><span class="v">-1,275.42</span></div>
+              <div class="mcell"><span class="m">8月</span><span class="v">-1,347.96</span></div>
+              <div class="mcell"><span class="m">9月</span><span class="v">-438.25</span></div>
+              <div class="mcell"><span class="m">10月</span><span class="v">39.72</span></div>
+              <div class="mcell"><span class="m">11月</span><span class="v">3,028.07</span></div>
+              <div class="mcell empty"><span class="m">12月</span><span class="v">—</span></div>
+            </div>
+          </div>
+          <div class="note">点月份格子可切到该月账单；负结余保持中性色，不使用红色，避免整屏都是告警色。</div>
+        </div>
+        {{TABS:analysis}}
+      </div>
+      <figcaption><b>分析 · 年度总览 <span class="tagline">参考图版式</span></b>按参考图重构：年度结余主数字 + 收入/支出双色 + 五年迷你柱 + 结余月历。年份是下拉筛选，月历同时承担「看全年」和「跳到某月」。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="nav"><span class="back"><svg class="ico sm"><use href="#i-back"/></svg>年度</span><span class="nav-title">2026 · 分类与排行</span><span><svg class="ico"><use href="#i-filter"/></svg></span></div>
+        <div style="padding:6px 16px 8px"><div class="seg"><span class="on">收入</span><span>支出</span></div></div>
+        <div class="body">
+          <div class="flexb" style="padding:4px 2px 8px">
+            <span class="t13 b600">分类汇总</span>
+            <span class="hstack t115 muted" style="gap:6px">对比上年 <span class="toggle sm off"></span></span>
+          </div>
+          <div class="group-card" style="padding:0 14px">
+            <div style="padding:9px 0 7px;border-bottom:1px solid var(--divider-soft)">
+              <div class="flexb"><span class="hstack" style="gap:8px"><i class="cat sm" style="--c:var(--inc);--bgc:#E7F6F0">薪</i><span class="t135 b600">薪酬</span><span class="t11 muted">68%, 15 笔</span></span><b class="amt t14">¥718,325.05</b></div>
+              <div style="height:3px;width:54px;background:#FF7A45;border-radius:2px;margin:6px 0 0 38px"></div>
+            </div>
+            <div class="flexb" style="padding:9px 0;border-bottom:1px solid var(--divider-soft)"><span class="hstack" style="gap:8px"><i class="cat sm" style="--c:#3B82F6;--bgc:#E8F1FE">转</i><span class="t135">转账给自己</span><span class="t11 muted">29%, 28 笔</span></span><b class="amt t14">¥310,784.86</b></div>
+            <div class="flexb" style="padding:9px 0;border-bottom:1px solid var(--divider-soft)"><span class="hstack" style="gap:8px"><i class="cat sm" style="--c:#14B8A6;--bgc:#E3F7F4">入</i><span class="t135">他人转入</span><span class="t11 muted">2%, 12 笔</span></span><b class="amt t14">¥19,055.80</b></div>
+            <div class="flexb" style="padding:9px 0;border-bottom:1px solid var(--divider-soft)"><span class="hstack" style="gap:8px"><i class="cat sm" style="--c:#8B5CF6;--bgc:#F1EBFE">基</i><span class="t135">基金</span><span class="t11 muted">0.64%, 8 笔</span></span><b class="amt t14">¥6,800.00</b></div>
+            <div class="flexb" style="padding:9px 0"><span class="hstack" style="gap:8px"><i class="cat sm" style="--c:#94A3B8;--bgc:#F1F3F6">退</i><span class="t135">退款</span><span class="t11 muted">0.03%, 3 笔</span></span><b class="amt t14">¥288.30</b></div>
+          </div>
+          <div style="text-align:center;padding:9px 0 4px;font-size:11.5px;color:var(--text3)">收起 ∧</div>
+
+          <div class="flexb" style="padding:8px 2px 8px">
+            <span class="t13 b600">交易排行</span>
+            <span class="t115 muted">按金额降序</span>
+          </div>
+          <div class="group-card" style="padding:0 12px">
+            <div class="hstack" style="gap:9px;padding:9px 0;border-bottom:1px solid var(--divider-soft)">
+              <span class="rank" style="background:var(--rank-bg);color:var(--bonus-text)">1</span>
+              <div class="grow">
+                <div class="hstack" style="gap:6px"><span class="t135 b600">转账-夏川(6818)</span></div>
+                <div class="t11 muted" style="margin-top:2px">05-15 17:32:39</div>
+              </div>
+              <b class="amt inc t14">+¥99,824.00</b>
+            </div>
+            <div class="hstack" style="gap:9px;padding:9px 0;border-bottom:1px solid var(--divider-soft)">
+              <span class="rank" style="background:var(--track-chip);color:#5A6274">2</span>
+              <div class="grow">
+                <div class="t135 b600">转账-夏川(8104)</div>
+                <div class="t11 muted" style="margin-top:2px">05-15 17:19:26</div>
+              </div>
+              <b class="amt inc t14">+¥99,824.00</b>
+            </div>
+            <div class="hstack" style="gap:9px;padding:9px 0">
+              <span class="rank" style="background:var(--rank-bg);color:var(--bonus-text)">3</span>
+              <div class="grow">
+                <div class="t135 b600">年终奖</div>
+                <div class="t11 muted" style="margin-top:2px">02-13 21:52:19</div>
+              </div>
+              <b class="amt inc t14">+¥84,810.00</b>
+            </div>
+          </div>
+        </div>
+        {{TABS:analysis}}
+      </div>
+      <figcaption><b>年度 · 分类与排行 <span class="tagline">可下钻</span></b>参考图的两个二级区块：分类汇总（占比、笔数、对比上年）与交易排行（名次、时间、金额）。分类行点击进入子分类，不做账户维度。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="large"><h3>分析</h3><div class="icons"><svg class="ico"><use href="#i-cal"/></svg></div></div>
+        <div style="padding:0 16px 12px"><div class="seg"><span>概览</span><span>年度</span><span class="on">时间线</span></div></div>
+        <div class="body">
+          <div class="card" style="padding:12px 14px;display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div class="t15" style="font-weight:700">2026</div>
+              <div class="t11 muted" style="margin-top:2px">486 笔支出</div>
+            </div>
+            <div style="text-align:right">
+              <div class="t11 muted">全年支出</div>
+              <div class="t15 exp" style="font-weight:700">86,420.00</div>
+            </div>
+          </div>
+
+          <div style="padding:16px 2px 4px" class="timeline">
+            <div class="tl-item">
+              <div class="tl-card">
+                <div class="tl-head"><span class="tag" style="color:var(--salary-text);background:var(--salary-bg)">第一笔支出</span><span class="t11 muted">01.02</span></div>
+                <div class="tl-main"><i class="cat sm" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i><span class="t">三餐 · 午餐</span><b class="amt exp t14">-28.00</b></div>
+                <div class="tl-remark">新年第一天的午饭</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-card">
+                <div class="tl-head"><span class="tag" style="color:var(--bonus-text);background:var(--bonus-bg)">最大一笔支出</span><span class="t11 muted">06.18</span></div>
+                <div class="tl-main"><i class="cat sm" style="--c:#EC4899;--bgc:#FDEBF5">购</i><span class="t">数码 · 笔记本电脑</span><b class="amt exp t14">-8,999.00</b></div>
+                <div class="tl-remark">换掉用了五年的旧电脑</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-card">
+                <div class="tl-head"><span class="tag" style="color:var(--inc);background:#E7F6F0">最大一笔收入</span><span class="t11 muted">02.08</span></div>
+                <div class="tl-main"><i class="cat sm" style="--c:var(--inc);--bgc:#E7F6F0">薪</i><span class="t">年终奖</span><b class="amt inc t14">+48,000.00</b></div>
+                <div class="tl-remark">2025 年度奖金</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-card">
+                <div class="tl-head"><span class="tag" style="color:#5A6274;background:var(--seg-bg)">最后一笔支出</span><span class="t11 muted">11.19</span></div>
+                <div class="tl-main"><i class="cat sm" style="--c:#3B82F6;--bgc:#E8F1FE">交</i><span class="t">打车</span><b class="amt exp t14">-56.00</b></div>
+                <div class="tl-remark">加班打车回家</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{TABS:analysis}}
+      </div>
+      <figcaption><b>分析 · 时间线 <span class="tagline">叙事化</span></b>保留桌面版的年度事件卡：第一笔、最大一笔、最大收入、最后一笔。点卡片进入对应账单详情，是复盘一年最直观的入口。</figcaption>
+    </figure>
+
+  </div>
+</section>
