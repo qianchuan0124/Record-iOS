@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg1a" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#352184"/>
+      <stop offset=".5" stop-color="#6250CE"/>
+      <stop offset="1" stop-color="#9A83FF"/>
+    </linearGradient>
+    <radialGradient id="glow1a" cx=".16" cy=".06" r=".76">
+      <stop offset="0" stop-color="#E4DDFF" stop-opacity=".82"/>
+      <stop offset="1" stop-color="#E4DDFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette1a" cx=".5" cy=".5" r=".72">
+      <stop offset=".58" stop-color="#150B3B" stop-opacity="0"/>
+      <stop offset="1" stop-color="#150B3B" stop-opacity=".36"/>
+    </radialGradient>
+    <radialGradient id="goldGlow1a" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#FFD66F" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#FFD66F" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="spine1a" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#28176A"/>
+      <stop offset=".56" stop-color="#4D39B5"/>
+      <stop offset="1" stop-color="#7B68EA"/>
+    </linearGradient>
+    <linearGradient id="coin1a" x1=".1" y1="0" x2=".9" y2="1">
+      <stop offset="0" stop-color="#FFF3BA"/>
+      <stop offset=".4" stop-color="#FFD15D"/>
+      <stop offset="1" stop-color="#E7990C"/>
+    </linearGradient>
+    <filter id="shadowPage1a" x="-35%" y="-28%" width="170%" height="178%">
+      <feDropShadow dx="0" dy="34" stdDeviation="34" flood-color="#140A35" flood-opacity=".44"/>
+    </filter>
+    <filter id="shadowCoin1a" x="-50%" y="-45%" width="200%" height="210%">
+      <feDropShadow dx="0" dy="20" stdDeviation="20" flood-color="#5D2D02" flood-opacity=".34"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg1a)"/>
+  <circle cx="160" cy="104" r="440" fill="url(#glow1a)"/>
+  <path d="M0 808 L1024 190 V302 L0 920 Z" fill="#FFFFFF" opacity=".03"/>
+  <circle cx="710" cy="730" r="198" fill="url(#goldGlow1a)"/>
+  <rect width="1024" height="1024" fill="url(#vignette1a)"/>
+
+  <g transform="rotate(-6 512 512)" filter="url(#shadowPage1a)">
+    <rect x="286" y="200" width="492" height="678" rx="66" fill="#2A1A6B" opacity=".66"/>
+    <rect x="252" y="174" width="486" height="674" rx="60" fill="#FBF9FF"/>
+    <path d="M252 234 Q252 174 312 174 H358 V848 H312 Q252 848 252 788 Z" fill="url(#spine1a)"/>
+    <path d="M358 174 V848" stroke="#FFFFFF" stroke-opacity=".26" stroke-width="3"/>
+    <path d="M278 206 Q278 194 292 194 H324 V816 H292 Q278 816 278 804 Z" fill="#FFFFFF" opacity=".085"/>
+    <path d="M363 196 V826" stroke="#24145F" stroke-opacity=".14" stroke-width="12"/>
+    <rect x="394" y="356" width="246" height="24" rx="12" fill="#DCD5F4"/>
+    <rect x="394" y="430" width="196" height="24" rx="12" fill="#E7E1F8"/>
+    <rect x="394" y="504" width="226" height="24" rx="12" fill="#DCD5F4"/>
+    <rect x="394" y="578" width="138" height="24" rx="12" fill="#E7E1F8"/>
+    <path d="M736 316 H686 V476 L711 450 L736 476 Z" fill="#35CFA0"/>
+  </g>
+
+  <g filter="url(#shadowCoin1a)">
+    <circle cx="708" cy="732" r="118" fill="url(#coin1a)"/>
+    <circle cx="708" cy="732" r="111" fill="none" stroke="#B9770B" stroke-width="9" stroke-dasharray="4 8" opacity=".28"/>
+    <circle cx="708" cy="732" r="94" fill="none" stroke="#FFF2BF" stroke-width="8" opacity=".74"/>
+    <g transform="translate(708 735) scale(.66)" fill="none" stroke="#7B4B00" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" opacity=".2">
+      <path d="M-64 -92 L0 0 L64 -92"/>
+      <path d="M0 0 V104"/>
+      <path d="M-54 26 H54"/>
+      <path d="M-54 66 H54"/>
+    </g>
+    <g transform="translate(708 731) scale(.66)" fill="none" stroke="#5843B5" stroke-width="38" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-64 -92 L0 0 L64 -92"/>
+      <path d="M0 0 V104"/>
+      <path d="M-54 26 H54"/>
+      <path d="M-54 66 H54"/>
+    </g>
+    <path d="M620 668 C 664 620 758 614 806 668" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" opacity=".34"/>
+  </g>
+
+  <path d="M828 186 l10 30 30 10 -30 10 -10 30 -10 -30 -30 -10 30 -10z" fill="#FFE08A" opacity=".94"/>
+</svg>

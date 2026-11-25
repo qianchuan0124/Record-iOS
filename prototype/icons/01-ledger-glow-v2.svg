@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3E2A97"/>
+      <stop offset=".48" stop-color="#6A55D8"/>
+      <stop offset="1" stop-color="#A28BFF"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx=".16" cy=".06" r=".74">
+      <stop offset="0" stop-color="#E2DBFF" stop-opacity=".78"/>
+      <stop offset="1" stop-color="#E2DBFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="goldGlow1" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#FFD66F" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#FFD66F" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="spine1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2D1D75"/>
+      <stop offset=".62" stop-color="#5844C5"/>
+      <stop offset="1" stop-color="#7B68EA"/>
+    </linearGradient>
+    <linearGradient id="coin1" x1=".12" y1="0" x2=".88" y2="1">
+      <stop offset="0" stop-color="#FFF1B3"/>
+      <stop offset=".42" stop-color="#FFD15D"/>
+      <stop offset="1" stop-color="#E99B10"/>
+    </linearGradient>
+    <filter id="shadowPage1" x="-35%" y="-28%" width="170%" height="178%">
+      <feDropShadow dx="0" dy="34" stdDeviation="34" flood-color="#160C39" flood-opacity=".42"/>
+    </filter>
+    <filter id="shadowCoin1" x="-50%" y="-45%" width="200%" height="210%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#5A2C03" flood-opacity=".38"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg1)"/>
+  <circle cx="166" cy="112" r="430" fill="url(#glow1)"/>
+  <path d="M0 804 L1024 196 V310 L0 918 Z" fill="#FFFFFF" opacity=".035"/>
+  <circle cx="716" cy="734" r="190" fill="url(#goldGlow1)"/>
+
+  <g transform="rotate(-7 512 512)" filter="url(#shadowPage1)">
+    <rect x="282" y="202" width="492" height="676" rx="66" fill="#2A1A6B" opacity=".58"/>
+    <rect x="252" y="174" width="486" height="674" rx="60" fill="#F9F7FF"/>
+    <path d="M252 234 Q252 174 312 174 H358 V848 H312 Q252 848 252 788 Z" fill="url(#spine1)"/>
+    <path d="M358 174 V848" stroke="#FFFFFF" stroke-opacity=".24" stroke-width="3"/>
+    <path d="M276 206 Q276 194 290 194 H322 V816 H290 Q276 816 276 804 Z" fill="#FFFFFF" opacity=".08"/>
+    <rect x="394" y="352" width="240" height="24" rx="12" fill="#DCD5F4"/>
+    <rect x="394" y="426" width="188" height="24" rx="12" fill="#E7E1F8"/>
+    <rect x="394" y="500" width="226" height="24" rx="12" fill="#DCD5F4"/>
+    <rect x="394" y="574" width="142" height="24" rx="12" fill="#E7E1F8"/>
+    <path d="M736 320 H686 V478 L711 452 L736 478 Z" fill="#35CFA0"/>
+    <path d="M252 818 H736" stroke="#FFD37A" stroke-width="4" stroke-linecap="round" opacity=".58"/>
+  </g>
+
+  <g filter="url(#shadowCoin1)">
+    <circle cx="716" cy="734" r="112" fill="url(#coin1)"/>
+    <circle cx="716" cy="734" r="94" fill="none" stroke="#FFF2BF" stroke-width="8" opacity=".72"/>
+    <circle cx="716" cy="734" r="82" fill="none" stroke="#B9770B" stroke-width="3" opacity=".18"/>
+    <g transform="translate(716 732) scale(.64)" fill="none" stroke="#5843B5" stroke-width="38" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-64 -92 L0 0 L64 -92"/>
+      <path d="M0 0 V104"/>
+      <path d="M-54 26 H54"/>
+      <path d="M-54 66 H54"/>
+    </g>
+  </g>
+
+  <path d="M828 188 l10 30 30 10 -30 10 -10 30 -10 -30 -30 -10 30 -10z" fill="#FFE08A" opacity=".94"/>
+</svg>

@@ -666,12 +666,31 @@ private struct LedgerFilterView: View {
     }
 }
 
+private enum SearchHistoryStore {
+    static let key = "record.search.history.v1"
+    static let limit = 10
+
+    static func load() -> [String] {
+        guard let data = UserDefaults.standard.data(forKey: key),
+              let value = try? JSONDecoder().decode([String].self, from: data) else {
+            return []
+        }
+        return value
+    }
+
+    static func save(_ value: [String]) {
+        guard let data = try? JSONEncoder().encode(Array(value.prefix(limit))) else { return }
+        UserDefaults.standard.set(data, forKey: key)
+    }
+}
+
 private struct SearchRecordsView: View {
     @Environment(\.dismiss) private var dismiss
     let records: [RecordItem]
     @State private var keyword = ""
     @State private var submittedKeyword = ""
     @State private var results: [RecordItem] = []
+    @State private var history: [String] = []
     @State private var editing: RecordItem?
     @State private var didHandleLaunchArgs = false
     @State private var detent: PresentationDetent = .height(300)
@@ -689,7 +708,7 @@ private struct SearchRecordsView: View {
                 TextField(L10n.Ledger.searchPlaceholder, text: $keyword)
                     .focused($focused)
                     .submitLabel(.search)
-                    .onSubmit(submitSearch)
+                    .onSubmit { submitSearch() }
 
                 if !keyword.isEmpty {
                     Button {
@@ -744,14 +763,16 @@ private struct SearchRecordsView: View {
                 detent = .large
             }
         }
-        #if DEBUG
         .onAppear {
+            history = SearchHistoryStore.load()
+
+            #if DEBUG
             if let arg = CommandLine.arguments.first(where: { $0.hasPrefix("-search=") }) {
                 keyword = String(arg.dropFirst("-search=".count))
                 submitSearch()
             }
+            #endif
         }
-        #endif
     }
 
     private var header: some View {
@@ -774,20 +795,39 @@ private struct SearchRecordsView: View {
         .frame(height: 44)
     }
 
-    private func submitSearch() {
-        let trimmed = keyword.trimmingCharacters(in: .whitespaces)
+    private func submitSearch(_ rawTerm: String? = nil) {
+        let trimmed = (rawTerm ?? keyword).trimmingCharacters(in: .whitespaces)
         focused = false
         guard !trimmed.isEmpty else {
             submittedKeyword = ""
             results = []
             return
         }
+
         submittedKeyword = trimmed
         results = records.filter {
             $0.category.localizedCaseInsensitiveContains(trimmed) ||
             $0.subCategory.localizedCaseInsensitiveContains(trimmed) ||
             $0.remark.localizedCaseInsensitiveContains(trimmed)
         }
+        if rawTerm != nil {
+            keyword = trimmed
+        }
+        remember(trimmed)
+    }
+
+    private func remember(_ term: String) {
+        history.removeAll { $0.localizedCaseInsensitiveCompare(term) == .orderedSame }
+        history.insert(term, at: 0)
+        if history.count > 10 {
+            history = Array(history.prefix(10))
+        }
+        SearchHistoryStore.save(history)
+    }
+
+    private func clearHistory() {
+        history.removeAll()
+        SearchHistoryStore.save(history)
     }
 
     private func highlight(_ text: String, key: String, baseColor: Color) -> Text {
@@ -807,13 +847,67 @@ private struct SearchRecordsView: View {
         return result + Text(String(rest)).foregroundColor(baseColor)
     }
 
+    private var historyContent: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text(L10n.Ledger.searchHistory)
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(Theme.text3)
+                Spacer()
+                Button(L10n.Common.clear) {
+                    clearHistory()
+                }
+                .font(.system(size: 13))
+                .foregroundStyle(Theme.brand)
+            }
+            .padding(.horizontal, 2)
+
+            ScrollView {
+                LazyVStack(spacing: 0) {
+                    ForEach(Array(history.enumerated()), id: \.element) { index, term in
+                        Button {
+                            submitSearch(term)
+                        } label: {
+                            HStack(spacing: 10) {
+                                Image(systemName: "clock")
+                                    .font(.system(size: 13, weight: .medium))
+                                    .foregroundStyle(Theme.text3)
+                                Text(term)
+                                    .font(.system(size: 15))
+                                    .foregroundStyle(Theme.text)
+                                    .lineLimit(1)
+                                Spacer()
+                                Image(systemName: "arrow.up.left")
+                                    .font(.system(size: 12, weight: .medium))
+                                    .foregroundStyle(Theme.text3)
+                            }
+                            .padding(.horizontal, 4)
+                            .padding(.vertical, 11)
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+
+                        if index < history.count - 1 {
+                            Divider().padding(.leading, 27)
+                        }
+                    }
+                }
+            }
+            .scrollIndicators(.hidden)
+        }
+    }
+
     @ViewBuilder
     private var content: some View {
         let key = submittedKeyword
         let items = results
 
         if key.isEmpty {
-            EmptyHint(text: L10n.Ledger.searchHint)
+            if history.isEmpty {
+                EmptyHint(text: L10n.Ledger.searchHint)
+            } else {
+                historyContent
+            }
         } else if items.isEmpty {
             EmptyHint(text: L10n.Ledger.searchEmpty)
         } else {

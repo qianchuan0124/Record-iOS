@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF9A72"/>
+      <stop offset=".52" stop-color="#F26D65"/>
+      <stop offset="1" stop-color="#D84164"/>
+    </linearGradient>
+    <radialGradient id="glow5" cx=".16" cy=".06" r=".8">
+      <stop offset="0" stop-color="#FFE2C7" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#FFE2C7" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="card5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7B68EB"/>
+      <stop offset="1" stop-color="#4B38AE"/>
+    </linearGradient>
+    <filter id="shadow5" x="-35%" y="-30%" width="170%" height="180%">
+      <feDropShadow dx="0" dy="34" stdDeviation="36" flood-color="#6B1E2C" flood-opacity=".35"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg5)"/>
+  <circle cx="160" cy="104" r="410" fill="url(#glow5)"/>
+  <g filter="url(#shadow5)">
+    <g transform="rotate(9 512 512)">
+      <rect x="308" y="206" width="422" height="606" rx="72" fill="url(#card5)"/>
+      <rect x="372" y="316" width="236" height="22" rx="11" fill="#F4EEFF" opacity=".7"/>
+      <rect x="372" y="382" width="172" height="22" rx="11" fill="#F4EEFF" opacity=".46"/>
+    </g>
+    <g transform="rotate(-6 512 512)">
+      <path d="M248 248 Q248 190 306 190 H724 Q782 190 782 248 V760 L736 798 L690 760 L644 798 L598 760 L552 798 L506 760 L460 798 L414 760 L368 798 L322 760 L248 800 Z" fill="#FFF9F1"/>
+      <rect x="326" y="334" width="278" height="24" rx="12" fill="#E7DFF8"/>
+      <rect x="326" y="408" width="214" height="24" rx="12" fill="#EFE9FA"/>
+      <rect x="326" y="482" width="252" height="24" rx="12" fill="#E7DFF8"/>
+      <rect x="326" y="556" width="168" height="24" rx="12" fill="#EFE9FA"/>
+    </g>
+    <circle cx="704" cy="716" r="132" fill="#4A37A8"/>
+    <circle cx="704" cy="716" r="132" fill="none" stroke="#FFFFFF" stroke-opacity=".18" stroke-width="12"/>
+    <path d="M704 644 V788 M632 716 H776" stroke="#FFFFFF" stroke-width="44" stroke-linecap="round"/>
+  </g>
+  <circle cx="812" cy="232" r="18" fill="#FFE08A"/>
+</svg>

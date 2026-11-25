@@ -1222,7 +1222,17 @@ private struct DataHandleView: View {
     @Environment(\.modelContext) private var context
     @Environment(ToastCenter.self) private var toast
     @Query(sort: \RecordItem.date, order: .reverse) private var records: [RecordItem]
-    @State private var exportURL: URL?
+    @Query(sort: \CategoryItem.order) private var categories: [CategoryItem]
+    @Query(sort: \Bank.order) private var banks: [Bank]
+    @Query(sort: \BudgetItem.name) private var budgets: [BudgetItem]
+    @Query(sort: \SalaryRecord.date) private var salaries: [SalaryRecord]
+    @Query(sort: \AnnualBonus.date) private var bonuses: [AnnualBonus]
+    @Query(sort: \DepositRecord.order) private var deposits: [DepositRecord]
+    @State private var exportDocument = ExcelExportDocument()
+    @State private var showExporter = false
+    @State private var pendingExcelPayload: ExcelImportPayload?
+    @State private var excelPreviewText = ""
+    @State private var showExcelPreview = false
     @State private var showImport = false
     @State private var importSummary = ""
     @State private var importFailures: [String] = []
@@ -1236,42 +1246,27 @@ private struct DataHandleView: View {
                     title: L10n.Data.exportTitle,
                     desc: L10n.Data.exportDesc
                 ) {
-                    if let exportURL {
-                        ShareLink(item: exportURL) {
-                            Text(L10n.Data.shareCsv)
-                                .font(AppFont.important)
-                                .foregroundStyle(.white)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 44)
-                                .background(Theme.brandGradient, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    Button {
+                        guard let data = makeXLSX() else {
+                            toast.show(L10n.Toast.exportFailed, style: .error)
+                            return
                         }
-
-                        Button {
-                            self.exportURL = makeCSV()
-                        } label: {
-                            Text(L10n.Data.generateCsv)
-                                .font(AppFont.small)
-                                .foregroundStyle(Theme.brand)
-                        }
-                        .buttonStyle(.plain)
-                    } else {
-                        Button {
-                            exportURL = makeCSV()
-                            if exportURL == nil { toast.show(L10n.Toast.exportFailed, style: .error) }
-                        } label: {
-                            Text(L10n.Data.exportAll(records.count))
-                                .font(AppFont.important)
-                                .foregroundStyle(.white)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 44)
-                                .background(Theme.brandGradient, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
-                        }
-                        .buttonStyle(.plain)
+                        exportDocument = ExcelExportDocument(data: data)
+                        showExporter = true
+                    } label: {
+                        Text(L10n.Data.exportAll(records.count))
+                            .font(AppFont.important)
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 44)
+                            .background(Theme.brandGradient, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
                     }
+                    .buttonStyle(.plain)
 
-                    Text(L10n.Data.columnsHint)
+                    Text(L10n.Data.exportSheets)
                         .font(AppFont.small)
                         .foregroundStyle(Theme.text3)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
 
                 dataCard(
@@ -1361,14 +1356,54 @@ private struct DataHandleView: View {
         .background(Theme.background)
         .pushedPageChrome(title: L10n.Data.title)
         .tint(Theme.brand)
-        .fileImporter(isPresented: $showImport, allowedContentTypes: [.commaSeparatedText, .plainText]) { result in
+        .fileImporter(
+            isPresented: $showImport,
+            allowedContentTypes: [.commaSeparatedText, .plainText, ExcelExportDocument.contentType]
+        ) { result in
             switch result {
-            case .success(let url): importCSV(url)
+            case .success(let url): importFile(url)
             case .failure(let error):
                 importSummary = L10n.Data.importFailed
                 importFailures = [error.localizedDescription]
             }
         }
+        .fileExporter(
+            isPresented: $showExporter,
+            document: exportDocument,
+            contentType: ExcelExportDocument.contentType,
+            defaultFilename: "记账清单-\(DateText.shortFormatter.string(from: Date()))"
+        ) { result in
+            switch result {
+            case .success:
+                toast.show(L10n.Toast.exportSaved)
+            case .failure(let error):
+                if (error as NSError).code == NSUserCancelledError { return }
+                toast.show(L10n.Toast.exportFailed, style: .error)
+            }
+        }
+        .alert(L10n.Data.excelPreviewTitle, isPresented: $showExcelPreview) {
+            Button(L10n.Common.cancel, role: .cancel) {
+                pendingExcelPayload = nil
+            }
+            Button(L10n.Data.excelMerge) {
+                applyExcelImport(mode: .merge)
+            }
+            Button(L10n.Data.excelReplace, role: .destructive) {
+                applyExcelImport(mode: .replace)
+            }
+        } message: {
+            Text(excelPreviewText)
+        }
+        #if DEBUG
+        .onAppear {
+            guard let index = CommandLine.arguments.firstIndex(of: "-excelImportPath"),
+                  CommandLine.arguments.indices.contains(index + 1) else { return }
+            let url = URL(fileURLWithPath: CommandLine.arguments[index + 1])
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                importFile(url)
+            }
+        }
+        #endif
     }
 
     private func dataCard<Content: View>(
@@ -1410,9 +1445,47 @@ private struct DataHandleView: View {
         }
     }
 
-    private func importCSV(_ url: URL) {
+    private func importFile(_ url: URL) {
         let access = url.startAccessingSecurityScopedResource()
         defer { if access { url.stopAccessingSecurityScopedResource() } }
+
+        if url.pathExtension.lowercased() == "xlsx" {
+            guard let data = try? Data(contentsOf: url) else {
+                importSummary = L10n.Data.importFailed
+                importFailures = [L10n.Data.readFailed]
+                toast.show(L10n.Toast.importFailed, style: .error)
+                return
+            }
+            do {
+                let sheets = try XLSXReader.sheets(from: data)
+                let payload = ExcelImportParser.payload(from: sheets)
+                guard !payload.isEmpty else {
+                    importSummary = L10n.Data.importFailed
+                    importFailures = [L10n.Data.excelNoSheets]
+                    toast.show(L10n.Toast.importFailed, style: .error)
+                    return
+                }
+                pendingExcelPayload = payload
+                #if DEBUG
+                if let index = CommandLine.arguments.firstIndex(of: "-excelImportMode"),
+                   CommandLine.arguments.indices.contains(index + 1) {
+                    applyExcelImport(mode: CommandLine.arguments[index + 1] == "replace" ? .replace : .merge)
+                    return
+                }
+                #endif
+                excelPreviewText = L10n.Data.excelPreviewMessage(
+                    payload.countItems
+                        .map { L10n.Data.excelSheetCount($0.name, $0.count) }
+                        .joined(separator: " · ")
+                )
+                showExcelPreview = true
+            } catch {
+                importSummary = L10n.Data.importFailed
+                importFailures = [L10n.Data.excelReadFailed]
+                toast.show(L10n.Toast.importFailed, style: .error)
+            }
+            return
+        }
 
         let gb18030 = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue)))
         guard let data = try? Data(contentsOf: url),
@@ -1454,6 +1527,18 @@ private struct DataHandleView: View {
             }
         }()
 
+        func dateValue(_ text: String) -> Date? {
+            if let serial = Double(text),
+               serial >= 1,
+               serial < 100_000,
+               !text.contains("-"),
+               !text.contains("/") {
+                let date = Date(timeIntervalSince1970: (serial - 25_569) * 86_400)
+                return Calendar.current.startOfDay(for: date)
+            }
+            return formatters.compactMap { $0.date(from: text) }.first
+        }
+
         var success = 0
         var failures: [String] = []
 
@@ -1472,7 +1557,7 @@ private struct DataHandleView: View {
             let subCategory = value(subIndex)
             let amountText = value(amountIndex)
 
-            guard let date = formatters.compactMap({ $0.date(from: dateText) }).first else {
+            guard let date = dateValue(dateText) else {
                 failures.append(L10n.Data.lineDateError(line))
                 continue
             }
@@ -1521,6 +1606,208 @@ private struct DataHandleView: View {
         }
     }
 
+    private func applyExcelImport(mode: ExcelImportMode) {
+        guard let payload = pendingExcelPayload else { return }
+
+        do {
+            if mode == .replace {
+                clearExcelImportedData(payload)
+            }
+
+            for item in payload.records {
+                context.insert(RecordItem(
+                    date: item.date,
+                    amount: item.amount,
+                    type: item.type,
+                    category: item.category,
+                    subCategory: item.subCategory,
+                    remark: item.remark,
+                    countInBudget: item.countInBudget
+                ))
+            }
+
+            var budgetByName: [String: BudgetItem] = mode == .merge
+                ? Dictionary(budgets.map { ($0.name, $0) }, uniquingKeysWith: { first, _ in first })
+                : [:]
+            for item in payload.budgets {
+                if let existing = budgetByName[item.name] {
+                    existing.amount = item.amount
+                } else {
+                    let budget = BudgetItem(name: item.name, amount: item.amount)
+                    context.insert(budget)
+                    budgetByName[item.name] = budget
+                }
+            }
+
+            for item in payload.salaries {
+                context.insert(SalaryRecord(
+                    date: item.date,
+                    baseSalary: item.baseSalary,
+                    overtimePay: item.overtimePay,
+                    oneTimeBonus: item.oneTimeBonus,
+                    socialInsurance: item.socialInsurance,
+                    tax: item.tax,
+                    taxRate: item.taxRate
+                ))
+            }
+
+            for item in payload.bonuses {
+                context.insert(AnnualBonus(
+                    date: item.date,
+                    bonus: item.bonus,
+                    tax: item.tax,
+                    taxRate: item.taxRate
+                ))
+            }
+
+            var depositOrder = mode == .merge ? (deposits.map(\.order).max() ?? -1) : -1
+            for item in payload.deposits {
+                depositOrder += 1
+                context.insert(DepositRecord(
+                    bankName: item.bankName,
+                    amount: item.amount,
+                    startDate: item.startDate,
+                    years: item.years,
+                    rate: item.rate,
+                    interest: item.interest,
+                    order: depositOrder
+                ))
+            }
+
+            var bankByName: [String: Bank] = mode == .merge
+                ? Dictionary(banks.map { ($0.name, $0) }, uniquingKeysWith: { first, _ in first })
+                : [:]
+            for item in payload.banks {
+                if let existing = bankByName[item.name] {
+                    existing.icon = item.icon
+                    existing.colorHex = item.colorHex
+                    existing.order = item.order
+                    existing.isSystem = item.isSystem
+                } else {
+                    let bank = Bank(
+                        name: item.name,
+                        icon: item.icon,
+                        colorHex: item.colorHex,
+                        order: item.order,
+                        isSystem: item.isSystem
+                    )
+                    context.insert(bank)
+                    bankByName[item.name] = bank
+                }
+            }
+
+            var categoryByKey: [String: CategoryItem] = mode == .merge
+                ? Dictionary(categories.map {
+                    (categoryKey(name: $0.name, parentName: $0.parentName), $0)
+                }, uniquingKeysWith: { first, _ in first })
+                : [:]
+            for item in payload.categories {
+                let key = categoryKey(name: item.name, parentName: item.parentName)
+                if let existing = categoryByKey[key] {
+                    existing.icon = item.icon
+                    existing.colorHex = item.colorHex
+                    existing.order = item.order
+                    existing.isArchived = item.isArchived
+                    existing.isSystem = item.isSystem
+                } else {
+                    let category = CategoryItem(
+                        name: item.name,
+                        icon: item.icon,
+                        colorHex: item.colorHex,
+                        order: item.order,
+                        parentName: item.parentName,
+                        isArchived: item.isArchived,
+                        isSystem: item.isSystem
+                    )
+                    context.insert(category)
+                    categoryByKey[key] = category
+                }
+            }
+
+            try context.save()
+            applyExcelSettings(payload)
+
+            var summary = L10n.Data.excelImportResult(
+                payload.records.count,
+                payload.salaries.count,
+                payload.bonuses.count,
+                payload.deposits.count,
+                payload.budgets.count,
+                payload.categories.count,
+                payload.banks.count
+            )
+            if payload.presentSheets.contains("设置") {
+                summary += "\n" + L10n.Data.excelSettingsUpdated
+            }
+            importSummary = summary
+            importFailures = []
+            pendingExcelPayload = nil
+            toast.show(L10n.Data.excelImportDone)
+        } catch {
+            context.rollback()
+            importSummary = L10n.Data.importFailed
+            importFailures = [L10n.Data.importFailedMessage]
+            pendingExcelPayload = nil
+            toast.show(L10n.Toast.importFailed, style: .error)
+        }
+    }
+
+    private func clearExcelImportedData(_ payload: ExcelImportPayload) {
+        if payload.presentSheets.contains("账单") {
+            records.forEach(context.delete)
+        }
+        if payload.presentSheets.contains("预算") {
+            budgets.forEach(context.delete)
+        }
+        if payload.presentSheets.contains("工资") {
+            salaries.forEach(context.delete)
+        }
+        if payload.presentSheets.contains("年终奖") {
+            bonuses.forEach(context.delete)
+        }
+        if payload.presentSheets.contains("存款") {
+            deposits.forEach(context.delete)
+        }
+        if payload.presentSheets.contains("银行") {
+            banks.forEach(context.delete)
+        }
+        if payload.presentSheets.contains("分类") {
+            categories.forEach(context.delete)
+        }
+    }
+
+    private func applyExcelSettings(_ payload: ExcelImportPayload) {
+        if let mode = payload.taxMonthMode {
+            var preferences = PayrollPreferences.load()
+            preferences.salaryTaxMonthMode = mode
+            preferences.save()
+        }
+
+        guard payload.budgetCycleEnabled != nil ||
+              payload.budgetStartDay != nil ||
+              payload.budgetEndDay != nil ||
+              payload.budgetIncomeMode != nil else { return }
+
+        var preferences = BudgetPreferences.load()
+        if let enabled = payload.budgetCycleEnabled {
+            preferences.cycleEnabled = enabled
+        }
+        if let startDay = payload.budgetStartDay {
+            preferences.startDay = startDay
+        }
+        if let endDay = payload.budgetEndDay {
+            preferences.endDay = endDay
+        }
+        if let incomeMode = payload.budgetIncomeMode {
+            preferences.incomeMode = incomeMode
+        }
+        preferences.save()
+    }
+
+    private func categoryKey(name: String, parentName: String?) -> String {
+        "\(name)\u{1F}\(parentName ?? "")"
+    }
+
     private func parseCSV(_ text: String) -> [[String]] {
         var rows: [[String]] = []
         var row: [String] = []
@@ -1558,31 +1845,139 @@ private struct DataHandleView: View {
         return rows
     }
 
-    private func makeCSV() -> URL? {
+    private func makeXLSX() -> Data? {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-        var csv = "日期,类型,分类,子分类,金额,备注,计入预算\n"
-        for item in records {
-            let row = [
-                formatter.string(from: item.date),
-                item.type.dataTitle,
-                item.category,
-                item.subCategory,
-                String(format: "%.2f", item.amount),
-                item.remark.replacingOccurrences(of: ",", with: "，"),
-                item.countInBudget ? "是" : "否"
-            ].joined(separator: ",")
-            csv += row + "\n"
-        }
+        func date(_ value: Date) -> XLSXCell { .text(formatter.string(from: value)) }
+        func text(_ value: String) -> XLSXCell { .text(value) }
+        func number(_ value: Double) -> XLSXCell { .number(value) }
+        func integer(_ value: Int) -> XLSXCell { .integer(value) }
 
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent("记账清单.csv")
-        do {
-            try csv.data(using: .utf8)?.write(to: url)
-            return url
-        } catch {
-            return nil
-        }
+        var sheets: [XLSXSheet] = []
+
+        sheets.append(XLSXSheet(name: "账单", rows: [
+            [text("日期"), text("类型"), text("分类"), text("子分类"), text("金额"), text("备注"), text("计入预算"), text("创建时间")]
+        ] + records.map { item in
+            [
+                date(item.date),
+                text(item.type.dataTitle),
+                text(item.category),
+                text(item.subCategory),
+                number(item.amount),
+                text(item.remark),
+                text(item.countInBudget ? "是" : "否"),
+                date(item.createdAt)
+            ]
+        }))
+
+        sheets.append(XLSXSheet(name: "预算", rows: [
+            [text("预算名称"), text("预算金额")]
+        ] + budgets.map { item in
+            [text(item.name), number(item.amount)]
+        }))
+
+        sheets.append(XLSXSheet(name: "工资", rows: [
+            [text("日期"), text("基本工资"), text("加班费"), text("一次性奖金"), text("五险一金"), text("税前"), text("税率(%)"), text("税额"), text("实际到手")]
+        ] + salaries.map { item in
+            [
+                date(item.date),
+                number(item.baseSalary),
+                number(item.overtimePay),
+                number(item.oneTimeBonus),
+                number(item.socialInsurance),
+                number(item.gross),
+                number(item.taxRate),
+                number(item.tax),
+                number(item.netPay)
+            ]
+        }))
+
+        sheets.append(XLSXSheet(name: "年终奖", rows: [
+            [text("日期"), text("奖金"), text("税率(%)"), text("税额"), text("实际到手")]
+        ] + bonuses.map { item in
+            [
+                date(item.date),
+                number(item.bonus),
+                number(item.taxRate),
+                number(item.tax),
+                number(item.netPay)
+            ]
+        }))
+
+        sheets.append(XLSXSheet(name: "存款", rows: [
+            [text("银行"), text("金额"), text("存款时间"), text("年限"), text("利率(%)"), text("利息"), text("到期时间")]
+        ] + deposits.map { item in
+            [
+                text(item.bankName),
+                number(item.amount),
+                date(item.startDate),
+                number(item.years),
+                number(item.rate),
+                number(item.interest),
+                date(item.maturityDate)
+            ]
+        }))
+
+        sheets.append(XLSXSheet(name: "银行", rows: [
+            [text("名称"), text("图标"), text("颜色"), text("排序"), text("类型")]
+        ] + banks.map { item in
+            [
+                text(item.name),
+                text(item.icon),
+                text(item.colorHex),
+                integer(item.order),
+                text(item.isSystem ? "内置" : "自定义")
+            ]
+        }))
+
+        sheets.append(XLSXSheet(name: "分类", rows: [
+            [text("名称"), text("父分类"), text("图标"), text("颜色"), text("排序"), text("归档"), text("系统分类")]
+        ] + categories.map { item in
+            [
+                text(item.name),
+                text(item.parentName ?? ""),
+                text(item.icon),
+                text(item.colorHex),
+                integer(item.order),
+                text(item.isArchived ? "是" : "否"),
+                text(item.isSystem ? "是" : "否")
+            ]
+        }))
+
+        let payroll = PayrollPreferences.load()
+        let budget = BudgetPreferences.load()
+        sheets.append(XLSXSheet(name: "设置", rows: [
+            [text("设置项"), text("值")],
+            [text("导出时间"), date(Date())],
+            [text("算税月份"), text(payroll.salaryTaxMonthMode.title)],
+            [text("预算周期"), text(budget.cycleEnabled ? "\(budget.startDay) 日至 \(budget.endDay) 日" : "自然月")],
+            [text("收入计算"), text(budget.incomeMode.title)]
+        ]))
+
+        return XLSXWorkbook.make(sheets: sheets)
+    }
+}
+
+private struct ExcelExportDocument: FileDocument {
+    static let contentType = UTType(filenameExtension: "xlsx") ?? .data
+
+    static var readableContentTypes: [UTType] { [contentType] }
+    static var writableContentTypes: [UTType] { [contentType] }
+
+    var data = Data()
+
+    init(data: Data = Data()) {
+        self.data = data
+    }
+
+    init(configuration: ReadConfiguration) throws {
+        data = configuration.file.regularFileContents ?? Data()
+    }
+
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        FileWrapper(regularFileWithContents: data)
     }
 }
 

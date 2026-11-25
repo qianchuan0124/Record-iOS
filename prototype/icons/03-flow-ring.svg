@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#110D1D"/>
+      <stop offset=".55" stop-color="#1D1533"/>
+      <stop offset="1" stop-color="#342050"/>
+    </linearGradient>
+    <radialGradient id="glow3" cx=".72" cy=".06" r=".75">
+      <stop offset="0" stop-color="#7E60FF" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#7E60FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow3" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="26" stdDeviation="30" flood-color="#07040E" flood-opacity=".7"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg3)"/>
+  <circle cx="730" cy="90" r="390" fill="url(#glow3)"/>
+  <g filter="url(#shadow3)">
+    <circle cx="512" cy="512" r="296" fill="none" stroke="#2C2148" stroke-width="116"/>
+    <g transform="rotate(-90 512 512)" fill="none" stroke-linecap="round">
+      <circle cx="512" cy="512" r="296" pathLength="100" stroke="#8E7BFF" stroke-width="116" stroke-dasharray="39 61" stroke-dashoffset="0"/>
+      <circle cx="512" cy="512" r="296" pathLength="100" stroke="#FF6B76" stroke-width="116" stroke-dasharray="17 83" stroke-dashoffset="-44"/>
+      <circle cx="512" cy="512" r="296" pathLength="100" stroke="#35CFA0" stroke-width="116" stroke-dasharray="17 83" stroke-dashoffset="-64"/>
+      <circle cx="512" cy="512" r="296" pathLength="100" stroke="#FFC15C" stroke-width="116" stroke-dasharray="11 89" stroke-dashoffset="-83"/>
+    </g>
+    <circle cx="512" cy="512" r="196" fill="#211834" stroke="#FFFFFF" stroke-opacity=".1" stroke-width="4"/>
+    <g transform="translate(512 510) scale(1.28)" fill="none" stroke="#FFFFFF" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-64 -92 L0 0 L64 -92"/>
+      <path d="M0 0 V104"/>
+      <path d="M-54 26 H54"/>
+      <path d="M-54 66 H54"/>
+    </g>
+  </g>
+  <circle cx="512" cy="178" r="18" fill="#FFE08A"/>
+</svg>

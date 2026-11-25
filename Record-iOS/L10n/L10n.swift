@@ -132,6 +132,8 @@ enum L10n {
         static let searchEmpty = L10nCore.string("ledger_search_empty")
         /// 输入分类、子分类或备注关键字
         static let searchHint = L10nCore.string("ledger_search_hint")
+        /// 搜索记录
+        static let searchHistory = L10nCore.string("ledger_search_history")
         /// 搜索分类、子分类或备注
         static let searchPlaceholder = L10nCore.string("ledger_search_placeholder")
         /// 搜索账单
@@ -464,15 +466,27 @@ enum L10n {
         }
         /// 利率
         static let rateLabel = L10nCore.string("assets_rate_label")
+        /// 重算
+        static let recalcAction = L10nCore.string("assets_recalc_action")
+        /// 保留历史数据
+        static let recalcKeep = L10nCore.string("assets_recalc_keep")
+        /// 检测到 %d 笔历史工资的税额与当前税率表不一致。是否按当前税率表重算？选择保留将不改动已有记录。
+        static func recalcMessage(_ p1: CVarArg) -> String {
+            L10nCore.string("assets_recalc_message", p1)
+        }
+        /// 更新历史税额？
+        static let recalcTitle = L10nCore.string("assets_recalc_title")
         /// 工资
         static let salary = L10nCore.string("assets_salary")
         /// 基本 %@ · 加班 %@
         static func salaryDetail(_ p1: CVarArg, _ p2: CVarArg) -> String {
             L10nCore.string("assets_salary_detail", p1, p2)
         }
+        /// 工资详情
+        static let salaryDetailTitle = L10nCore.string("assets_salary_detail_title")
         /// 已参考上月的基本工资与五险一金，可直接修改。
         static let salaryPrefillNote = L10nCore.string("assets_salary_prefill_note")
-        /// 税额按累计预扣自动计算，切换算税月份会按所选归属月计算。
+        /// 填写完成后收起键盘或点“完成”更新税额；切换算税月份会按所选归属月计算。
         static let salaryTaxNote = L10nCore.string("assets_salary_tax_note")
         /// 保存存款
         static let saveDeposit = L10nCore.string("assets_save_deposit")
@@ -858,27 +872,55 @@ enum L10n {
         static let chooseFile = L10nCore.string("data_choose_file")
         /// 列：日期、类型、分类、子分类、金额、备注、计入预算
         static let columnsHint = L10nCore.string("data_columns_hint")
+        /// Excel 导入完成
+        static let excelImportDone = L10nCore.string("data_excel_import_done")
+        /// 已导入账单 %d 条、工资 %d 条、年终奖 %d 条、存款 %d 条、预算 %d 项、分类 %d 项、银行 %d 家。
+        static func excelImportResult(_ p1: CVarArg, _ p2: CVarArg, _ p3: CVarArg, _ p4: CVarArg, _ p5: CVarArg, _ p6: CVarArg, _ p7: CVarArg) -> String {
+            L10nCore.string("data_excel_import_result", p1, p2, p3, p4, p5, p6, p7)
+        }
+        /// 合并导入
+        static let excelMerge = L10nCore.string("data_excel_merge")
+        /// 没有找到可导入的工作表
+        static let excelNoSheets = L10nCore.string("data_excel_no_sheets")
+        /// %@\n\n合并导入会追加账单、工资等记录；覆盖导入会先清空 Excel 中存在的表，且不可撤销。
+        static func excelPreviewMessage(_ p1: CVarArg) -> String {
+            L10nCore.string("data_excel_preview_message", p1)
+        }
+        /// 导入 Excel？
+        static let excelPreviewTitle = L10nCore.string("data_excel_preview_title")
+        /// 无法读取 Excel，请确认文件包含可识别的工作表和表头
+        static let excelReadFailed = L10nCore.string("data_excel_read_failed")
+        /// 覆盖导入
+        static let excelReplace = L10nCore.string("data_excel_replace")
+        /// 设置已同步更新。
+        static let excelSettingsUpdated = L10nCore.string("data_excel_settings_updated")
+        /// %@ %d 条
+        static func excelSheetCount(_ p1: CVarArg, _ p2: CVarArg) -> String {
+            L10nCore.string("data_excel_sheet_count", p1, p2)
+        }
         /// 导出
         static let export = L10nCore.string("data_export")
-        /// 导出全部账单（%d 条）
+        /// 导出全部数据（%d 条账单）
         static func exportAll(_ p1: CVarArg) -> String {
             L10nCore.string("data_export_all", p1)
         }
-        /// 导出为 CSV，可用于备份或迁移到桌面版
+        /// 导出账单、预算、工资、年终奖、存款、银行和分类为 Excel 文件
         static let exportDesc = L10nCore.string("data_export_desc")
-        /// 导出账本
+        /// 包含 8 个工作表，保存成功后会提示
+        static let exportSheets = L10nCore.string("data_export_sheets")
+        /// 导出全部数据
         static let exportTitle = L10nCore.string("data_export_title")
         /// 生成 CSV 文件
         static let generateCsv = L10nCore.string("data_generate_csv")
         /// 从「文件」导入 CSV
         static let importCsv = L10nCore.string("data_import_csv")
-        /// 从「文件」选择 CSV，或接收桌面版导出文件
+        /// 从「文件」选择 CSV 或 Excel；Excel 支持全量预览导入
         static let importDesc = L10nCore.string("data_import_desc")
         /// 导入失败
         static let importFailed = L10nCore.string("data_import_failed")
         /// 导入过程中出现错误，请重试。
         static let importFailedMessage = L10nCore.string("data_import_failed_message")
-        /// 列：日期、类型、分类、子分类、金额、备注、计入预算。日期支持 2026-11-19 / 2026/11/19；类型填「支出」或「收入」。
+        /// CSV 列：日期、类型、分类、子分类、金额、备注、计入预算；日期支持 2026-11-19 / 2026/11/19。Excel 可导入账单、预算、工资、年终奖、存款、银行、分类和设置。
         static let importHint = L10nCore.string("data_import_hint")
         /// 成功 %d 条，失败 %d 条
         static func importResult(_ p1: CVarArg, _ p2: CVarArg) -> String {
@@ -886,7 +928,7 @@ enum L10n {
         }
         /// 导入
         static let importTitle = L10nCore.string("data_import_title")
-        /// 导入账本
+        /// 导入数据
         static let importTitleCard = L10nCore.string("data_import_title_card")
         /// 第%d行：金额格式错误
         static func lineAmountError(_ p1: CVarArg) -> String {
@@ -974,6 +1016,8 @@ enum L10n {
         static let depositUpdated = L10nCore.string("toast_deposit_updated")
         /// 导出失败
         static let exportFailed = L10nCore.string("toast_export_failed")
+        /// 已保存 Excel 文件
+        static let exportSaved = L10nCore.string("toast_export_saved")
         /// 已导入 %d 笔账单
         static func importDone(_ p1: CVarArg) -> String {
             L10nCore.string("toast_import_done", p1)
@@ -996,5 +1040,11 @@ enum L10n {
         static let salaryUpdated = L10nCore.string("toast_salary_updated")
         /// 保存失败
         static let saveFailed = L10nCore.string("toast_save_failed")
+        /// 已保留历史工资数据
+        static let taxPreserved = L10nCore.string("toast_tax_preserved")
+        /// 已重算 %d 笔历史工资
+        static func taxRecalculated(_ p1: CVarArg) -> String {
+            L10nCore.string("toast_tax_recalculated", p1)
+        }
     }
 }

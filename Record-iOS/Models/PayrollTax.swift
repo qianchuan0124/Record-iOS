@@ -63,6 +63,59 @@ private let monthlyTaxBrackets: [TaxBracket] = [
 
 private let monthlyDeduction = 5_000.0
 
+enum SalaryTaxTable {
+    static let version = 1
+    private static let preservedVersionKey = "record.payroll.preservedTaxTableVersion"
+
+    static var preservedVersion: Int {
+        UserDefaults.standard.integer(forKey: preservedVersionKey)
+    }
+
+    static func markPreserved() {
+        UserDefaults.standard.set(version, forKey: preservedVersionKey)
+    }
+}
+
+protocol SalaryTaxCalculable {
+    var id: PersistentIdentifier { get }
+    var date: Date { get }
+    var baseSalary: Double { get }
+    var overtimePay: Double { get }
+    var oneTimeBonus: Double { get }
+    var socialInsurance: Double { get }
+    var tax: Double { get }
+}
+
+extension SalaryRecord: SalaryTaxCalculable {}
+
+private struct SalaryTaxSnapshot: SalaryTaxCalculable {
+    let id: PersistentIdentifier
+    let date: Date
+    let baseSalary: Double
+    let overtimePay: Double
+    let oneTimeBonus: Double
+    let socialInsurance: Double
+    var tax: Double
+
+    var input: SalaryTaxInput {
+        SalaryTaxInput(
+            date: date,
+            baseSalary: baseSalary,
+            overtimePay: overtimePay,
+            oneTimeBonus: oneTimeBonus,
+            socialInsurance: socialInsurance
+        )
+    }
+}
+
+struct SalaryTaxAdjustment {
+    let record: SalaryRecord
+    let oldTax: Double
+    let oldTaxRate: Double
+    let newTax: Double
+    let newTaxRate: Double
+}
+
 private func round2(_ value: Double) -> Double {
     (value * 100).rounded() / 100
 }
@@ -92,10 +145,10 @@ private func bracket(for amount: Double, in brackets: [TaxBracket]) -> TaxBracke
 
 /// 按居民个人工资薪金累计预扣预缴税率表计算。
 /// 工资日期是发薪日；算税月份可选择按发薪当月或上一个归属月计算。
-func calculateSalaryTax(
+func calculateSalaryTax<S: SalaryTaxCalculable>(
     current: SalaryTaxInput,
     currentID: PersistentIdentifier?,
-    salaries: [SalaryRecord],
+    salaries: [S],
     mode: SalaryTaxMonthMode
 ) -> SalaryTaxResult {
     let period = taxPeriod(for: current.date, mode: mode)
@@ -132,6 +185,56 @@ func calculateSalaryTax(
         taxRate: round2(currentBracket.rate * 100),
         netPay: max(0, round2(currentIncome - currentInsurance - tax))
     )
+}
+
+@MainActor
+func salaryTaxAdjustments(salaries: [SalaryRecord], mode: SalaryTaxMonthMode) -> [SalaryTaxAdjustment] {
+    let ordered = salaries.sorted { $0.date < $1.date }
+    var snapshots = ordered.map { salary in
+        SalaryTaxSnapshot(
+            id: salary.id,
+            date: salary.date,
+            baseSalary: salary.baseSalary,
+            overtimePay: salary.overtimePay,
+            oneTimeBonus: salary.oneTimeBonus,
+            socialInsurance: salary.socialInsurance,
+            tax: salary.tax
+        )
+    }
+    var adjustments: [SalaryTaxAdjustment] = []
+
+    for index in snapshots.indices {
+        let result = calculateSalaryTax(
+            current: snapshots[index].input,
+            currentID: snapshots[index].id,
+            salaries: snapshots,
+            mode: mode
+        )
+        let salary = ordered[index]
+
+        if abs(salary.tax - result.tax) > 0.005 ||
+           abs(salary.taxRate - result.taxRate) > 0.005 {
+            adjustments.append(SalaryTaxAdjustment(
+                record: salary,
+                oldTax: salary.tax,
+                oldTaxRate: salary.taxRate,
+                newTax: result.tax,
+                newTaxRate: result.taxRate
+            ))
+        }
+
+        snapshots[index].tax = result.tax
+    }
+
+    return adjustments
+}
+
+@MainActor
+func applySalaryTaxAdjustments(_ adjustments: [SalaryTaxAdjustment]) {
+    for item in adjustments {
+        item.record.tax = item.newTax
+        item.record.taxRate = item.newTaxRate
+    }
 }
 
 /// 全年一次性奖金按月换算后的综合所得税率表计算。

@@ -6,6 +6,7 @@
 
 ```bash
 open prototype/index.html
+open prototype/icons.html   # App Icon 5 个方向（01 已应用）
 ```
 
 - 分五组排布：账单 / 分析 / 资产·薪酬 / 资产·存款 / 设置，每屏下方是交互说明。
@@ -46,6 +47,8 @@ open prototype/index.html
 prototype/
 ├── index.html          # 构建产物（用浏览器打开这个）
 ├── tabbar-styles.html  # 中央「＋」6 种样式对比
+├── icons.html          # App Icon 5 个方向对比（01 已应用）
+├── icons/              # 5 个 1024 SVG 图标源文件
 ├── build.py            # src/ → index.html
 ├── src/
 │   ├── style.css

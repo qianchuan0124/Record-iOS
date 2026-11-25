@@ -45,6 +45,8 @@ struct AssetsView: View {
     @State private var deleteRequest: DeleteRequest?
     @State private var budgetPreferences = BudgetPreferences.load()
     @State private var showBudgetSettings = false
+    @State private var recalcAdjustments: [SalaryTaxAdjustment] = []
+    @State private var showRecalcAlert = false
 
     private var totalDeposit: Double { deposits.reduce(0) { $0 + $1.amount } }
     private var totalInterest: Double { deposits.reduce(0) { $0 + $1.interest } }
@@ -166,6 +168,23 @@ struct AssetsView: View {
                 depositSection
             case .salary:
                 salarySection
+                    .alert(L10n.Assets.recalcTitle, isPresented: $showRecalcAlert) {
+                        Button(L10n.Assets.recalcKeep, role: .cancel) {
+                            SalaryTaxTable.markPreserved()
+                            recalcAdjustments = []
+                            toast.show(L10n.Toast.taxPreserved)
+                        }
+                        Button(L10n.Assets.recalcAction) {
+                            let count = recalcAdjustments.count
+                            applySalaryTaxAdjustments(recalcAdjustments)
+                            try? context.save()
+                            SalaryTaxTable.markPreserved()
+                            recalcAdjustments = []
+                            toast.show(L10n.Toast.taxRecalculated(count))
+                        }
+                    } message: {
+                        Text(L10n.Assets.recalcMessage(recalcAdjustments.count))
+                    }
             case .budget:
                 budgetSection
             }
@@ -191,6 +210,7 @@ struct AssetsView: View {
             didHandleLaunchArgs = true
             if CommandLine.arguments.contains("-salary") { mode = .salary }
             if CommandLine.arguments.contains("-budget") { mode = .budget }
+            if CommandLine.arguments.contains("-deposits") { mode = .deposits }
             if CommandLine.arguments.contains("-openBanks") { showBankManage = true }
             if CommandLine.arguments.contains("-openDepositEditor") { showDepositEditor = true }
             if CommandLine.arguments.contains("-openSalaryEditor") {
@@ -906,12 +926,30 @@ struct AssetsView: View {
     }
 
     private func delete<T: PersistentModel>(_ item: T, message: String) {
+        let recalculateSalaries = item is SalaryRecord
         context.delete(item)
         do {
             try context.save()
+            if recalculateSalaries {
+                offerSalaryTaxRecalculation()
+            }
             toast.show(message)
         } catch {
             toast.show(L10n.Toast.deleteFailed, style: .error)
+        }
+    }
+
+    private func offerSalaryTaxRecalculation() {
+        let descriptor = FetchDescriptor<SalaryRecord>(sortBy: [SortDescriptor(\.date)])
+        guard let salaries = try? context.fetch(descriptor) else { return }
+        let adjustments = salaryTaxAdjustments(
+            salaries: salaries,
+            mode: PayrollPreferences.load().salaryTaxMonthMode
+        )
+        guard !adjustments.isEmpty else { return }
+        recalcAdjustments = adjustments
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+            showRecalcAlert = true
         }
     }
 }
@@ -1390,6 +1428,11 @@ private struct SalaryEditorView: View {
     @State private var bonus = ""
     @State private var social = ""
     @State private var payrollPreferences = PayrollPreferences.load()
+    @State private var taxResult = SalaryTaxResult(tax: 0, taxRate: 0, netPay: 0)
+    @State private var recalcAdjustments: [SalaryTaxAdjustment] = []
+    @State private var pendingSaveToast = ""
+    @State private var dismissAfterRecalc = false
+    @State private var showRecalcAlert = false
     @State private var loaded = false
     @State private var showDatePicker = false
 
@@ -1407,18 +1450,21 @@ private struct SalaryEditorView: View {
         )
     }
 
-    private var taxResult: SalaryTaxResult {
-        calculateSalaryTax(
+    private var tax: Double { taxResult.tax }
+    private var taxRate: Double { taxResult.taxRate }
+    private var net: Double { taxResult.netPay }
+
+    @discardableResult
+    private func recalculateTax() -> SalaryTaxResult {
+        let result = calculateSalaryTax(
             current: taxInput,
             currentID: editing?.id,
             salaries: salaries,
             mode: payrollPreferences.salaryTaxMonthMode
         )
+        taxResult = result
+        return result
     }
-
-    private var tax: Double { taxResult.tax }
-    private var taxRate: Double { taxResult.taxRate }
-    private var net: Double { taxResult.netPay }
 
     private var taxMonthModeBinding: Binding<SalaryTaxMonthMode> {
         Binding(
@@ -1426,6 +1472,13 @@ private struct SalaryEditorView: View {
             set: { value in
                 payrollPreferences.salaryTaxMonthMode = value
                 payrollPreferences.save()
+                recalculateTax()
+                let adjustments = salaryTaxAdjustments(salaries: salaries, mode: value)
+                guard !adjustments.isEmpty else { return }
+                recalcAdjustments = adjustments
+                pendingSaveToast = ""
+                dismissAfterRecalc = false
+                showRecalcAlert = true
             }
         )
     }
@@ -1485,6 +1538,15 @@ private struct SalaryEditorView: View {
 
                         fieldDivider
 
+                        fieldRow(L10n.Assets.payrollGross) {
+                            Text(Money.string(gross))
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundStyle(Theme.text)
+                                .monospacedDigit()
+                        }
+
+                        fieldDivider
+
                         fieldRow(L10n.Assets.taxLabel) {
                             Text("-\(Money.string(tax))")
                                 .font(.system(size: 16, weight: .semibold))
@@ -1509,7 +1571,7 @@ private struct SalaryEditorView: View {
                 hideKeyboard()
             }
             .background(Theme.background)
-            .navigationTitle(editing == nil ? L10n.Assets.addSalary : L10n.Assets.editSalary)
+            .navigationTitle(editing == nil ? L10n.Assets.addSalary : L10n.Assets.salaryDetailTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -1518,6 +1580,12 @@ private struct SalaryEditorView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(L10n.Common.save) { save() }
                         .disabled(gross <= 0)
+                }
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button(L10n.Common.done) {
+                        hideKeyboard()
+                    }
                 }
             }
             .toolbarBackground(Theme.background, for: .navigationBar)
@@ -1534,6 +1602,43 @@ private struct SalaryEditorView: View {
                 )
             }
         }
+        .alert(L10n.Assets.recalcTitle, isPresented: $showRecalcAlert) {
+            Button(L10n.Assets.recalcKeep, role: .cancel) {
+                SalaryTaxTable.markPreserved()
+                let message = pendingSaveToast
+                recalcAdjustments = []
+                pendingSaveToast = ""
+                if message.isEmpty {
+                    toast.show(L10n.Toast.taxPreserved)
+                } else {
+                    toast.show(message)
+                }
+                if dismissAfterRecalc {
+                    dismiss()
+                }
+            }
+            Button(L10n.Assets.recalcAction) {
+                let count = recalcAdjustments.count
+                applySalaryTaxAdjustments(recalcAdjustments)
+                try? context.save()
+                SalaryTaxTable.markPreserved()
+                let message = pendingSaveToast
+                recalcAdjustments = []
+                pendingSaveToast = ""
+                if message.isEmpty {
+                    toast.show(L10n.Toast.taxRecalculated(count))
+                } else {
+                    toast.show(message)
+                }
+                if dismissAfterRecalc {
+                    dismiss()
+                } else {
+                    recalculateTax()
+                }
+            }
+        } message: {
+            Text(L10n.Assets.recalcMessage(recalcAdjustments.count))
+        }
         .onAppear {
             guard !loaded else { return }
             loaded = true
@@ -1547,6 +1652,10 @@ private struct SalaryEditorView: View {
                 base = String(format: "%.2f", last.baseSalary)
                 social = String(format: "%.2f", last.socialInsurance)
             }
+            recalculateTax()
+        }
+        .onChange(of: date) { _, _ in
+            recalculateTax()
         }
     }
 
@@ -1664,18 +1773,20 @@ private struct SalaryEditorView: View {
             from: nil,
             for: nil
         )
+        recalculateTax()
     }
 
     private func save() {
         guard gross > 0 else { return }
+        let result = recalculateTax()
         if let editing {
             editing.date = date
             editing.baseSalary = Double(base) ?? 0
             editing.overtimePay = Double(overtime) ?? 0
             editing.oneTimeBonus = Double(bonus) ?? 0
             editing.socialInsurance = Double(social) ?? 0
-            editing.taxRate = taxRate
-            editing.tax = tax
+            editing.taxRate = result.taxRate
+            editing.tax = result.tax
         } else {
             context.insert(SalaryRecord(
                 date: date,
@@ -1683,14 +1794,28 @@ private struct SalaryEditorView: View {
                 overtimePay: Double(overtime) ?? 0,
                 oneTimeBonus: Double(bonus) ?? 0,
                 socialInsurance: Double(social) ?? 0,
-                tax: tax,
-                taxRate: taxRate
+                tax: result.tax,
+                taxRate: result.taxRate
             ))
         }
         do {
             try context.save()
-            toast.show(editing == nil ? L10n.Toast.salaryAdded : L10n.Toast.salaryUpdated)
-            dismiss()
+            let message = editing == nil ? L10n.Toast.salaryAdded : L10n.Toast.salaryUpdated
+            let descriptor = FetchDescriptor<SalaryRecord>(sortBy: [SortDescriptor(\.date)])
+            let items = (try? context.fetch(descriptor)) ?? []
+            let adjustments = salaryTaxAdjustments(
+                salaries: items,
+                mode: payrollPreferences.salaryTaxMonthMode
+            )
+            guard !adjustments.isEmpty else {
+                toast.show(message)
+                dismiss()
+                return
+            }
+            recalcAdjustments = adjustments
+            pendingSaveToast = message
+            dismissAfterRecalc = true
+            showRecalcAlert = true
         } catch {
             toast.show(L10n.Toast.saveFailed, style: .error)
         }
@@ -1887,6 +2012,7 @@ private struct BudgetEditorView: View {
     @State private var amount = ""
     @State private var loaded = false
     @State private var showDeleteConfirm = false
+    @FocusState private var nameFocused: Bool
 
     private var canSave: Bool {
         !name.trimmingCharacters(in: .whitespaces).isEmpty && (Double(amount) ?? 0) > 0
@@ -1901,6 +2027,7 @@ private struct BudgetEditorView: View {
                             TextField(L10n.Assets.budgetName, text: $name)
                                 .multilineTextAlignment(.trailing)
                                 .font(.system(size: 16))
+                                .focused($nameFocused)
                         }
 
                         fieldDivider
@@ -1915,20 +2042,15 @@ private struct BudgetEditorView: View {
                         }
                     }
 
+                    if editing != nil {
+                        deleteBudgetButton
+                    }
                 }
                 .padding(.horizontal, 16)
                 .padding(.top, 8)
                 .padding(.bottom, 24)
             }
-            .safeAreaInset(edge: .bottom, spacing: 0) {
-                if editing != nil {
-                    deleteBudgetButton
-                        .padding(.horizontal, 16)
-                        .padding(.top, 8)
-                        .padding(.bottom, 16)
-                        .background(Theme.background)
-                }
-            }
+            .scrollDismissesKeyboard(.interactively)
             .background(Theme.background)
             .navigationTitle(editing == nil ? L10n.Assets.addBudget : L10n.Assets.editBudget)
             .navigationBarTitleDisplayMode(.inline)
@@ -1939,6 +2061,12 @@ private struct BudgetEditorView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(L10n.Common.save) { save() }
                         .disabled(!canSave)
+                }
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button(L10n.Common.done) {
+                        hideKeyboard()
+                    }
                 }
             }
             .toolbarBackground(Theme.background, for: .navigationBar)
@@ -1959,6 +2087,13 @@ private struct BudgetEditorView: View {
                 name = editing.name
                 amount = String(format: "%.2f", editing.amount)
             }
+            #if DEBUG
+            if CommandLine.arguments.contains("-focusBudgetName") {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                    nameFocused = true
+                }
+            }
+            #endif
         }
     }
 
@@ -1969,6 +2104,7 @@ private struct BudgetEditorView: View {
             Label(L10n.Assets.deleteBudgetButton, systemImage: "trash")
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundStyle(Theme.expense)
+                .lineLimit(1)
                 .frame(maxWidth: .infinity)
                 .frame(height: 46)
                 .background(Theme.surface, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
@@ -2005,6 +2141,15 @@ private struct BudgetEditorView: View {
         Divider()
             .overlay(Theme.border)
             .padding(.leading, 14)
+    }
+
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil,
+            from: nil,
+            for: nil
+        )
     }
 
     private func deleteBudget() {

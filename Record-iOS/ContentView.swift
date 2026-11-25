@@ -31,10 +31,13 @@ enum AppTab: String, CaseIterable, Identifiable {
 struct ContentView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(ToastCenter.self) private var toast
     @Query private var categories: [CategoryItem]
     @Query private var banks: [Bank]
     @State private var tab: AppTab = .ledger
     @State private var showEditor = false
+    @State private var recalcAdjustments: [SalaryTaxAdjustment] = []
+    @State private var showRecalcAlert = false
     @AppStorage("record.appearance") private var appearance = "system"
 
     var body: some View {
@@ -60,6 +63,23 @@ struct ContentView: View {
         .preferredColorScheme(preferredScheme)
         .sheet(isPresented: $showEditor) {
             RecordEditorView()
+        }
+        .alert(L10n.Assets.recalcTitle, isPresented: $showRecalcAlert) {
+            Button(L10n.Assets.recalcKeep, role: .cancel) {
+                SalaryTaxTable.markPreserved()
+                recalcAdjustments = []
+                toast.show(L10n.Toast.taxPreserved)
+            }
+            Button(L10n.Assets.recalcAction) {
+                let count = recalcAdjustments.count
+                applySalaryTaxAdjustments(recalcAdjustments)
+                try? context.save()
+                SalaryTaxTable.markPreserved()
+                recalcAdjustments = []
+                toast.show(L10n.Toast.taxRecalculated(count))
+            }
+        } message: {
+            Text(L10n.Assets.recalcMessage(recalcAdjustments.count))
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
@@ -92,6 +112,23 @@ struct ContentView: View {
                 tab = requested
             }
             #endif
+
+            let descriptor = FetchDescriptor<SalaryRecord>(sortBy: [SortDescriptor(\.date)])
+            if let salaries = try? context.fetch(descriptor) {
+                let adjustments = salaryTaxAdjustments(
+                    salaries: salaries,
+                    mode: PayrollPreferences.load().salaryTaxMonthMode
+                )
+                #if DEBUG
+                let skipPrompt = CommandLine.arguments.contains("-skipTaxRecalcPrompt")
+                #else
+                let skipPrompt = false
+                #endif
+                if !skipPrompt, !adjustments.isEmpty, SalaryTaxTable.preservedVersion < SalaryTaxTable.version {
+                    recalcAdjustments = adjustments
+                    showRecalcAlert = true
+                }
+            }
         }
     }
 

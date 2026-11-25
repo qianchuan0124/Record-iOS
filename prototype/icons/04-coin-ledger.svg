@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFF9EC"/>
+      <stop offset=".58" stop-color="#F9E4B8"/>
+      <stop offset="1" stop-color="#EDC57B"/>
+    </linearGradient>
+    <radialGradient id="glow4" cx=".18" cy=".08" r=".78">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="card4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7867E5"/>
+      <stop offset="1" stop-color="#4C39AE"/>
+    </linearGradient>
+    <linearGradient id="coin4" x1=".15" y1="0" x2=".85" y2="1">
+      <stop offset="0" stop-color="#FFF0B8"/>
+      <stop offset=".42" stop-color="#FFD15D"/>
+      <stop offset="1" stop-color="#EB9D12"/>
+    </linearGradient>
+    <filter id="shadow4" x="-35%" y="-30%" width="170%" height="180%">
+      <feDropShadow dx="0" dy="32" stdDeviation="34" flood-color="#7A4D0D" flood-opacity=".3"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg4)"/>
+  <circle cx="164" cy="110" r="420" fill="url(#glow4)"/>
+  <g filter="url(#shadow4)">
+    <g transform="rotate(-12 512 512)">
+      <rect x="270" y="238" width="388" height="532" rx="72" fill="url(#card4)"/>
+      <rect x="330" y="368" width="224" height="22" rx="11" fill="#F4EEFF" opacity=".82"/>
+      <rect x="330" y="438" width="164" height="22" rx="11" fill="#F4EEFF" opacity=".62"/>
+      <rect x="330" y="508" width="204" height="22" rx="11" fill="#F4EEFF" opacity=".45"/>
+      <circle cx="350" cy="658" r="17" fill="#FFC15C"/>
+    </g>
+    <circle cx="646" cy="646" r="246" fill="url(#coin4)"/>
+    <circle cx="646" cy="646" r="193" fill="none" stroke="#FFF5D1" stroke-width="12" opacity=".75"/>
+    <path d="M490 536 C 548 486 664 470 752 520" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" opacity=".45"/>
+    <g transform="translate(646 644) scale(1.38)" fill="none" stroke="#5B49BD" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-64 -92 L0 0 L64 -92"/>
+      <path d="M0 0 V104"/>
+      <path d="M-54 26 H54"/>
+      <path d="M-54 66 H54"/>
+    </g>
+  </g>
+  <path d="M804 190 l9 28 28 9 -28 9 -9 28 -9 -28 -28 -9 28 -9z" fill="#FFF4C8" opacity=".9"/>
+</svg>
