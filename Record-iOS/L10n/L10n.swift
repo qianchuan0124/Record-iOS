@@ -658,7 +658,7 @@ enum L10n {
         }
         /// 跟随系统
         static let followSystem = L10nCore.string("settings_follow_system")
-        /// 已支持 iOS 18+ · 竖屏 · SwiftData 本地存储。CloudKit 容器需在 Xcode 配置后启用。
+        /// 已支持 iOS 18+ · 竖屏 · SwiftData 本地存储 · iCloud Drive 文件夹快照。
         static let footer = L10nCore.string("settings_footer")
         /// 历史账单怎么处理？
         static let historyQuestion = L10nCore.string("settings_history_question")

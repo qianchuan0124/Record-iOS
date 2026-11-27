@@ -11,14 +11,14 @@
 
     <div class="decision">
       <h3><span class="idx">02</span>首版范围：全做</h3>
-      <p>账单、分析（概览/年度/时间线）、薪酬与个税、存款与银行、预算、自定义分类、Excel 导入导出、CloudKit 同步全部进 1.0。</p>
+      <p>账单、分析（概览/年度/时间线）、薪酬与个税、存款与银行、预算、自定义分类、Excel 全量导入导出、文件夹 JSON 快照全部进 1.0。</p>
       <div class="rec"><b>开发顺序：</b>数据层 → 账单闭环 → 分析/年度 → 资产 → 设置/同步 → 导入导出。</div>
     </div>
 
     <div class="decision">
-      <h3><span class="idx">03</span>同步：SwiftData + CloudKit</h3>
-      <p>设备间自动同步走 CloudKit 私有库；桌面端只通过 <b>Excel 导入/导出</b> 迁移，不读取数据库文件。</p>
-      <div class="rec"><b>实现要点：</b>首次启动把本地数据上传 CloudKit；导入 Excel 按 syncId 去重；冲突以「最后修改时间」为准。</div>
+      <h3><span class="idx">03</span>同步：文件夹 JSON + Excel</h3>
+      <p>移动端把 JSON 快照写入 iCloud Drive / OneDrive / 本地目录；桌面端继续用 Excel 全量导入导出，也支持恢复桌面 `.db` 快照。</p>
+      <div class="rec"><b>实现要点：</b>JSON 包含账单、预算、工资、奖金、存款、分类和手动银行；Excel 先预览再选合并/覆盖。</div>
     </div>
 
     <div class="decision">
@@ -35,8 +35,8 @@
 
     <div class="decision">
       <h3><span class="idx">06</span>资产首页：分段控件</h3>
-      <p>沿用当前方案：资产 Tab 顶部用 <b>存款 / 薪酬 / 预算</b> 三段切换，不做「总览 → 二级页」的额外层级。</p>
-      <div class="rec"><b>已落地：</b>两个资产首页共享同一套头部与分段控件。</div>
+      <p>与当前工程同步：资产 Tab 顶部用 <b>预算 / 工资 / 存款</b> 三段切换，默认预算，不做「总览 → 二级页」的额外层级。</p>
+      <div class="rec"><b>已落地：</b>预算、工资、存款共享同一套头部与分段控件；工资编辑页标题为「工资详情」。</div>
     </div>
 
     <div class="decision">
@@ -59,4 +59,4 @@
   </div>
 </section>
 
-<footer class="board-foot">静态原型 · 数据均为示意 · 交互说明见每屏下方注释 · 更新于 2026-11-19</footer>
+<footer class="board-foot">静态原型 · 数据均为示意 · 交互说明见每屏下方注释 · 更新于 2026-11-26</footer>

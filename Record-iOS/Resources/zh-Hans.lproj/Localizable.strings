@@ -280,7 +280,7 @@
 "settings_other" = "其他";
 "settings_feedback" = "反馈与更新";
 "settings_about_app" = "关于记账清单";
-"settings_footer" = "已支持 iOS 18+ · 竖屏 · SwiftData 本地存储。CloudKit 容器需在 Xcode 配置后启用。";
+"settings_footer" = "已支持 iOS 18+ · 竖屏 · SwiftData 本地存储 · iCloud Drive 文件夹快照。";
 "settings_developer" = "开发者";
 "settings_clear_all" = "清空所有数据";
 "settings_category_summary" = "%d 类 · %d 项";

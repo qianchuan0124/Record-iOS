@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>记账清单 · iOS App 原型 v1</title>
+<title>记账清单 · iOS App 原型 v2</title>
 <script>
   (function () {
     var params = new URLSearchParams(location.search);
@@ -48,7 +48,8 @@ body{background:var(--board-bg);color:var(--text);font-family:-apple-system,Blin
 
 .board-header{padding:56px 56px 34px;background:var(--board-header-bg);border-bottom:1px solid var(--border-strong)}
 .brand{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--brand)}
-.brand .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--brand-light),var(--brand));display:grid;place-items:center;color:#fff;font-size:13px;font-weight:700}
+.brand .dot{width:26px;height:26px;border-radius:8px;overflow:hidden;display:grid;place-items:center;background:var(--brand);flex:0 0 auto}
+.brand .dot img{width:100%;height:100%;object-fit:cover;display:block}
 .brand .en{color:var(--text3);font-weight:500}
 .board-header h1{margin:18px 0 8px;font-size:38px;line-height:1.15;letter-spacing:-.02em}
 .board-header .sub{margin:0;max-width:780px;font-size:15px;line-height:1.65;color:var(--text2)}
@@ -122,6 +123,22 @@ figcaption b{display:block;margin-bottom:3px;font-size:13px;color:var(--text);fo
 .cat{width:38px;height:38px;border-radius:12px;background:var(--bgc);color:var(--c);display:grid;place-items:center;font-size:13px;font-weight:600;flex:0 0 auto;font-style:normal}
 .cat.lg{width:48px;height:48px;border-radius:15px;font-size:15px}
 .cat.sm{width:30px;height:30px;border-radius:9px;font-size:11px}
+.cat-img{width:38px;height:38px;border-radius:12px;background:var(--bgc);display:grid;place-items:center;flex:0 0 auto}
+.cat-img .glyph{display:block;width:58%;height:58%;background:var(--c);-webkit-mask-image:var(--src);-webkit-mask-position:center;-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;mask-image:var(--src);mask-position:center;mask-size:contain;mask-repeat:no-repeat}
+.cat-img .glyph-entertainment_icon{-webkit-mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTcuNSA4aDlhNCA0IDAgMCAxIDMuOSA0LjlsLS44IDRhMyAzIDAgMCAxLTUuMiAxLjNMMTMgMTZoLTJsLTEuNCAyLjJhMyAzIDAgMCAxLTUuMi0xLjNsLS44LTRBNCA0IDAgMCAxIDcuNSA4eiIvPjxwYXRoIGQ9Ik04IDExdjNNNi41IDEyLjVoM00xNi41IDEyaC4wMU0xOCAxNGguMDEiLz48L2c+PC9zdmc+Cg==');mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTcuNSA4aDlhNCA0IDAgMCAxIDMuOSA0LjlsLS44IDRhMyAzIDAgMCAxLTUuMiAxLjNMMTMgMTZoLTJsLTEuNCAyLjJhMyAzIDAgMCAxLTUuMi0xLjNsLS44LTRBNCA0IDAgMCAxIDcuNSA4eiIvPjxwYXRoIGQ9Ik04IDExdjNNNi41IDEyLjVoM00xNi41IDEyaC4wMU0xOCAxNGguMDEiLz48L2c+PC9zdmc+Cg==')}
+.cat-img .glyph-finance_icon{-webkit-mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHJlY3QgeD0iMyIgeT0iNiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjEyIiByeD0iMi41Ii8+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMi41Ii8+PHBhdGggZD0iTTcgOWguMDFNMTcgMTVoLjAxIi8+PC9nPjwvc3ZnPgo=');mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHJlY3QgeD0iMyIgeT0iNiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjEyIiByeD0iMi41Ii8+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMi41Ii8+PHBhdGggZD0iTTcgOWguMDFNMTcgMTVoLjAxIi8+PC9nPjwvc3ZnPgo=')}
+.cat-img .glyph-food_icon{-webkit-mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTcgM3Y4TTQuNSAzdjQuOGEyLjUgMi41IDAgMCAwIDUgMFYzTTcgMTF2MTAiLz48cGF0aCBkPSJNMTcgM2MtMiAyLTIuNiA0LjMtMi42IDYuNyAwIDEuOC45IDIuOSAyLjYgMy4zVjIxIi8+PC9nPjwvc3ZnPgo=');mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTcgM3Y4TTQuNSAzdjQuOGEyLjUgMi41IDAgMCAwIDUgMFYzTTcgMTF2MTAiLz48cGF0aCBkPSJNMTcgM2MtMiAyLTIuNiA0LjMtMi42IDYuNyAwIDEuOC45IDIuOSAyLjYgMy4zVjIxIi8+PC9nPjwvc3ZnPgo=')}
+.cat-img .glyph-home_icon{-webkit-mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTMuNSAxMSAxMiA0bDguNSA3Ii8+PHBhdGggZD0iTTUuNSA5LjdWMjBoMTNWOS43TTkuNSAyMHYtNmg1djYiLz48L2c+PC9zdmc+Cg==');mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTMuNSAxMSAxMiA0bDguNSA3Ii8+PHBhdGggZD0iTTUuNSA5LjdWMjBoMTNWOS43TTkuNSAyMHYtNmg1djYiLz48L2c+PC9zdmc+Cg==')}
+.cat-img .glyph-medical_icon{-webkit-mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iOC41Ii8+PHBhdGggZD0iTTEyIDcuNXY5TTcuNSAxMmg5Ii8+PC9nPjwvc3ZnPgo=');mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iOC41Ii8+PHBhdGggZD0iTTEyIDcuNXY5TTcuNSAxMmg5Ii8+PC9nPjwvc3ZnPgo=')}
+.cat-img .glyph-other_icon{-webkit-mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHJlY3QgeD0iNCIgeT0iNCIgd2lkdGg9IjYiIGhlaWdodD0iNiIgcng9IjEuNSIvPjxyZWN0IHg9IjE0IiB5PSI0IiB3aWR0aD0iNiIgaGVpZ2h0PSI2IiByeD0iMS41Ii8+PHJlY3QgeD0iNCIgeT0iMTQiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiIHJ4PSIxLjUiLz48cmVjdCB4PSIxNCIgeT0iMTQiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiIHJ4PSIxLjUiLz48L2c+PC9zdmc+Cg==');mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHJlY3QgeD0iNCIgeT0iNCIgd2lkdGg9IjYiIGhlaWdodD0iNiIgcng9IjEuNSIvPjxyZWN0IHg9IjE0IiB5PSI0IiB3aWR0aD0iNiIgaGVpZ2h0PSI2IiByeD0iMS41Ii8+PHJlY3QgeD0iNCIgeT0iMTQiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiIHJ4PSIxLjUiLz48cmVjdCB4PSIxNCIgeT0iMTQiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiIHJ4PSIxLjUiLz48L2c+PC9zdmc+Cg==')}
+.cat-img .glyph-relationship_icon{-webkit-mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDIwcy03LjUtNC40LTcuNS0xMEE0LjIgNC4yIDAgMCAxIDEyIDcuMiA0LjIgNC4yIDAgMCAxIDE5LjUgMTBjMCA1LjYtNy41IDEwLTcuNSAxMHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4K');mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDIwcy03LjUtNC40LTcuNS0xMEE0LjIgNC4yIDAgMCAxIDEyIDcuMiA0LjIgNC4yIDAgMCAxIDE5LjUgMTBjMCA1LjYtNy41IDEwLTcuNSAxMHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4K')}
+.cat-img .glyph-shopping_icon{-webkit-mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTUuNSA4aDEzbC0xIDEyaC0xMWwtMS0xMnoiLz48cGF0aCBkPSJNOSA4YTMgMyAwIDAgMSA2IDAiLz48L2c+PC9zdmc+Cg==');mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTUuNSA4aDEzbC0xIDEyaC0xMWwtMS0xMnoiLz48cGF0aCBkPSJNOSA4YTMgMyAwIDAgMSA2IDAiLz48L2c+PC9zdmc+Cg==')}
+.cat-img .glyph-study_icon{-webkit-mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTMuNSA1LjVoNmEyLjUgMi41IDAgMCAxIDIuNSAyLjV2MTFhMi41IDIuNSAwIDAgMC0yLjUtMi41aC02eiIvPjxwYXRoIGQ9Ik0yMC41IDUuNWgtNkEyLjUgMi41IDAgMCAwIDEyIDh2MTFhMi41IDIuNSAwIDAgMSAyLjUtMi41aDZ6Ii8+PC9nPjwvc3ZnPgo=');mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTMuNSA1LjVoNmEyLjUgMi41IDAgMCAxIDIuNSAyLjV2MTFhMi41IDIuNSAwIDAgMC0yLjUtMi41aC02eiIvPjxwYXRoIGQ9Ik0yMC41IDUuNWgtNkEyLjUgMi41IDAgMCAwIDEyIDh2MTFhMi41IDIuNSAwIDAgMSAyLjUtMi41aDZ6Ii8+PC9nPjwvc3ZnPgo=')}
+.cat-img .glyph-traffic_icon{-webkit-mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHJlY3QgeD0iNCIgeT0iMyIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE1IiByeD0iNCIvPjxwYXRoIGQ9Ik00IDEwaDE2TTggMTh2Mk0xNiAxOHYyTTggMTRoLjAxTTE2IDE0aC4wMSIvPjwvZz48L3N2Zz4K');mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHJlY3QgeD0iNCIgeT0iMyIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE1IiByeD0iNCIvPjxwYXRoIGQ9Ik00IDEwaDE2TTggMTh2Mk0xNiAxOHYyTTggMTRoLjAxTTE2IDE0aC4wMSIvPjwvZz48L3N2Zz4K')}
+
+.cat-img.lg{width:48px;height:48px;border-radius:15px}
+.cat-img.sm{width:30px;height:30px;border-radius:9px}
+.cat-img.xs{width:18px;height:18px;border-radius:6px}
 .row-main{flex:1;min-width:0}
 .row-title{font-size:14.5px;font-weight:500;display:flex;align-items:center;gap:6px}
 .row-sub{font-size:11.5px;color:var(--text3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -238,6 +255,13 @@ figcaption b{display:block;margin-bottom:3px;font-size:13px;color:var(--text);fo
 .chip .n{font-size:10.5px;color:var(--text3)}
 .dot{width:7px;height:7px;border-radius:2px;display:inline-block}
 .rank{width:19px;height:19px;border-radius:6px;display:grid;place-items:center;font-size:11px;font-weight:700;flex:0 0 auto}
+.month-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.month-tile{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:9px 4px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.month-tile .m{font-size:10.5px;color:var(--text3)}
+.month-tile .v{font-size:11.5px;font-weight:600;font-variant-numeric:tabular-nums}
+.month-tile.on{background:var(--brand-soft);border-color:var(--brand-border)}
+.month-tile.on .m,.month-tile.on .v{color:var(--brand-dark)}
+.month-tile.empty .v{color:var(--chevron)}
 .mcell{background:var(--subtle);border-radius:10px;padding:7px 4px;display:flex;flex-direction:column;align-items:center;gap:2px}
 .mcell .m{font-size:10.5px;color:var(--text3)}
 .mcell .v{font-size:11.5px;font-weight:600;font-variant-numeric:tabular-nums}
@@ -249,7 +273,7 @@ figcaption b{display:block;margin-bottom:3px;font-size:13px;color:var(--text);fo
 
 .grid-cat{display:grid;grid-template-columns:repeat(5,1fr);gap:10px 4px}
 .grid-cat .it{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10.5px;color:var(--text2)}
-.grid-cat .it .cat{width:40px;height:40px;border-radius:13px;font-size:13px}
+.grid-cat .it .cat,.grid-cat .it .cat-img{width:40px;height:40px;border-radius:13px;font-size:13px}
 .grid-cat .it.on{color:var(--brand-dark);font-weight:600}
 .grid-cat .it.on .cat{box-shadow:0 0 0 2.5px #fff,0 0 0 4.5px var(--brand)}
 
@@ -258,6 +282,7 @@ figcaption b{display:block;margin-bottom:3px;font-size:13px;color:var(--text);fo
 .bank-grid .b.on{border-color:var(--brand-border);background:var(--brand-soft);color:var(--brand-dark);font-weight:600}
 .bank-logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;background:#2E6BD6;flex:0 0 auto}
 .bank-logo.sm{width:28px;height:28px;border-radius:8px;font-size:11px}
+.bank-logo img{width:72%;height:72%;object-fit:contain;display:block}
 
 .settings-group{margin-bottom:16px}
 .sf-ico{width:29px;height:29px;border-radius:8px;display:grid;place-items:center;color:#fff;flex:0 0 auto}
@@ -330,6 +355,7 @@ body.only .theme-toggle{display:none}
   <symbol id="i-pay" viewBox="0 0 24 24"><rect x="2.8" y="6" width="18.4" height="12.4" rx="3"/><circle cx="12" cy="12.2" r="2.6"/><path d="M6.2 10.2h.01M17.8 14.2h.01"/></symbol>
   <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 9.2 12 4l9 5.2"/><path d="M5.2 9.2v8M9.7 9.2v8M14.3 9.2v8M18.8 9.2v8"/><path d="M3 20.2h18"/></symbol>
   <symbol id="i-set" viewBox="0 0 24 24"><path d="M4 7.5h16M4 16.5h16"/><circle cx="9" cy="7.5" r="2.4"/><circle cx="15" cy="16.5" r="2.4"/></symbol>
+  <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.4"/><path d="M15.8 15.8 20 20"/></symbol>
   <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6.5h16M7 12h10M10 17.5h4"/></symbol>
@@ -355,22 +381,22 @@ body.only .theme-toggle{display:none}
 </svg>
 
 <header class="board-header">
-  <div class="brand"><span class="dot">记</span>记账清单 <span class="en">Record</span></div>
-  <h1>iOS App 原型 <span style="color:var(--text3);font-weight:600">v1</span></h1>
-  <p class="sub">把桌面版「记账清单」重构为 iPhone 原生应用。已按确认的方案更新：4 Tab + 中央「＋」、「资产」合并薪酬与存款、年度页参考新版式、iOS 18+。23 个界面覆盖账单、分析、资产、设置四条主线。</p>
+  <div class="brand"><span class="dot"><img src="icons/01-ledger-glow.svg" alt=""></span>记账清单 <span class="en">Record</span></div>
+  <h1>iOS App 原型 <span style="color:var(--text3);font-weight:600">v2</span></h1>
+  <p class="sub">已按当前 SwiftUI 工程同步：使用 01A 新图标、4 Tab + 中央「＋」、资产三段默认预算、全部时间分析、年度版式、工资详情与全量 Excel 导入。23 个界面覆盖账单、分析、资产、设置四条主线。</p>
   <div class="meta">
     <span class="pill">iPhone 15 · 390 × 844</span>
     <span class="pill">目标 iOS 18+ / SwiftUI</span>
     <span class="pill">主色 <b>#6C5DD3</b></span>
     <span class="pill">结构 <b>4 Tab + 中央＋</b></span>
-    <span class="pill">数据 <b>SwiftData + CloudKit</b></span>
+    <span class="pill">数据 <b>SwiftData + Files</b></span>
   </div>
 </header>
 
 <nav class="board-nav">
   <a href="#g-bill">01 账单</a>
   <a href="#g-analysis">02 分析</a>
-  <a href="#g-payroll">03 资产·薪酬</a>
+  <a href="#g-payroll">03 资产</a>
   <a href="#g-deposit">04 资产·存款</a>
   <a href="#g-settings">05 设置</a>
   <a href="#g-decisions">方案与待确认</a>
@@ -402,17 +428,17 @@ body.only .theme-toggle{display:none}
           <div class="day-head"><span class="l"><span class="d">11月19日</span> 今天</span><span class="sum"><span class="exp">支 268.00</span></span></div>
           <div>
             <div class="row">
-              <i class="cat" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i>
+              <span class="cat-img" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>
               <div class="row-main"><div class="row-title">三餐 · 午餐</div><div class="row-sub">公司楼下 · 12:32</div></div>
               <b class="amt exp">-32.00</b>
             </div>
             <div class="row">
-              <i class="cat" style="--c:#3B82F6;--bgc:#E8F1FE">交</i>
+              <span class="cat-img" style="--c:#3B82F6;--bgc:#E8F1FE"><i class="glyph glyph-traffic_icon"></i></span>
               <div class="row-main"><div class="row-title">打车</div><div class="row-sub">加班打车回家</div></div>
               <b class="amt exp">-56.00</b>
             </div>
             <div class="row">
-              <i class="cat" style="--c:#EC4899;--bgc:#FDEBF5">购</i>
+              <span class="cat-img" style="--c:#EC4899;--bgc:#FDEBF5"><i class="glyph glyph-shopping_icon"></i></span>
               <div class="row-main"><div class="row-title">日用品</div><div class="row-sub">洗衣液、纸巾</div></div>
               <b class="amt exp">-180.00</b>
             </div>
@@ -421,17 +447,17 @@ body.only .theme-toggle{display:none}
           <div class="day-head"><span class="l"><span class="d">11月18日</span> 周三</span><span class="sum"><span class="exp">支 528.00</span></span></div>
           <div>
             <div class="row">
-              <i class="cat" style="--c:#F59E0B;--bgc:var(--bonus-bg)">人</i>
+              <span class="cat-img" style="--c:#F59E0B;--bgc:var(--bonus-bg)"><i class="glyph glyph-relationship_icon"></i></span>
               <div class="row-main"><div class="row-title">请客</div><div class="row-sub">团队聚餐</div></div>
               <b class="amt exp">-360.00</b>
             </div>
             <div class="row">
-              <i class="cat" style="--c:#10B981;--bgc:#E6F7F1">居</i>
+              <span class="cat-img" style="--c:#10B981;--bgc:#E6F7F1"><i class="glyph glyph-home_icon"></i></span>
               <div class="row-main"><div class="row-title">话费</div><div class="row-sub">11 月套餐</div></div>
               <b class="amt exp">-100.00</b>
             </div>
             <div class="row">
-              <i class="cat" style="--c:#EF4444;--bgc:#FDECEC">医</i>
+              <span class="cat-img" style="--c:#EF4444;--bgc:#FDECEC"><i class="glyph glyph-medical_icon"></i></span>
               <div class="row-main"><div class="row-title">药品</div><div class="row-sub">退烧药</div></div>
               <b class="amt exp">-68.00</b>
             </div>
@@ -440,7 +466,7 @@ body.only .theme-toggle{display:none}
           <div class="day-head"><span class="l"><span class="d">11月17日</span> 周二</span><span class="sum"><span class="inc">收 23,500.00</span><span class="exp">支 57.60</span></span></div>
           <div>
             <div class="row">
-              <i class="cat" style="--c:var(--inc);--bgc:#E7F6F0">薪</i>
+              <span class="cat-img" style="--c:var(--inc);--bgc:#E7F6F0"><i class="glyph glyph-finance_icon"></i></span>
               <div class="row-main"><div class="row-title">工资</div><div class="row-sub">10 月工资到账</div></div>
               <b class="amt inc">+23,500.00</b>
             </div>
@@ -499,19 +525,19 @@ body.only .theme-toggle{display:none}
 
         <div style="padding:4px 16px 0">
           <div class="grid-cat">
-            <div class="it on"><i class="cat" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i><span>餐饮</span></div>
-            <div class="it"><i class="cat" style="--c:#3B82F6;--bgc:#E8F1FE">交</i><span>交通</span></div>
-            <div class="it"><i class="cat" style="--c:#EC4899;--bgc:#FDEBF5">购</i><span>购物</span></div>
-            <div class="it"><i class="cat" style="--c:#10B981;--bgc:#E6F7F1">居</i><span>居家</span></div>
-            <div class="it"><i class="cat" style="--c:#F59E0B;--bgc:var(--bonus-bg)">人</i><span>人情</span></div>
-            <div class="it"><i class="cat" style="--c:#EF4444;--bgc:#FDECEC">医</i><span>医疗</span></div>
-            <div class="it"><i class="cat" style="--c:#8B5CF6;--bgc:#F1EBFE">学</i><span>学习</span></div>
-            <div class="it"><i class="cat" style="--c:#06B6D4;--bgc:#E4F8FB">娱</i><span>娱乐</span></div>
-            <div class="it"><i class="cat" style="--c:#64748B;--bgc:#EEF1F5">工</i><span>工作</span></div>
-            <div class="it"><i class="cat" style="--c:#94A3B8;--bgc:#F1F3F6">其</i><span>其他</span></div>
+            <div class="it on"><span class="cat-img" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span><span>餐饮</span></div>
+            <div class="it"><span class="cat-img" style="--c:#3B82F6;--bgc:#E8F1FE"><i class="glyph glyph-traffic_icon"></i></span><span>交通</span></div>
+            <div class="it"><span class="cat-img" style="--c:#EC4899;--bgc:#FDEBF5"><i class="glyph glyph-shopping_icon"></i></span><span>购物</span></div>
+            <div class="it"><span class="cat-img" style="--c:#10B981;--bgc:#E6F7F1"><i class="glyph glyph-home_icon"></i></span><span>居家</span></div>
+            <div class="it"><span class="cat-img" style="--c:#F59E0B;--bgc:var(--bonus-bg)"><i class="glyph glyph-relationship_icon"></i></span><span>人情</span></div>
+            <div class="it"><span class="cat-img" style="--c:#EF4444;--bgc:#FDECEC"><i class="glyph glyph-medical_icon"></i></span><span>医疗</span></div>
+            <div class="it"><span class="cat-img" style="--c:#8B5CF6;--bgc:#F1EBFE"><i class="glyph glyph-study_icon"></i></span><span>学习</span></div>
+            <div class="it"><span class="cat-img" style="--c:#06B6D4;--bgc:#E4F8FB"><i class="glyph glyph-entertainment_icon"></i></span><span>娱乐</span></div>
+            <div class="it"><span class="cat-img" style="--c:#64748B;--bgc:#EEF1F5"><i class="glyph glyph-other_icon"></i></span><span>工作</span></div>
+            <div class="it"><span class="cat-img" style="--c:#94A3B8;--bgc:#F1F3F6"><i class="glyph glyph-other_icon"></i></span><span>其他</span></div>
           </div>
           <div class="chips" style="margin-top:10px">
-            <span class="chip on">三餐</span><span class="chip">早餐</span><span class="chip">中餐</span><span class="chip">晚餐</span><span class="chip">买菜</span><span class="chip">水果</span>
+            <span class="chip on"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>三餐</span><span class="chip"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>早餐</span><span class="chip"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>中餐</span><span class="chip"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>晚餐</span><span class="chip"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>买菜</span><span class="chip"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>水果</span>
           </div>
         </div>
 
@@ -550,28 +576,28 @@ body.only .theme-toggle{display:none}
             <div class="searchbar" style="margin-bottom:12px"><svg class="ico sm"><use href="#i-search"/></svg><span>搜索分类</span></div>
             <div style="display:flex;gap:10px;height:470px">
               <div style="flex:0 0 108px;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden">
-                <div style="padding:12px 10px;font-size:13.5px;background:var(--brand-soft);color:var(--brand-dark);font-weight:600;border-left:3px solid var(--brand)">餐饮</div>
-                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">交通</div>
-                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">购物</div>
-                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">居家</div>
-                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">人情</div>
-                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">医疗</div>
-                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">学习</div>
-                <div style="padding:12px 10px;font-size:13.5px;color:var(--text2)">娱乐</div>
+                <div class="hstack" style="padding:10px;gap:5px;font-size:13px;background:var(--brand-soft);color:var(--brand-dark);font-weight:600;border-left:3px solid var(--brand)"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>餐饮</div>
+                <div class="hstack" style="padding:10px;gap:5px;font-size:13px;color:var(--text2)"><span class="cat-img xs" style="--c:#3B82F6;--bgc:#E8F1FE"><i class="glyph glyph-traffic_icon"></i></span>交通</div>
+                <div class="hstack" style="padding:10px;gap:5px;font-size:13px;color:var(--text2)"><span class="cat-img xs" style="--c:#EC4899;--bgc:#FDEBF5"><i class="glyph glyph-shopping_icon"></i></span>购物</div>
+                <div class="hstack" style="padding:10px;gap:5px;font-size:13px;color:var(--text2)"><span class="cat-img xs" style="--c:#10B981;--bgc:#E6F7F1"><i class="glyph glyph-home_icon"></i></span>居家</div>
+                <div class="hstack" style="padding:10px;gap:5px;font-size:13px;color:var(--text2)"><span class="cat-img xs" style="--c:#F59E0B;--bgc:var(--bonus-bg)"><i class="glyph glyph-relationship_icon"></i></span>人情</div>
+                <div class="hstack" style="padding:10px;gap:5px;font-size:13px;color:var(--text2)"><span class="cat-img xs" style="--c:#EF4444;--bgc:#FDECEC"><i class="glyph glyph-medical_icon"></i></span>医疗</div>
+                <div class="hstack" style="padding:10px;gap:5px;font-size:13px;color:var(--text2)"><span class="cat-img xs" style="--c:#8B5CF6;--bgc:#F1EBFE"><i class="glyph glyph-study_icon"></i></span>学习</div>
+                <div class="hstack" style="padding:10px;gap:5px;font-size:13px;color:var(--text2)"><span class="cat-img xs" style="--c:#06B6D4;--bgc:#E4F8FB"><i class="glyph glyph-entertainment_icon"></i></span>娱乐</div>
               </div>
               <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start">
-                <div class="chip on" style="justify-content:center;padding:11px 0">三餐</div>
-                <div class="chip" style="justify-content:center;padding:11px 0">早餐</div>
-                <div class="chip" style="justify-content:center;padding:11px 0">中餐</div>
-                <div class="chip" style="justify-content:center;padding:11px 0">晚餐</div>
-                <div class="chip" style="justify-content:center;padding:11px 0">买菜</div>
-                <div class="chip" style="justify-content:center;padding:11px 0">水果</div>
-                <div class="chip" style="justify-content:center;padding:11px 0">零食</div>
-                <div class="chip" style="justify-content:center;padding:11px 0">加餐</div>
-                <div class="chip" style="justify-content:center;padding:11px 0">下午茶</div>
-                <div class="chip" style="justify-content:center;padding:11px 0">夜宵</div>
-                <div class="chip" style="justify-content:center;padding:11px 0">外卖</div>
-                <div class="chip" style="justify-content:center;padding:11px 0">聚餐</div>
+                <div class="chip on" style="justify-content:center;padding:9px 0"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>三餐</div>
+                <div class="chip" style="justify-content:center;padding:9px 0"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>早餐</div>
+                <div class="chip" style="justify-content:center;padding:9px 0"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>中餐</div>
+                <div class="chip" style="justify-content:center;padding:9px 0"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>晚餐</div>
+                <div class="chip" style="justify-content:center;padding:9px 0"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>买菜</div>
+                <div class="chip" style="justify-content:center;padding:9px 0"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>水果</div>
+                <div class="chip" style="justify-content:center;padding:9px 0"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>零食</div>
+                <div class="chip" style="justify-content:center;padding:9px 0"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>加餐</div>
+                <div class="chip" style="justify-content:center;padding:9px 0"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>下午茶</div>
+                <div class="chip" style="justify-content:center;padding:9px 0"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>夜宵</div>
+                <div class="chip" style="justify-content:center;padding:9px 0"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>外卖</div>
+                <div class="chip" style="justify-content:center;padding:9px 0"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>聚餐</div>
               </div>
             </div>
             <div class="note">左列一级分类固定，右列二级分类随选择切换；「自定义分类」中新增的项会实时出现在这里。</div>
@@ -594,7 +620,7 @@ body.only .theme-toggle{display:none}
           <div class="sheet-head"><span class="link">关闭</span><span class="st">账单详情</span><span class="link strong">保存</span></div>
           <div class="sheet-body">
             <div class="card" style="padding:18px 16px;display:flex;align-items:center;gap:14px">
-              <i class="cat lg" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i>
+              <span class="cat-img lg" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>
               <div class="grow">
                 <div class="t15 b600">三餐 · 午餐</div>
                 <div class="t12 muted mt8" style="margin-top:3px">11月19日 周四 · 12:32</div>
@@ -682,50 +708,49 @@ body.only .theme-toggle{display:none}
     <figure>
       <div class="phone">
         <div class="sb"><span>9:41</span><span class="sb-icons"><svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3.5" width="3" height="8.5" rx="1"/><rect x="15" y="1" width="3" height="11" rx="1"/></svg><svg viewBox="0 0 16 12"><path d="M8 11l2.2-2.6a3.4 3.4 0 0 0-4.4 0L8 11z"/><path d="M8 5.6c1.7 0 3.3.6 4.6 1.7l1.3-1.6A9.5 9.5 0 0 0 8 3.4c-2.2 0-4.3.8-5.9 2.3l1.3 1.6A7 7 0 0 1 8 5.6z" opacity=".9"/></svg><svg class="battery" viewBox="0 0 26 12"><rect x=".5" y="1" width="21" height="10" rx="3" fill="none" stroke="currentColor"/><rect x="2.5" y="3" width="17" height="6" rx="1.6"/><path d="M23.5 4.6v2.8c1-.4 1.5-1 1.5-1.4s-.5-1-1.5-1.4z"/></svg></span></div>
-        <div class="large"><h3>分析</h3><div class="icons"><svg class="ico"><use href="#i-cal"/></svg></div></div>
+        <div class="large"><h3>分析</h3></div>
         <div style="padding:0 16px 12px"><div class="seg"><span class="on">概览</span><span>年度</span><span>时间线</span></div></div>
         <div class="hstack" style="justify-content:center;padding:0 16px 6px">
-          <div class="searchbar" style="padding:6px 14px;font-size:12.5px;color:var(--text2);background:var(--surface);border:1px solid var(--border-strong)">2026年11月 <svg class="ico xs"><use href="#i-chev-d"/></svg></div>
+          <div class="searchbar" style="padding:6px 14px;font-size:12.5px;color:var(--text2);background:var(--surface);border:1px solid var(--border-strong)">全部时间 <svg class="ico xs"><use href="#i-chev-d"/></svg></div>
         </div>
         <div class="body">
-          <div class="donut">
-            <div class="center"><span class="k">总支出</span><span class="v">8,642.50</span></div>
+          <div class="donut" style="background:conic-gradient(#EC4899 0 39.4%,#10B981 39.4% 63.08%,#F59E0B 63.08% 78.51%,#FF7A45 78.51% 84.77%,#06B6D4 84.77% 89.05%,#8B5CF6 89.05% 93.06%,#CBD2DC 93.06% 100%)">
+            <div class="center"><span class="k">总支出</span><span class="v">26,789.95</span></div>
           </div>
-          <div class="legend">
-            <div class="it"><span class="sw" style="background:#FF7A45"></span><span class="nm">餐饮</span><span class="pc">32%</span></div>
-            <div class="it"><span class="sw" style="background:#3B82F6"></span><span class="nm">交通</span><span class="pc">18%</span></div>
-            <div class="it"><span class="sw" style="background:#EC4899"></span><span class="nm">购物</span><span class="pc">14%</span></div>
-            <div class="it"><span class="sw" style="background:#10B981"></span><span class="nm">居家</span><span class="pc">12%</span></div>
-            <div class="it"><span class="sw" style="background:#F59E0B"></span><span class="nm">人情</span><span class="pc">9%</span></div>
-            <div class="it"><span class="sw" style="background:#8B5CF6"></span><span class="nm">其他</span><span class="pc">15%</span></div>
-          </div>
-
           <div class="flexb" style="padding:18px 4px 6px">
             <span class="t13 b600">分类明细</span>
             <span class="t115 muted">点击查看子分类</span>
           </div>
-          <div class="bar-list">
+          <div class="card" style="padding:4px 14px">
             <div class="bar-item">
-              <div class="bar-top"><span class="n"><i class="cat sm" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i>餐饮</span><span class="v">2,765.60</span></div>
-              <div class="bar-track"><div class="bar-fill" style="width:32%;--c:#FF7A45"></div></div>
+              <div class="bar-top"><span class="n"><span class="cat-img sm" style="--c:#EC4899;--bgc:#FDEBF5"><i class="glyph glyph-shopping_icon"></i></span>购物</span><span class="v" style="text-align:right">10,555.10<span class="t115 muted" style="display:block;margin-top:2px">39.40%</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:39.4%;--c:#EC4899"></div></div>
             </div>
-            <div class="bar-item">
-              <div class="bar-top"><span class="n"><i class="cat sm" style="--c:#3B82F6;--bgc:#E8F1FE">交</i>交通</span><span class="v">1,555.65</span></div>
-              <div class="bar-track"><div class="bar-fill" style="width:18%;--c:#3B82F6"></div></div>
+            <div class="bar-item divide-t">
+              <div class="bar-top"><span class="n"><span class="cat-img sm" style="--c:#10B981;--bgc:#E6F7F1"><i class="glyph glyph-home_icon"></i></span>居家</span><span class="v" style="text-align:right">6,344.60<span class="t115 muted" style="display:block;margin-top:2px">23.68%</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:23.7%;--c:#10B981"></div></div>
             </div>
-            <div class="bar-item">
-              <div class="bar-top"><span class="n"><i class="cat sm" style="--c:#EC4899;--bgc:#FDEBF5">购</i>购物</span><span class="v">1,210.00</span></div>
-              <div class="bar-track"><div class="bar-fill" style="width:14%;--c:#EC4899"></div></div>
+            <div class="bar-item divide-t">
+              <div class="bar-top"><span class="n"><span class="cat-img sm" style="--c:#F59E0B;--bgc:var(--bonus-bg)"><i class="glyph glyph-relationship_icon"></i></span>人情</span><span class="v" style="text-align:right">4,132.80<span class="t115 muted" style="display:block;margin-top:2px">15.43%</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:15.4%;--c:#F59E0B"></div></div>
             </div>
-            <div class="bar-item">
-              <div class="bar-top"><span class="n"><i class="cat sm" style="--c:#10B981;--bgc:#E6F7F1">居</i>居家</span><span class="v">1,037.10</span></div>
-              <div class="bar-track"><div class="bar-fill" style="width:12%;--c:#10B981"></div></div>
+            <div class="bar-item divide-t">
+              <div class="bar-top"><span class="n"><span class="cat-img sm" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>餐饮</span><span class="v" style="text-align:right">1,678.25<span class="t115 muted" style="display:block;margin-top:2px">6.26%</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:6.3%;--c:#FF7A45"></div></div>
+            </div>
+            <div class="bar-item divide-t">
+              <div class="bar-top"><span class="n"><span class="cat-img sm" style="--c:#06B6D4;--bgc:#E6F8FA"><i class="glyph glyph-entertainment_icon"></i></span>娱乐</span><span class="v" style="text-align:right">1,145.50<span class="t115 muted" style="display:block;margin-top:2px">4.28%</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:4.3%;--c:#06B6D4"></div></div>
+            </div>
+            <div class="bar-item divide-t">
+              <div class="bar-top"><span class="n"><span class="cat-img sm" style="--c:#8B5CF6;--bgc:#F1EBFE"><i class="glyph glyph-study_icon"></i></span>学习</span><span class="v" style="text-align:right">1,075.84<span class="t115 muted" style="display:block;margin-top:2px">4.01%</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:4.0%;--c:#8B5CF6"></div></div>
             </div>
           </div>
         </div>
         <div class="tabbar"><div class="tab"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div><div class="tab on"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div><div class="tab add"><span class="plus"><svg class="ico"><use href="#i-plus"/></svg></span></div><div class="tab"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div><div class="tab"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div><div class="homebar"></div></div>
       </div>
-      <figcaption><b>分析 · 概览 <span class="tagline">环形图</span></b>桌面版是 ECharts 饼图 + 右侧滑出详情树。手机端用环形图占位更省高度，图例与分类条形列表同时承担「看比例」和「点进去」两个作用。</figcaption>
+      <figcaption><b>分析 · 概览 <span class="tagline">全部时间</span></b>与当前工程同步：默认展示「全部时间」，可切到任意月份；环形图按支出分类汇总，金额大时中心数字自动缩放，下方列表同时承担看比例和进入子分类。</figcaption>
     </figure>
 
     <figure>
@@ -748,19 +773,19 @@ body.only .theme-toggle{display:none}
           <div class="group-label" style="padding-top:16px">子分类</div>
           <div class="card" style="padding:6px 14px">
             <div class="bar-item" style="padding:10px 0">
-              <div class="bar-top"><span class="n">三餐</span><span class="v">1,286.00 <span class="muted">· 46%</span></span></div>
+              <div class="bar-top"><span class="n"><span class="cat-img sm" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>三餐</span><span class="v">1,286.00 <span class="muted">· 46%</span></span></div>
               <div class="bar-track"><div class="bar-fill" style="width:46%;--c:#FF7A45"></div></div>
             </div>
             <div class="bar-item divide-t" style="padding:10px 0;margin-top:0">
-              <div class="bar-top"><span class="n">外卖</span><span class="v">642.00 <span class="muted">· 23%</span></span></div>
+              <div class="bar-top"><span class="n"><span class="cat-img sm" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>外卖</span><span class="v">642.00 <span class="muted">· 23%</span></span></div>
               <div class="bar-track"><div class="bar-fill" style="width:23%;--c:#FF9F6E"></div></div>
             </div>
             <div class="bar-item divide-t" style="padding:10px 0">
-              <div class="bar-top"><span class="n">水果</span><span class="v">418.60 <span class="muted">· 15%</span></span></div>
+              <div class="bar-top"><span class="n"><span class="cat-img sm" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>水果</span><span class="v">418.60 <span class="muted">· 15%</span></span></div>
               <div class="bar-track"><div class="bar-fill" style="width:15%;--c:#FFC09B"></div></div>
             </div>
             <div class="bar-item divide-t" style="padding:10px 0">
-              <div class="bar-top"><span class="n">下午茶</span><span class="v">258.00 <span class="muted">· 9%</span></span></div>
+              <div class="bar-top"><span class="n"><span class="cat-img sm" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>下午茶</span><span class="v">258.00 <span class="muted">· 9%</span></span></div>
               <div class="bar-track"><div class="bar-fill" style="width:9%;--c:#FFD6BC"></div></div>
             </div>
           </div>
@@ -771,17 +796,17 @@ body.only .theme-toggle{display:none}
           </div>
           <div class="card" style="padding:2px 14px">
             <div class="row">
-              <i class="cat sm" style="--c:#FF7A45;--bgc:#FFF0E9">午</i>
+              <span class="cat-img sm" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>
               <div class="row-main"><div class="row-title t135">11月19日 · 午餐</div><div class="row-sub">公司楼下</div></div>
               <b class="amt exp t14">-32.00</b>
             </div>
             <div class="row">
-              <i class="cat sm" style="--c:#FF7A45;--bgc:#FFF0E9">晚</i>
+              <span class="cat-img sm" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>
               <div class="row-main"><div class="row-title t135">11月18日 · 晚餐</div><div class="row-sub">外卖</div></div>
               <b class="amt exp t14">-48.00</b>
             </div>
             <div class="row">
-              <i class="cat sm" style="--c:#FF7A45;--bgc:#FFF0E9">午</i>
+              <span class="cat-img sm" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>
               <div class="row-main"><div class="row-title t135">11月17日 · 午餐</div><div class="row-sub">食堂</div></div>
               <b class="amt exp t14">-26.00</b>
             </div>
@@ -795,158 +820,91 @@ body.only .theme-toggle{display:none}
     <figure>
       <div class="phone">
         <div class="sb"><span>9:41</span><span class="sb-icons"><svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3.5" width="3" height="8.5" rx="1"/><rect x="15" y="1" width="3" height="11" rx="1"/></svg><svg viewBox="0 0 16 12"><path d="M8 11l2.2-2.6a3.4 3.4 0 0 0-4.4 0L8 11z"/><path d="M8 5.6c1.7 0 3.3.6 4.6 1.7l1.3-1.6A9.5 9.5 0 0 0 8 3.4c-2.2 0-4.3.8-5.9 2.3l1.3 1.6A7 7 0 0 1 8 5.6z" opacity=".9"/></svg><svg class="battery" viewBox="0 0 26 12"><rect x=".5" y="1" width="21" height="10" rx="3" fill="none" stroke="currentColor"/><rect x="2.5" y="3" width="17" height="6" rx="1.6"/><path d="M23.5 4.6v2.8c1-.4 1.5-1 1.5-1.4s-.5-1-1.5-1.4z"/></svg></span></div>
-        <div class="large"><h3>分析</h3><div class="icons"><svg class="ico"><use href="#i-cal"/></svg></div></div>
+        <div class="large"><h3>分析</h3></div>
         <div style="padding:0 16px 8px"><div class="seg"><span>概览</span><span class="on">年度</span><span>时间线</span></div></div>
         <div class="body">
-          <div class="hstack" style="gap:8px;padding:2px 2px 10px">
-            <span class="chip" style="padding:5px 10px;font-size:12px">2026 <svg class="ico xs"><use href="#i-chev-d"/></svg></span>
+          <div class="card" style="padding:14px 16px 13px">
+            <div class="t115 muted">结余</div>
+            <div class="flexb" style="align-items:center;margin-top:2px">
+              <div style="font-size:31px;font-weight:700;letter-spacing:-.03em">¥ 518,717.87</div>
+              <span class="chip" style="padding:5px 10px;font-size:12px">2026 <svg class="ico xs"><use href="#i-chev-d"/></svg></span>
+            </div>
+            <div class="hstack" style="gap:20px;font-size:11.5px;margin-top:7px">
+              <span class="hstack" style="gap:5px"><i class="dot" style="background:#3B82F6"></i>收入 <b class="t13">544,105.50</b></span>
+              <span class="hstack" style="gap:5px"><i class="dot" style="background:#FF7A45"></i>支出 <b class="t13">25,387.63</b></span>
+            </div>
           </div>
 
-          <div class="card" style="padding:13px 16px 10px">
-            <div class="flexb">
-              <span class="t115 muted">结余</span>
-              <span class="chip" style="font-size:10.5px;padding:3px 9px;color:var(--text2)">创建年结余目标</span>
-            </div>
-            <div style="font-size:29px;font-weight:700;letter-spacing:-.02em;margin:1px 0 10px">-¥ 36,708.74</div>
-            <div class="hstack" style="gap:20px;font-size:11.5px">
-              <span class="hstack" style="gap:5px"><i class="dot" style="background:#3B82F6"></i>收入 <b class="t13">1,055,261.60</b></span>
-              <span class="hstack" style="gap:5px"><i class="dot" style="background:#FF7A45"></i>支出 <b class="t13">1,091,970.34</b></span>
-            </div>
-            <div style="display:flex;align-items:flex-end;gap:10px;height:66px;margin-top:14px;padding:0 2px">
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px">
-                <div class="hstack" style="gap:2px;align-items:flex-end;height:40px">
-                  <span style="width:3px;height:18px;background:#FFB59B;border-radius:2px"></span>
-                  <span style="width:3px;height:26px;background:#9CC3F8;border-radius:2px"></span>
-                </div>
+          <div class="card mt10" style="padding:14px 16px 12px">
+            <div class="t14 b600">近 5 年收支</div>
+            <div class="hstack" style="align-items:flex-end;gap:14px;height:112px;margin-top:8px">
+              <div style="flex:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px">
+                <div class="hstack" style="align-items:flex-end;gap:4px;height:86px"><span style="width:13px;height:2px;background:#DFEAFB;border-radius:4px"></span><span style="width:13px;height:2px;background:#FDE4DF;border-radius:4px"></span></div>
                 <span class="t11 muted">2022</span>
               </div>
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px">
-                <div class="hstack" style="gap:2px;align-items:flex-end;height:40px">
-                  <span style="width:3px;height:14px;background:#FFB59B;border-radius:2px"></span>
-                  <span style="width:3px;height:12px;background:#9CC3F8;border-radius:2px"></span>
-                </div>
+              <div style="flex:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px">
+                <div class="hstack" style="align-items:flex-end;gap:4px;height:86px"><span style="width:13px;height:2px;background:#DFEAFB;border-radius:4px"></span><span style="width:13px;height:2px;background:#FDE4DF;border-radius:4px"></span></div>
                 <span class="t11 muted">2023</span>
               </div>
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px">
-                <div class="hstack" style="gap:2px;align-items:flex-end;height:40px">
-                  <span style="width:3px;height:28px;background:#FFB59B;border-radius:2px"></span>
-                  <span style="width:3px;height:24px;background:#9CC3F8;border-radius:2px"></span>
-                </div>
+              <div style="flex:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px">
+                <div class="hstack" style="align-items:flex-end;gap:4px;height:86px"><span style="width:13px;height:2px;background:#DFEAFB;border-radius:4px"></span><span style="width:13px;height:2px;background:#FDE4DF;border-radius:4px"></span></div>
                 <span class="t11 muted">2024</span>
               </div>
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px">
-                <div class="hstack" style="gap:2px;align-items:flex-end;height:40px">
-                  <span style="width:3px;height:20px;background:#FFB59B;border-radius:2px"></span>
-                  <span style="width:3px;height:22px;background:#9CC3F8;border-radius:2px"></span>
-                </div>
+              <div style="flex:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px">
+                <div class="hstack" style="align-items:flex-end;gap:4px;height:86px"><span style="width:13px;height:11px;background:#BFD5F8;border-radius:4px"></span><span style="width:13px;height:5px;background:#FFB8A8;border-radius:4px"></span></div>
                 <span class="t11 muted">2025</span>
               </div>
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;background:var(--summary-bg);border-radius:8px;padding:3px 0 2px">
-                <div class="hstack" style="gap:2px;align-items:flex-end;height:40px">
-                  <span style="width:3px;height:34px;background:#FF7A45;border-radius:2px"></span>
-                  <span style="width:3px;height:32px;background:#3B82F6;border-radius:2px"></span>
-                </div>
+              <div style="flex:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;background:var(--summary-bg);border-radius:8px;padding:4px 0 3px">
+                <div class="hstack" style="align-items:flex-end;gap:4px;height:82px"><span style="width:13px;height:76px;background:#3B82F6;border-radius:4px"></span><span style="width:13px;height:10px;background:#FF7A45;border-radius:4px"></span></div>
                 <span class="t11" style="color:var(--text);font-weight:600">2026</span>
               </div>
             </div>
           </div>
 
-          <div class="group-label" style="padding:12px 4px 7px">结余月历</div>
-          <div class="card" style="padding:8px">
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
-              <div class="mcell"><span class="m">1月</span><span class="v">-200.10</span></div>
-              <div class="mcell"><span class="m">2月</span><span class="v">-2.63万</span></div>
-              <div class="mcell"><span class="m">3月</span><span class="v">-1.32万</span></div>
-              <div class="mcell on"><span class="m">4月</span><span class="v">209.41</span></div>
-              <div class="mcell"><span class="m">5月</span><span class="v">-25.08</span></div>
-              <div class="mcell"><span class="m">6月</span><span class="v">2,946.43</span></div>
-              <div class="mcell"><span class="m">7月</span><span class="v">-1,275.42</span></div>
-              <div class="mcell"><span class="m">8月</span><span class="v">-1,347.96</span></div>
-              <div class="mcell"><span class="m">9月</span><span class="v">-438.25</span></div>
-              <div class="mcell"><span class="m">10月</span><span class="v">39.72</span></div>
-              <div class="mcell"><span class="m">11月</span><span class="v">3,028.07</span></div>
-              <div class="mcell empty"><span class="m">12月</span><span class="v">—</span></div>
-            </div>
+          <div class="group-label" style="padding:12px 4px 7px">支出月历</div>
+          <div class="month-grid">
+            <div class="month-tile"><span class="m">1月</span><span class="v">1,592.25</span></div>
+            <div class="month-tile"><span class="m">2月</span><span class="v">1,970.74</span></div>
+            <div class="month-tile"><span class="m">3月</span><span class="v">1,507.19</span></div>
+            <div class="month-tile"><span class="m">4月</span><span class="v">1,672.19</span></div>
+            <div class="month-tile"><span class="m">5月</span><span class="v">1,683.90</span></div>
+            <div class="month-tile"><span class="m">6月</span><span class="v">1,529.63</span></div>
+            <div class="month-tile"><span class="m">7月</span><span class="v">1,485.77</span></div>
+            <div class="month-tile"><span class="m">8月</span><span class="v">1,600.14</span></div>
+            <div class="month-tile"><span class="m">9月</span><span class="v">1,286.46</span></div>
+            <div class="month-tile"><span class="m">10月</span><span class="v">1,302.94</span></div>
+            <div class="month-tile on"><span class="m">11月</span><span class="v">9,756.42</span></div>
+            <div class="month-tile empty"><span class="m">12月</span><span class="v">—</span></div>
           </div>
-          <div class="note">点月份格子可切到该月账单；负结余保持中性色，不使用红色，避免整屏都是告警色。</div>
+
+          <div class="group-label" style="padding:12px 4px 7px">分类汇总</div>
+          <div class="group-card">
+            <div class="field"><span class="fl"><span class="cat-img sm" style="--c:#EC4899;--bgc:#FDEBF5"><i class="glyph glyph-shopping_icon"></i></span><span>购物</span></span><span class="vl nums">9,843.70 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+            <div class="field"><span class="fl"><span class="cat-img sm" style="--c:#10B981;--bgc:#E6F7F1"><i class="glyph glyph-home_icon"></i></span><span>居家</span></span><span class="vl nums">6,183.90 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+            <div class="field"><span class="fl"><span class="cat-img sm" style="--c:#F59E0B;--bgc:var(--bonus-bg)"><i class="glyph glyph-relationship_icon"></i></span><span>人情</span></span><span class="vl nums">3,972.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+          </div>
+          <div class="note">点月份格子可切到对应月份概览；年份菜单在结余卡片右侧，切换后整页同步更新。</div>
         </div>
         <div class="tabbar"><div class="tab"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div><div class="tab on"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div><div class="tab add"><span class="plus"><svg class="ico"><use href="#i-plus"/></svg></span></div><div class="tab"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div><div class="tab"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div><div class="homebar"></div></div>
       </div>
-      <figcaption><b>分析 · 年度总览 <span class="tagline">参考图版式</span></b>按参考图重构：年度结余主数字 + 收入/支出双色 + 五年迷你柱 + 结余月历。年份是下拉筛选，月历同时承担「看全年」和「跳到某月」。</figcaption>
+      <figcaption><b>分析 · 年度 <span class="tagline">当前工程版式</span></b>与当前工程同步：年份菜单位于结余卡片右侧，近 5 年收支拆成独立卡片，下面是「支出月历」和分类汇总；点月份回到对应月份概览。</figcaption>
     </figure>
+
 
     <figure>
       <div class="phone">
         <div class="sb"><span>9:41</span><span class="sb-icons"><svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3.5" width="3" height="8.5" rx="1"/><rect x="15" y="1" width="3" height="11" rx="1"/></svg><svg viewBox="0 0 16 12"><path d="M8 11l2.2-2.6a3.4 3.4 0 0 0-4.4 0L8 11z"/><path d="M8 5.6c1.7 0 3.3.6 4.6 1.7l1.3-1.6A9.5 9.5 0 0 0 8 3.4c-2.2 0-4.3.8-5.9 2.3l1.3 1.6A7 7 0 0 1 8 5.6z" opacity=".9"/></svg><svg class="battery" viewBox="0 0 26 12"><rect x=".5" y="1" width="21" height="10" rx="3" fill="none" stroke="currentColor"/><rect x="2.5" y="3" width="17" height="6" rx="1.6"/><path d="M23.5 4.6v2.8c1-.4 1.5-1 1.5-1.4s-.5-1-1.5-1.4z"/></svg></span></div>
-        <div class="nav"><span class="back"><svg class="ico sm"><use href="#i-back"/></svg>年度</span><span class="nav-title">2026 · 分类与排行</span><span><svg class="ico"><use href="#i-filter"/></svg></span></div>
-        <div style="padding:6px 16px 8px"><div class="seg"><span class="on">收入</span><span>支出</span></div></div>
-        <div class="body">
-          <div class="flexb" style="padding:4px 2px 8px">
-            <span class="t13 b600">分类汇总</span>
-            <span class="hstack t115 muted" style="gap:6px">对比上年 <span class="toggle sm off"></span></span>
-          </div>
-          <div class="group-card" style="padding:0 14px">
-            <div style="padding:9px 0 7px;border-bottom:1px solid var(--divider-soft)">
-              <div class="flexb"><span class="hstack" style="gap:8px"><i class="cat sm" style="--c:var(--inc);--bgc:#E7F6F0">薪</i><span class="t135 b600">薪酬</span><span class="t11 muted">68%, 15 笔</span></span><b class="amt t14">¥718,325.05</b></div>
-              <div style="height:3px;width:54px;background:#FF7A45;border-radius:2px;margin:6px 0 0 38px"></div>
-            </div>
-            <div class="flexb" style="padding:9px 0;border-bottom:1px solid var(--divider-soft)"><span class="hstack" style="gap:8px"><i class="cat sm" style="--c:#3B82F6;--bgc:#E8F1FE">转</i><span class="t135">转账给自己</span><span class="t11 muted">29%, 28 笔</span></span><b class="amt t14">¥310,784.86</b></div>
-            <div class="flexb" style="padding:9px 0;border-bottom:1px solid var(--divider-soft)"><span class="hstack" style="gap:8px"><i class="cat sm" style="--c:#14B8A6;--bgc:#E3F7F4">入</i><span class="t135">他人转入</span><span class="t11 muted">2%, 12 笔</span></span><b class="amt t14">¥19,055.80</b></div>
-            <div class="flexb" style="padding:9px 0;border-bottom:1px solid var(--divider-soft)"><span class="hstack" style="gap:8px"><i class="cat sm" style="--c:#8B5CF6;--bgc:#F1EBFE">基</i><span class="t135">基金</span><span class="t11 muted">0.64%, 8 笔</span></span><b class="amt t14">¥6,800.00</b></div>
-            <div class="flexb" style="padding:9px 0"><span class="hstack" style="gap:8px"><i class="cat sm" style="--c:#94A3B8;--bgc:#F1F3F6">退</i><span class="t135">退款</span><span class="t11 muted">0.03%, 3 笔</span></span><b class="amt t14">¥288.30</b></div>
-          </div>
-          <div style="text-align:center;padding:9px 0 4px;font-size:11.5px;color:var(--text3)">收起 ∧</div>
-
-          <div class="flexb" style="padding:8px 2px 8px">
-            <span class="t13 b600">交易排行</span>
-            <span class="t115 muted">按金额降序</span>
-          </div>
-          <div class="group-card" style="padding:0 12px">
-            <div class="hstack" style="gap:9px;padding:9px 0;border-bottom:1px solid var(--divider-soft)">
-              <span class="rank" style="background:var(--rank-bg);color:var(--bonus-text)">1</span>
-              <div class="grow">
-                <div class="hstack" style="gap:6px"><span class="t135 b600">转账-夏川(6818)</span></div>
-                <div class="t11 muted" style="margin-top:2px">05-15 17:32:39</div>
-              </div>
-              <b class="amt inc t14">+¥99,824.00</b>
-            </div>
-            <div class="hstack" style="gap:9px;padding:9px 0;border-bottom:1px solid var(--divider-soft)">
-              <span class="rank" style="background:var(--track-chip);color:#5A6274">2</span>
-              <div class="grow">
-                <div class="t135 b600">转账-夏川(8104)</div>
-                <div class="t11 muted" style="margin-top:2px">05-15 17:19:26</div>
-              </div>
-              <b class="amt inc t14">+¥99,824.00</b>
-            </div>
-            <div class="hstack" style="gap:9px;padding:9px 0">
-              <span class="rank" style="background:var(--rank-bg);color:var(--bonus-text)">3</span>
-              <div class="grow">
-                <div class="t135 b600">年终奖</div>
-                <div class="t11 muted" style="margin-top:2px">02-13 21:52:19</div>
-              </div>
-              <b class="amt inc t14">+¥84,810.00</b>
-            </div>
-          </div>
-        </div>
-        <div class="tabbar"><div class="tab"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div><div class="tab on"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div><div class="tab add"><span class="plus"><svg class="ico"><use href="#i-plus"/></svg></span></div><div class="tab"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div><div class="tab"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div><div class="homebar"></div></div>
-      </div>
-      <figcaption><b>年度 · 分类与排行 <span class="tagline">可下钻</span></b>参考图的两个二级区块：分类汇总（占比、笔数、对比上年）与交易排行（名次、时间、金额）。分类行点击进入子分类，不做账户维度。</figcaption>
-    </figure>
-
-    <figure>
-      <div class="phone">
-        <div class="sb"><span>9:41</span><span class="sb-icons"><svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3.5" width="3" height="8.5" rx="1"/><rect x="15" y="1" width="3" height="11" rx="1"/></svg><svg viewBox="0 0 16 12"><path d="M8 11l2.2-2.6a3.4 3.4 0 0 0-4.4 0L8 11z"/><path d="M8 5.6c1.7 0 3.3.6 4.6 1.7l1.3-1.6A9.5 9.5 0 0 0 8 3.4c-2.2 0-4.3.8-5.9 2.3l1.3 1.6A7 7 0 0 1 8 5.6z" opacity=".9"/></svg><svg class="battery" viewBox="0 0 26 12"><rect x=".5" y="1" width="21" height="10" rx="3" fill="none" stroke="currentColor"/><rect x="2.5" y="3" width="17" height="6" rx="1.6"/><path d="M23.5 4.6v2.8c1-.4 1.5-1 1.5-1.4s-.5-1-1.5-1.4z"/></svg></span></div>
-        <div class="large"><h3>分析</h3><div class="icons"><svg class="ico"><use href="#i-cal"/></svg></div></div>
+        <div class="large"><h3>分析</h3></div>
         <div style="padding:0 16px 12px"><div class="seg"><span>概览</span><span>年度</span><span class="on">时间线</span></div></div>
         <div class="body">
-          <div class="card" style="padding:12px 14px;display:flex;align-items:center;justify-content:space-between">
+          <div class="card" style="padding:13px 16px;display:flex;align-items:flex-start;justify-content:space-between">
             <div>
-              <div class="t15" style="font-weight:700">2026</div>
-              <div class="t11 muted" style="margin-top:2px">486 笔支出</div>
+              <div class="t16" style="font-size:22px;font-weight:700;letter-spacing:-.02em">2026</div>
+              <div class="t115 muted" style="margin-top:2px">305 笔账单</div>
             </div>
-            <div style="text-align:right">
-              <div class="t11 muted">全年支出</div>
-              <div class="t15 exp" style="font-weight:700">86,420.00</div>
+            <div style="text-align:right;line-height:1.6">
+              <div class="t12" style="color:var(--text2)">支出 <b class="exp">25,387.63</b></div>
+              <div class="t12" style="color:var(--text2)">收入 <b class="inc">312,590.00</b></div>
             </div>
           </div>
 
@@ -954,28 +912,28 @@ body.only .theme-toggle{display:none}
             <div class="tl-item">
               <div class="tl-card">
                 <div class="tl-head"><span class="tag" style="color:var(--salary-text);background:var(--salary-bg)">第一笔支出</span><span class="t11 muted">01.02</span></div>
-                <div class="tl-main"><i class="cat sm" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i><span class="t">三餐 · 午餐</span><b class="amt exp t14">-28.00</b></div>
+                <div class="tl-main"><span class="cat-img sm" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span><span class="t">三餐 · 午餐</span><b class="amt exp t14">-28.00</b></div>
                 <div class="tl-remark">新年第一天的午饭</div>
               </div>
             </div>
             <div class="tl-item">
               <div class="tl-card">
                 <div class="tl-head"><span class="tag" style="color:var(--bonus-text);background:var(--bonus-bg)">最大一笔支出</span><span class="t11 muted">06.18</span></div>
-                <div class="tl-main"><i class="cat sm" style="--c:#EC4899;--bgc:#FDEBF5">购</i><span class="t">数码 · 笔记本电脑</span><b class="amt exp t14">-8,999.00</b></div>
+                <div class="tl-main"><span class="cat-img sm" style="--c:#EC4899;--bgc:#FDEBF5"><i class="glyph glyph-shopping_icon"></i></span><span class="t">数码 · 笔记本电脑</span><b class="amt exp t14">-8,999.00</b></div>
                 <div class="tl-remark">换掉用了五年的旧电脑</div>
               </div>
             </div>
             <div class="tl-item">
               <div class="tl-card">
                 <div class="tl-head"><span class="tag" style="color:var(--inc);background:#E7F6F0">最大一笔收入</span><span class="t11 muted">02.08</span></div>
-                <div class="tl-main"><i class="cat sm" style="--c:var(--inc);--bgc:#E7F6F0">薪</i><span class="t">年终奖</span><b class="amt inc t14">+48,000.00</b></div>
+                <div class="tl-main"><span class="cat-img sm" style="--c:var(--inc);--bgc:#E7F6F0"><i class="glyph glyph-finance_icon"></i></span><span class="t">年终奖</span><b class="amt inc t14">+48,000.00</b></div>
                 <div class="tl-remark">2025 年度奖金</div>
               </div>
             </div>
             <div class="tl-item">
               <div class="tl-card">
                 <div class="tl-head"><span class="tag" style="color:#5A6274;background:var(--seg-bg)">最后一笔支出</span><span class="t11 muted">11.19</span></div>
-                <div class="tl-main"><i class="cat sm" style="--c:#3B82F6;--bgc:#E8F1FE">交</i><span class="t">打车</span><b class="amt exp t14">-56.00</b></div>
+                <div class="tl-main"><span class="cat-img sm" style="--c:#3B82F6;--bgc:#E8F1FE"><i class="glyph glyph-traffic_icon"></i></span><span class="t">打车</span><b class="amt exp t14">-56.00</b></div>
                 <div class="tl-remark">加班打车回家</div>
               </div>
             </div>
@@ -983,7 +941,7 @@ body.only .theme-toggle{display:none}
         </div>
         <div class="tabbar"><div class="tab"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div><div class="tab on"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div><div class="tab add"><span class="plus"><svg class="ico"><use href="#i-plus"/></svg></span></div><div class="tab"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div><div class="tab"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div><div class="homebar"></div></div>
       </div>
-      <figcaption><b>分析 · 时间线 <span class="tagline">叙事化</span></b>保留桌面版的年度事件卡：第一笔、最大一笔、最大收入、最后一笔。点卡片进入对应账单详情，是复盘一年最直观的入口。</figcaption>
+      <figcaption><b>分析 · 时间线 <span class="tagline">年度事件</span></b>当前工程按「最后一笔 / 大额支出 / 最大一笔支出 / 大额支出 / 最大一笔收入」串起全年，卡片左侧用竖向时间轴连接，点击进入对应账单。</figcaption>
     </figure>
 
   </div>
@@ -992,68 +950,135 @@ body.only .theme-toggle{display:none}
 <section class="group" id="g-payroll" data-group="payroll">
   <div class="group-head">
     <span class="group-num">03</span>
-    <h2>资产 · 薪酬</h2>
-    <p>工资 / 年终奖 / 月度预算</p>
+    <h2>资产</h2>
+    <p>预算 / 工资 / 存款 · 默认进入预算</p>
   </div>
   <div class="screens">
 
     <figure>
       <div class="phone">
         <div class="sb"><span>9:41</span><span class="sb-icons"><svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3.5" width="3" height="8.5" rx="1"/><rect x="15" y="1" width="3" height="11" rx="1"/></svg><svg viewBox="0 0 16 12"><path d="M8 11l2.2-2.6a3.4 3.4 0 0 0-4.4 0L8 11z"/><path d="M8 5.6c1.7 0 3.3.6 4.6 1.7l1.3-1.6A9.5 9.5 0 0 0 8 3.4c-2.2 0-4.3.8-5.9 2.3l1.3 1.6A7 7 0 0 1 8 5.6z" opacity=".9"/></svg><svg class="battery" viewBox="0 0 26 12"><rect x=".5" y="1" width="21" height="10" rx="3" fill="none" stroke="currentColor"/><rect x="2.5" y="3" width="17" height="6" rx="1.6"/><path d="M23.5 4.6v2.8c1-.4 1.5-1 1.5-1.4s-.5-1-1.5-1.4z"/></svg></span></div>
-        <div class="large"><h3>资产</h3><div class="icons"><svg class="ico"><use href="#i-plus"/></svg></div></div>
-        <div style="padding:0 16px 10px"><div class="seg"><span>存款</span><span class="on">薪酬</span><span>预算</span></div></div>
-        <div class="body">
-          <div class="stat-row">
-            <div class="stat"><span class="k">本年收入</span><span class="v inc">+318,420</span></div>
-            <div class="stat"><span class="k">本年个税</span><span class="v exp">-21,860</span></div>
-            <div class="stat"><span class="k">本月到手</span><span class="v">21,450</span></div>
-          </div>
-
-          <div style="padding:14px 0 4px"><div class="seg"><span class="on">全部</span><span>工资</span><span>年终奖</span></div></div>
-
-          <div class="group-card mt10">
-            <div style="padding:12px 14px;border-bottom:1px solid var(--divider-soft)">
-              <div class="flexb">
-                <span class="hstack" style="gap:8px;font-size:14px;font-weight:600">2026.10 <span class="tag salary">工资</span></span>
-                <span class="amt inc" style="font-size:17px">+21,450.00</span>
-              </div>
-              <div class="t115 muted" style="margin-top:5px">基本 20,000 · 加班 1,200 · 五险一金 -3,540 · 税 -1,280</div>
-            </div>
-            <div style="padding:12px 14px;border-bottom:1px solid var(--divider-soft)">
-              <div class="flexb">
-                <span class="hstack" style="gap:8px;font-size:14px;font-weight:600">2026.09 <span class="tag salary">工资</span></span>
-                <span class="amt inc" style="font-size:17px">+21,120.00</span>
-              </div>
-              <div class="t115 muted" style="margin-top:5px">基本 20,000 · 加班 800 · 五险一金 -3,540 · 税 -1,140</div>
-            </div>
-            <div style="padding:12px 14px">
-              <div class="flexb">
-                <span class="hstack" style="gap:8px;font-size:14px;font-weight:600">2026.02 <span class="tag bonus">年终奖</span></span>
-                <span class="amt inc" style="font-size:17px">+48,000.00</span>
-              </div>
-              <div class="t115 muted" style="margin-top:5px">奖金 52,790 · 单独计税 · 税 -4,790</div>
-            </div>
+        <div class="large"><h3>资产</h3></div>
+        <div style="padding:0 16px 10px"><div class="seg"><span class="on">预算</span><span>工资</span><span>存款</span></div></div>
+        <div class="body" style="padding-top:2px">
+          <div class="card" style="padding:18px 16px 14px;text-align:center;background:linear-gradient(135deg,var(--summary-bg),var(--surface));border-color:var(--summary-border)">
+            <div class="t115" style="color:var(--text3)">超支</div>
+            <div style="font-size:31px;font-weight:700;letter-spacing:-.03em;color:var(--exp);font-variant-numeric:tabular-nums;margin:3px 0 2px">1,502.42</div>
+            <div class="t12" style="color:var(--text3)">总预算 8,254.00 · 本月已花 9,756.42</div>
+            <div class="progress" style="margin-top:12px"><div class="fill" style="width:100%"></div></div>
+            <div class="t11 muted" style="text-align:right;margin-top:5px">100%</div>
           </div>
 
           <div class="card mt12" style="padding:13px 14px">
-            <div class="flexb" style="margin-bottom:9px">
-              <span class="t13 b600">本月预算</span>
-              <span class="t115 muted">11月 · 剩余 1,680.00</span>
+            <div class="hstack" style="gap:12px">
+              <span class="sf-ico" style="width:38px;height:38px;border-radius:11px;background:var(--brand-soft);color:var(--brand)"><svg class="ico" style="width:19px;height:19px"><use href="#i-cal"/></svg></span>
+              <div class="grow">
+                <div class="t14 b600">开销统计周期</div>
+                <div class="t115 muted" style="margin-top:2px">11.01 - 11.30</div>
+              </div>
+              <div style="text-align:right">
+                <div class="t115" style="color:var(--text2)">自然月</div>
+                <div class="t115 muted">本月收入</div>
+              </div>
+              <svg class="ico xs chev"><use href="#i-chev"/></svg>
             </div>
-            <div class="progress"><div class="fill" style="width:72%"></div></div>
-            <div class="flexb mt8" style="margin-top:7px;font-size:11px;color:var(--text3)">
-              <span>已花 4,320.00 / 6,000.00</span><span>72%</span>
+          </div>
+
+          <div class="card mt10" style="padding:14px 16px;display:flex;align-items:center">
+            <div class="grow" style="text-align:center">
+              <div class="t115 muted">本月到手</div>
+              <div class="t15 b600 inc" style="margin-top:3px">+15,854.00</div>
             </div>
-            <div class="chips mt10">
-              <span class="chip" style="padding:4px 9px;font-size:11px">房租 ¥3,500</span>
-              <span class="chip" style="padding:4px 9px;font-size:11px">餐饮 ¥2,000</span>
-              <span class="chip" style="padding:4px 9px;font-size:11px">交通 ¥500</span>
+            <div style="width:1px;height:34px;background:var(--border)"></div>
+            <div class="grow" style="text-align:center">
+              <div class="t115 muted">预算合计</div>
+              <div class="t15 b600 exp" style="margin-top:3px">-7,600.00</div>
             </div>
+          </div>
+
+          <div class="group-label" style="padding:16px 4px 8px">预算项</div>
+          <div class="group-card">
+            <div class="field"><span class="fl"><span>交通</span></span><span class="vl nums">500.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+            <div class="field"><span class="fl"><span>餐饮</span></span><span class="vl nums">2,000.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+            <div class="field"><span class="fl"><span>娱乐</span></span><span class="vl nums">600.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+            <div class="field"><span class="fl"><span>房租</span></span><span class="vl nums">3,500.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+          </div>
+          <div class="btn primary mt12">添加预算</div>
+        </div>
+        <div class="tabbar"><div class="tab"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div><div class="tab"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div><div class="tab add"><span class="plus"><svg class="ico"><use href="#i-plus"/></svg></span></div><div class="tab on"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div><div class="tab"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div><div class="homebar"></div></div>
+      </div>
+      <figcaption><b>资产 · 预算 <span class="tagline">默认入口</span></b>与当前工程同步：三段顺序改为「预算 / 工资 / 存款」，默认进入预算。顶部先给超支/剩余，再给周期、本月到手和预算合计，下面按分类维护预算项。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        <div class="sb"><span>9:41</span><span class="sb-icons"><svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3.5" width="3" height="8.5" rx="1"/><rect x="15" y="1" width="3" height="11" rx="1"/></svg><svg viewBox="0 0 16 12"><path d="M8 11l2.2-2.6a3.4 3.4 0 0 0-4.4 0L8 11z"/><path d="M8 5.6c1.7 0 3.3.6 4.6 1.7l1.3-1.6A9.5 9.5 0 0 0 8 3.4c-2.2 0-4.3.8-5.9 2.3l1.3 1.6A7 7 0 0 1 8 5.6z" opacity=".9"/></svg><svg class="battery" viewBox="0 0 26 12"><rect x=".5" y="1" width="21" height="10" rx="3" fill="none" stroke="currentColor"/><rect x="2.5" y="3" width="17" height="6" rx="1.6"/><path d="M23.5 4.6v2.8c1-.4 1.5-1 1.5-1.4s-.5-1-1.5-1.4z"/></svg></span></div>
+        <div class="large"><h3>资产</h3></div>
+        <div style="padding:0 16px 10px"><div class="seg"><span>预算</span><span class="on">工资</span><span>存款</span></div></div>
+        <div class="body" style="padding-top:2px">
+          <div class="stat-row">
+            <div class="stat"><span class="k">税前</span><span class="v">+35.82万</span></div>
+            <div class="stat"><span class="k">税</span><span class="v exp">-2.47万</span></div>
+            <div class="stat"><span class="k">税后</span><span class="v inc">+29.11万</span></div>
+          </div>
+
+          <div class="flexb" style="padding:16px 3px 8px">
+            <span class="t13 b600">薪酬记录</span>
+            <span class="chip" style="padding:5px 10px;font-size:12px">全部年份 <svg class="ico xs"><use href="#i-chev-d"/></svg></span>
+          </div>
+
+          <div class="card" style="padding:13px 14px;margin-bottom:10px">
+            <div class="flexb">
+              <span class="hstack" style="gap:8px;font-size:15px;font-weight:650">2026.11.10 <span class="tag salary">工资</span></span>
+              <span class="amt inc" style="font-size:16px">+15,854.00</span>
+            </div>
+            <div class="flexb" style="margin-top:6px">
+              <span class="t115 muted">基本 20,000.00 · 加班 600.00</span>
+              <span class="t115 muted">个税 -1,206.00</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding:13px 14px;margin-bottom:10px">
+            <div class="flexb">
+              <span class="hstack" style="gap:8px;font-size:15px;font-weight:650">2026.10.10 <span class="tag salary">工资</span></span>
+              <span class="amt inc" style="font-size:16px">+16,427.30</span>
+            </div>
+            <div class="flexb" style="margin-top:6px">
+              <span class="t115 muted">基本 20,500.00 · 加班 737.00</span>
+              <span class="t115 muted">个税 -1,269.70</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding:13px 14px;margin-bottom:10px">
+            <div class="flexb">
+              <span class="hstack" style="gap:8px;font-size:15px;font-weight:650">2026.09.10 <span class="tag salary">工资</span></span>
+              <span class="amt inc" style="font-size:16px">+17,000.60</span>
+            </div>
+            <div class="flexb" style="margin-top:6px">
+              <span class="t115 muted">基本 21,000.00 · 加班 874.00</span>
+              <span class="t115 muted">个税 -1,333.40</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding:13px 14px">
+            <div class="flexb">
+              <span class="hstack" style="gap:8px;font-size:15px;font-weight:650">2026.08.10 <span class="tag salary">工资</span></span>
+              <span class="amt inc" style="font-size:16px">+16,223.90</span>
+            </div>
+            <div class="flexb" style="margin-top:6px">
+              <span class="t115 muted">基本 20,000.00 · 加班 1,011.00</span>
+              <span class="t115 muted">个税 -1,247.10</span>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <div class="btn sm grow">新增工资</div>
+            <div class="btn sm primary grow">新增年终奖</div>
           </div>
         </div>
         <div class="tabbar"><div class="tab"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div><div class="tab"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div><div class="tab add"><span class="plus"><svg class="ico"><use href="#i-plus"/></svg></span></div><div class="tab on"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div><div class="tab"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div><div class="homebar"></div></div>
       </div>
-      <figcaption><b>资产 · 薪酬 <span class="tagline">年度汇总</span></b>与存款共用资产首页，用分段控件切换。桌面版宽表格改为「每月一张卡」：日期 + 类型、到手金额、税前构成与税；预算卡固定在列表下方。</figcaption>
+      <figcaption><b>资产 · 工资 <span class="tagline">年度汇总</span></b>顶部固定税前、税、税后三个合计；年份菜单在「薪酬记录」右侧，记录按发薪日倒序，每月一张卡，底部保留新增工资 / 年终奖两个入口。</figcaption>
     </figure>
 
     <figure>
@@ -1064,36 +1089,41 @@ body.only .theme-toggle{display:none}
           <div class="under-row"></div><div class="under-row"></div><div class="under-row"></div>
         </div>
         <div class="sheet-scrim"></div>
-        <div class="sheet" style="height:640px">
+        <div class="sheet" style="height:720px">
           <div class="grabber"></div>
-          <div class="sheet-head"><span class="link">取消</span><span class="st">新增工资</span><span class="link strong">保存</span></div>
+          <div class="sheet-head"><span class="link">关闭</span><span class="st">工资详情</span><span class="link strong">保存</span></div>
           <div class="sheet-body">
             <div class="group-card">
-              <div class="field"><span class="lb">日期</span><span class="vl">2026-11-10 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field"><span class="lb">日期</span><span class="vl">2026.11.24 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
               <div class="field"><span class="lb">基本工资</span><span class="vl nums">20,000.00</span></div>
-              <div class="field"><span class="lb">加班费</span><span class="vl nums">1,200.00</span></div>
-              <div class="field"><span class="lb">一次性奖金</span><span class="vl muted">0.00</span></div>
+              <div class="field"><span class="lb">加班费</span><span class="vl nums">600.00</span></div>
+              <div class="field"><span class="lb">一次性奖金</span><span class="vl muted nums">0.00</span></div>
               <div class="field"><span class="lb">五险一金</span><span class="vl nums exp">-3,540.00</span></div>
             </div>
             <div class="note"><svg class="ico xs" style="stroke:var(--brand);vertical-align:-2px"><use href="#i-bulb"/></svg> 已参考上月的基本工资与五险一金，可直接修改。</div>
 
             <div class="group-label">个税</div>
             <div class="group-card">
-              <div class="field"><span class="lb">当前税率</span><span class="vl"><span class="pri b600">10%</span><span class="t12 muted">（累计预扣）</span></span></div>
-              <div class="field"><span class="lb">税额</span><span class="vl nums exp">-1,280.00</span></div>
+              <div class="field">
+                <span class="lb">算税月份</span>
+                <span class="vl"><span class="seg" style="width:150px;padding:2px"><span class="on">本月</span><span>上月</span></span></span>
+              </div>
+              <div class="field"><span class="lb">税率</span><span class="vl"><span class="b600">10.00%</span><span class="t12 muted">（累计预扣）</span></span></div>
+              <div class="field"><span class="lb">税前</span><span class="vl nums b600">20,600.00</span></div>
+              <div class="field"><span class="lb">税额</span><span class="vl nums exp">-1,206.00</span></div>
             </div>
 
-            <div class="card mt14" style="padding:14px 16px;background:linear-gradient(135deg,var(--summary-bg),var(--surface));border-color:var(--brand-border)">
+            <div class="card mt14" style="padding:15px 16px;background:linear-gradient(135deg,var(--summary-bg),var(--surface));border-color:var(--brand-border)">
               <div class="flexb">
                 <span class="t13" style="color:var(--text2)">实际到手</span>
-                <span style="font-size:24px;font-weight:700;color:var(--brand);font-variant-numeric:tabular-nums">+21,450.00</span>
+                <span style="font-size:24px;font-weight:700;color:var(--brand);font-variant-numeric:tabular-nums">+15,854.00</span>
               </div>
             </div>
-            <div class="note">税额默认按累计预扣自动计算，也可切到「手动」直接输入，用于对齐工资条。</div>
+            <div class="note">填写完成后收起键盘或点「完成」更新税额；切换算税月份会按所选归属月计算。</div>
           </div>
         </div>
       </div>
-      <figcaption><b>新增 / 编辑工资 <span class="tagline">自动算税</span></b>沿用桌面版的累计预扣逻辑：基本 + 加班 + 一次性奖金 − 五险一金 − 个税 = 到手。税额支持自动/手动切换，到手金额实时刷新。</figcaption>
+      <figcaption><b>工资详情 <span class="tagline">自动算税</span></b>编辑已有记录时标题显示「工资详情」。税额区域固定展示算税月份、累计税率、税前和税额；不再提供手动税额切换，到手金额随当前归属月自动计算。</figcaption>
     </figure>
 
     <figure>
@@ -1104,36 +1134,20 @@ body.only .theme-toggle{display:none}
           <div class="under-row"></div><div class="under-row"></div><div class="under-row"></div>
         </div>
         <div class="sheet-scrim"></div>
-        <div class="sheet" style="height:580px">
+        <div class="sheet" style="height:430px">
           <div class="grabber"></div>
-          <div class="sheet-head"><span class="link">关闭</span><span class="st">本月预算</span><span class="link strong">保存</span></div>
+          <div class="sheet-head"><span class="link">关闭</span><span class="st">编辑预算</span><span class="link strong">保存</span></div>
           <div class="sheet-body">
-            <div class="card" style="padding:16px;text-align:center;background:linear-gradient(135deg,var(--summary-bg),var(--surface));border-color:var(--brand-border)">
-              <div class="t115 muted">当前预算（剩余）</div>
-              <div style="font-size:30px;font-weight:700;letter-spacing:-.02em;margin:4px 0 2px">1,680.00</div>
-              <div class="t115 muted">总预算 6,000.00 · 本月已花 4,320.00</div>
-              <div class="progress mt12"><div class="fill" style="width:72%"></div></div>
-            </div>
-
-            <div class="legend" style="grid-template-columns:1fr 1fr;margin-top:14px">
-              <div class="it"><span class="nm muted">本月到手</span><span class="pc t13 inc">+21,450</span></div>
-              <div class="it"><span class="nm muted">预算合计</span><span class="pc t13 exp">-6,000</span></div>
-            </div>
-
-            <div class="flexb" style="padding:18px 4px 8px">
-              <span class="t13 b600">预算项</span>
-              <span class="t115 pri">+ 添加预算</span>
-            </div>
             <div class="group-card">
-              <div class="field"><span class="fl"><span>房租</span></span><span class="vl nums">3,500.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
-              <div class="field"><span class="fl"><span>餐饮</span></span><span class="vl nums">2,000.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
-              <div class="field"><span class="fl"><span>交通</span></span><span class="vl nums">500.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field"><span class="lb">预算名称</span><span class="vl">房租</span></div>
+              <div class="field"><span class="lb">预算金额</span><span class="vl nums b600">3,000.00</span></div>
             </div>
-            <div class="note">预算项左滑可删除；关闭某笔账单的「计入预算」后，它不会扣减当月剩余预算。</div>
+            <div class="btn danger mt16"><svg class="ico sm"><use href="#i-trash"/></svg>删除预算</div>
+            <div class="note">删除按钮放在滚动内容里，键盘弹出时不会随安全区上下跳动；键盘工具栏保留「完成」。</div>
           </div>
         </div>
       </div>
-      <figcaption><b>月度预算 <span class="tagline">底部抽屉</span></b>桌面版预算在右侧抽屉里，手机改为半屏面板。核心是「剩余预算」一个数字 + 进度条，预算项列表可增删改，与账单的「计入预算」开关联动。</figcaption>
+      <figcaption><b>编辑预算 <span class="tagline">轻量弹层</span></b>预算编辑只保留名称与金额；删除按钮从底部安全区移入内容区，避免键盘出现时按钮和文字被挤压、错位。</figcaption>
     </figure>
 
   </div>
@@ -1150,25 +1164,25 @@ body.only .theme-toggle{display:none}
     <figure>
       <div class="phone">
         <div class="sb"><span>9:41</span><span class="sb-icons"><svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3.5" width="3" height="8.5" rx="1"/><rect x="15" y="1" width="3" height="11" rx="1"/></svg><svg viewBox="0 0 16 12"><path d="M8 11l2.2-2.6a3.4 3.4 0 0 0-4.4 0L8 11z"/><path d="M8 5.6c1.7 0 3.3.6 4.6 1.7l1.3-1.6A9.5 9.5 0 0 0 8 3.4c-2.2 0-4.3.8-5.9 2.3l1.3 1.6A7 7 0 0 1 8 5.6z" opacity=".9"/></svg><svg class="battery" viewBox="0 0 26 12"><rect x=".5" y="1" width="21" height="10" rx="3" fill="none" stroke="currentColor"/><rect x="2.5" y="3" width="17" height="6" rx="1.6"/><path d="M23.5 4.6v2.8c1-.4 1.5-1 1.5-1.4s-.5-1-1.5-1.4z"/></svg></span></div>
-        <div class="large"><h3>资产</h3><div class="icons"><svg class="ico"><use href="#i-plus"/></svg></div></div>
-        <div style="padding:0 16px 10px"><div class="seg"><span class="on">存款</span><span>薪酬</span><span>预算</span></div></div>
+        <div class="large"><h3>资产</h3></div>
+        <div style="padding:0 16px 10px"><div class="seg"><span>预算</span><span>工资</span><span class="on">存款</span></div></div>
         <div class="body">
           <div class="stat-row">
-            <div class="stat"><span class="k">银行</span><span class="v">4</span></div>
+            <div class="stat"><span class="k">银行</span><span class="v">6</span></div>
             <div class="stat"><span class="k">存款笔数</span><span class="v">6</span></div>
-            <div class="stat"><span class="k">总金额</span><span class="v sm">380,000</span></div>
-            <div class="stat"><span class="k">总利息</span><span class="v sm inc">+12,450</span></div>
+            <div class="stat"><span class="k">总金额</span><span class="v sm">44.00万</span></div>
+            <div class="stat"><span class="k">总利息</span><span class="v sm inc">+1.64万</span></div>
           </div>
 
           <div class="flexb" style="padding:16px 4px 8px">
             <span class="t13 b600">存款列表</span>
-            <span class="t115 muted">按银行分组</span>
+            <span class="t115 muted">长按拖动排序 · 左滑更新/删除</span>
           </div>
 
           <div class="group-card">
             <div style="padding:12px 14px;border-bottom:1px solid var(--divider-soft)">
               <div class="hstack" style="gap:10px">
-                <span class="bank-logo" style="background:#D7261E">招</span>
+                <span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15135205.png" alt=""></span>
                 <div class="grow">
                   <div class="t14 b600">招商银行 · 3 年定期</div>
                   <div class="t115 muted" style="margin-top:2px">2025.03.01 起 · 2028.03.01 到期</div>
@@ -1184,7 +1198,7 @@ body.only .theme-toggle{display:none}
             </div>
             <div style="padding:12px 14px;border-bottom:1px solid var(--divider-soft)">
               <div class="hstack" style="gap:10px">
-                <span class="bank-logo" style="background:#0066B3">建</span>
+                <span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15133351.png" alt=""></span>
                 <div class="grow">
                   <div class="t14 b600">建设银行 · 1 年定期</div>
                   <div class="t115 muted" style="margin-top:2px">2026.06.15 起 · 2027.06.15 到期</div>
@@ -1200,7 +1214,7 @@ body.only .theme-toggle{display:none}
             </div>
             <div style="padding:12px 14px">
               <div class="hstack" style="gap:10px">
-                <span class="bank-logo" style="background:#C8102E">工</span>
+                <span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15132946.png" alt=""></span>
                 <div class="grow">
                   <div class="t14 b600">工商银行 · 2 年定期</div>
                   <div class="t115 muted" style="margin-top:2px">2026.01.10 起 · 2028.01.10 到期</div>
@@ -1224,13 +1238,13 @@ body.only .theme-toggle{display:none}
           </div>
 
           <div style="display:flex;gap:10px;margin-top:14px">
-            <div class="btn sm grow">增加银行</div>
-            <div class="btn sm primary grow">增加存款</div>
+            <div class="btn sm grow">银行管理</div>
+            <div class="btn sm primary grow">新增存款</div>
           </div>
         </div>
         <div class="tabbar"><div class="tab"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div><div class="tab"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div><div class="tab add"><span class="plus"><svg class="ico"><use href="#i-plus"/></svg></span></div><div class="tab on"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div><div class="tab"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div><div class="homebar"></div></div>
       </div>
-      <figcaption><b>资产 · 存款 <span class="tagline">4 Tab 首页</span></b>导航改为「账单 / 分析 / ＋ / 资产 / 设置」，薪酬与存款合并进资产。桌面版 10 列表格改为「一笔存款一张卡」，顶部四个汇总与桌面一致。</figcaption>
+      <figcaption><b>资产 · 存款 <span class="tagline">三段切换</span></b>沿用当前工程的「预算 / 工资 / 存款」三段切换，存款页顶部固定银行数、笔数、总金额和总利息；列表支持长按排序、左滑更新/删除，底部保留银行管理和新增存款。</figcaption>
     </figure>
 
     <figure>
@@ -1247,11 +1261,11 @@ body.only .theme-toggle{display:none}
           <div class="sheet-body">
             <div class="group-label" style="padding-top:2px">银行</div>
             <div class="bank-grid">
-              <div class="b on"><span class="bank-logo" style="background:#D7261E">招</span>招商</div>
-              <div class="b"><span class="bank-logo" style="background:#0066B3">建</span>建设</div>
-              <div class="b"><span class="bank-logo" style="background:#C8102E">工</span>工商</div>
-              <div class="b"><span class="bank-logo" style="background:#00703C">农</span>农业</div>
-              <div class="b"><span class="bank-logo" style="background:#00529C">中</span>中国</div>
+              <div class="b on"><span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15135205.png" alt=""></span>招商</div>
+              <div class="b"><span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15133351.png" alt=""></span>建设</div>
+              <div class="b"><span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15132946.png" alt=""></span>工商</div>
+              <div class="b"><span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15133167.png" alt=""></span>农业</div>
+              <div class="b"><span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15133316.png" alt=""></span>中国</div>
               <div class="b"><span class="bank-logo" style="background:#1B7F79">自</span>自定义</div>
             </div>
 
@@ -1290,32 +1304,50 @@ body.only .theme-toggle{display:none}
           <div class="grabber"></div>
           <div class="sheet-head"><span class="link">关闭</span><span class="st">银行管理</span><span class="link strong">完成</span></div>
           <div class="sheet-body">
-            <div class="group-label" style="padding-top:2px">已添加（拖动排序）</div>
+            <div class="group-label" style="padding-top:2px">全部银行</div>
             <div class="group-card">
-              <div class="field"><span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="bank-logo sm" style="background:#D7261E">招</span>招商银行</span><span class="vl muted t12">2 笔 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
-              <div class="field"><span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="bank-logo sm" style="background:#0066B3">建</span>建设银行</span><span class="vl muted t12">1 笔 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
-              <div class="field"><span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="bank-logo sm" style="background:#C8102E">工</span>工商银行</span><span class="vl muted t12">1 笔 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
-              <div class="field"><span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="bank-logo sm" style="background:#1B7F79">宁</span>宁波银行（自定义）</span><span class="vl muted t12">2 笔 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15133167.png" alt=""></span><span class="t14 b600">中国农业银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">4 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15744648.png" alt=""></span><span class="t14 b600">九江银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">3 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15132946.png" alt=""></span><span class="t14 b600">中国工商银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">4 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15747750.png" alt=""></span><span class="t14 b600">三井住友银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">0 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15748008.png" alt=""></span><span class="t14 b600">三和银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">0 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15742472.png" alt=""></span><span class="t14 b600">三湘银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">0 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15747751.png" alt=""></span><span class="t14 b600">三菱 UFJ 银行（日联）</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">0 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15746276.png" alt=""></span><span class="t14 b600">上海农商</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">0 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15178598.png" alt=""></span><span class="t14 b600">上海银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">0 笔</span>
+              </div>
             </div>
-
-            <div class="group-label">内置银行</div>
-            <div class="bank-grid">
-              <div class="b"><span class="bank-logo" style="background:#00703C">农</span>农业</div>
-              <div class="b"><span class="bank-logo" style="background:#00529C">中</span>中国</div>
-              <div class="b"><span class="bank-logo" style="background:#004B8D">交</span>交通</div>
-              <div class="b"><span class="bank-logo" style="background:#E60012">邮</span>邮储</div>
-              <div class="b"><span class="bank-logo" style="background:#005BAC">浦</span>浦发</div>
-              <div class="b"><span class="bank-logo" style="background:#CF142B">信</span>中信</div>
-              <div class="b"><span class="bank-logo" style="background:#E8112D">光</span>光大</div>
-              <div class="b"><span class="bank-logo" style="background:#004F9F">民</span>民生</div>
-            </div>
-
-            <div class="btn ghost mt16"><svg class="ico sm"><use href="#i-plus"/></svg>增加自定义银行</div>
-            <div class="note">自定义银行使用默认图标，可填写任意名称；内置银行无需重复添加。</div>
+            <div class="btn primary mt16">增加自定义银行</div>
           </div>
         </div>
       </div>
-      <figcaption><b>银行管理 <span class="tagline">排序 + 内置库</span></b>保留桌面版的拖动排序与内置银行库（60+ 家）。手机端用长按拖动替代 HTML5 drag，新增自定义银行只填名称即可。</figcaption>
+      <figcaption><b>银行管理 <span class="tagline">全部银行</span></b>与当前工程同步：一个「全部银行」列表，内置银行带「默认」标记，右侧显示该银行的使用笔数；底部只保留「增加自定义银行」，不再拆成「已添加 + 内置银行网格」。</figcaption>
     </figure>
 
   </div>
@@ -1343,7 +1375,7 @@ body.only .theme-toggle{display:none}
               </div>
               <div class="field">
                 <span class="fl"><span class="sf-ico" style="background:#10B981"><svg class="ico"><use href="#i-cloud"/></svg></span>iCloud 同步</span>
-                <span class="vl muted t12">2 分钟前 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+                <span class="vl muted t12">未设置 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
               </div>
             </div>
           </div>
@@ -1352,8 +1384,12 @@ body.only .theme-toggle{display:none}
             <div class="group-label">个性化</div>
             <div class="group-card">
               <div class="field">
+                <span class="fl"><span class="sf-ico" style="background:#8B5CF6"><svg class="ico"><use href="#i-theme"/></svg></span>外观</span>
+                <span class="vl muted t12">浅色 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+              </div>
+              <div class="field">
                 <span class="fl"><span class="sf-ico" style="background:#8B5CF6"><svg class="ico"><use href="#i-tag"/></svg></span>自定义分类</span>
-                <span class="vl muted t12">11 类 · 96 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+                <span class="vl muted t12">11 类 · 65 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
               </div>
             </div>
           </div>
@@ -1363,7 +1399,7 @@ body.only .theme-toggle{display:none}
             <div class="group-card">
               <div class="field">
                 <span class="fl"><span class="sf-ico" style="background:#F59E0B"><svg class="ico"><use href="#i-bulb"/></svg></span>反馈与更新</span>
-                <span class="vl muted t12">v0.0.4 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
+                <span class="vl muted t12">v1.0.0 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
               </div>
               <div class="field">
                 <span class="fl"><span class="sf-ico" style="background:#94A3B8"><svg class="ico"><use href="#i-phone"/></svg></span>关于记账清单</span>
@@ -1372,11 +1408,20 @@ body.only .theme-toggle{display:none}
             </div>
           </div>
 
+          <div class="settings-group">
+            <div class="group-label">开发者</div>
+            <div class="group-card">
+              <div class="field">
+                <span class="fl"><span class="sf-ico" style="background:#E2434F"><svg class="ico"><use href="#i-trash"/></svg></span><span class="exp b600">清空所有数据</span></span>
+              </div>
+            </div>
+          </div>
+
           <div style="text-align:center;font-size:11px;color:var(--text3);margin-top:6px">记账清单 iOS 1.0.0 (1)</div>
         </div>
         <div class="tabbar"><div class="tab"><svg class="ico"><use href="#i-bill"/></svg><span>账单</span></div><div class="tab"><svg class="ico"><use href="#i-chart"/></svg><span>分析</span></div><div class="tab add"><span class="plus"><svg class="ico"><use href="#i-plus"/></svg></span></div><div class="tab"><svg class="ico"><use href="#i-bank"/></svg><span>资产</span></div><div class="tab on"><svg class="ico"><use href="#i-set"/></svg><span>设置</span></div><div class="homebar"></div></div>
       </div>
-      <figcaption><b>设置首页 <span class="tagline">分组列表</span></b>沿用 iOS 设置页的分组列表，替代桌面版的三栏卡片。已确认不做应用锁、只支持竖屏，因此安全分组移除；其余入口与桌面一一对应。</figcaption>
+      <figcaption><b>设置首页 <span class="tagline">分组列表</span></b>与当前工程同步：数据、个性化、其他三组常驻，外观独立成行，自定义分类显示实际类目/子类数量；DEBUG 构建额外出现「开发者 → 清空所有数据」。</figcaption>
     </figure>
 
     <figure>
@@ -1483,33 +1528,33 @@ body.only .theme-toggle{display:none}
 
           <div class="group-card">
             <div class="field" style="padding:12px 14px">
-              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><i class="cat sm" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i><span class="t14 b600">餐饮</span></span>
+              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="cat-img sm" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span><span class="t14 b600">餐饮</span></span>
               <span class="vl t115 muted">12 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
             </div>
             <div style="padding:4px 14px 10px 46px">
-              <div class="flexb divide-t" style="padding:9px 0"><span class="t135">三餐</span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
-              <div class="flexb divide-t" style="padding:9px 0"><span class="t135">早餐</span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
-              <div class="flexb divide-t" style="padding:9px 0"><span class="t135">中餐</span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
-              <div class="flexb divide-t" style="padding:9px 0"><span class="t135">晚餐</span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
+              <div class="flexb divide-t" style="padding:9px 0"><span class="hstack" style="gap:6px"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span><span class="t135">三餐</span></span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
+              <div class="flexb divide-t" style="padding:9px 0"><span class="hstack" style="gap:6px"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span><span class="t135">早餐</span></span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
+              <div class="flexb divide-t" style="padding:9px 0"><span class="hstack" style="gap:6px"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span><span class="t135">中餐</span></span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
+              <div class="flexb divide-t" style="padding:9px 0"><span class="hstack" style="gap:6px"><span class="cat-img xs" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span><span class="t135">晚餐</span></span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
               <div class="flexb divide-t" style="padding:9px 0;color:var(--brand)"><span class="t135">+ 新增子分类</span></div>
             </div>
           </div>
 
           <div class="group-card mt12">
             <div class="field" style="padding:12px 14px">
-              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><i class="cat sm" style="--c:#3B82F6;--bgc:#E8F1FE">交</i><span class="t14 b600">交通</span></span>
+              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="cat-img sm" style="--c:#3B82F6;--bgc:#E8F1FE"><i class="glyph glyph-traffic_icon"></i></span><span class="t14 b600">交通</span></span>
               <span class="vl t115 muted">8 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
             </div>
             <div class="field" style="padding:12px 14px">
-              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><i class="cat sm" style="--c:#EC4899;--bgc:#FDEBF5">购</i><span class="t14 b600">购物</span></span>
+              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="cat-img sm" style="--c:#EC4899;--bgc:#FDEBF5"><i class="glyph glyph-shopping_icon"></i></span><span class="t14 b600">购物</span></span>
               <span class="vl t115 muted">10 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
             </div>
             <div class="field" style="padding:12px 14px">
-              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><i class="cat sm" style="--c:#10B981;--bgc:#E6F7F1">居</i><span class="t14 b600">居家</span></span>
+              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="cat-img sm" style="--c:#10B981;--bgc:#E6F7F1"><i class="glyph glyph-home_icon"></i></span><span class="t14 b600">居家</span></span>
               <span class="vl t115 muted">9 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
             </div>
             <div class="field" style="padding:12px 14px">
-              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><i class="cat sm" style="--c:#F59E0B;--bgc:var(--bonus-bg)">人</i><span class="t14 b600">人情</span></span>
+              <span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="cat-img sm" style="--c:#F59E0B;--bgc:var(--bonus-bg)"><i class="glyph glyph-relationship_icon"></i></span><span class="t14 b600">人情</span></span>
               <span class="vl t115 muted">7 项 <svg class="ico xs chev"><use href="#i-chev"/></svg></span>
             </div>
           </div>
@@ -1535,7 +1580,7 @@ body.only .theme-toggle{display:none}
           <div class="sheet-body">
             <div class="card" style="padding:14px 16px">
               <div class="hstack" style="gap:10px">
-                <i class="cat" style="--c:#FF7A45;--bgc:#FFF0E9">餐</i>
+                <span class="cat-img" style="--c:#FF7A45;--bgc:#FFF0E9"><i class="glyph glyph-food_icon"></i></span>
                 <div class="grow">
                   <div class="t14 b600">下午茶</div>
                   <div class="t115 muted" style="margin-top:2px">餐饮下的子分类 · 12 笔历史账单</div>
@@ -1581,37 +1626,38 @@ body.only .theme-toggle{display:none}
             <div class="hstack" style="gap:12px">
               <span class="sf-ico" style="width:38px;height:38px;border-radius:11px;background:#3B82F6"><svg class="ico" style="width:20px;height:20px"><use href="#i-download"/></svg></span>
               <div class="grow">
-                <div class="t14 b600">导出账本</div>
-                <div class="t115 muted" style="margin-top:2px">导出为 Excel，可用于备份或迁移到桌面版</div>
+                <div class="t14 b600">导出全部数据</div>
+                <div class="t115 muted" style="margin-top:2px">账单、预算、工资、年终奖、存款、银行和分类 → Excel</div>
               </div>
             </div>
-            <div class="btn sm mt12">导出全部账单（1,286 条）</div>
+            <div class="btn sm mt12">导出全部数据（332 条账单）</div>
+            <div class="note" style="padding-top:8px">包含 8 个工作表，保存成功后会提示。</div>
           </div>
 
           <div class="card mt12" style="padding:16px">
             <div class="hstack" style="gap:12px">
               <span class="sf-ico" style="width:38px;height:38px;border-radius:11px;background:#10B981"><svg class="ico" style="width:20px;height:20px"><use href="#i-upload"/></svg></span>
               <div class="grow">
-                <div class="t14 b600">导入账本</div>
-                <div class="t115 muted" style="margin-top:2px">从「文件」选择 xlsx / csv，或接收桌面版导出文件</div>
+                <div class="t14 b600">导入数据</div>
+                <div class="t115 muted" style="margin-top:2px">CSV 或 Excel；Excel 支持全量预览导入</div>
               </div>
             </div>
             <div style="border:1.5px dashed var(--grabber);border-radius:12px;padding:18px;text-align:center;margin-top:12px">
               <svg class="ico" style="width:26px;height:26px;color:var(--text3)"><use href="#i-upload"/></svg>
               <div class="t13" style="margin-top:6px">选择文件</div>
-              <div class="t11 muted" style="margin-top:3px">列：日期、金额、类型、分类、子分类、备注</div>
+              <div class="t11 muted" style="margin-top:3px">CSV：日期、类型、分类、子分类、金额…；Excel 可导入 8 个工作表</div>
             </div>
           </div>
 
           <div class="group-label">最近导入</div>
           <div class="group-card">
-            <div class="field"><span class="fl"><span class="t135">record_20261116.xlsx</span></span><span class="vl t12"><span class="inc">成功 128</span><span class="exp" style="margin-left:8px">失败 2</span></span></div>
-            <div class="field"><span class="fl"><span class="t13 pri">查看失败信息</span></span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
+            <div class="field"><span class="fl"><span class="t135">record_20261124.xlsx</span></span><span class="vl t12"><span class="inc">已导入 8 个工作表</span></span></div>
+            <div class="field"><span class="fl"><span class="t13 pri">查看导入摘要</span></span><svg class="ico xs chev"><use href="#i-chev"/></svg></div>
           </div>
-          <div class="note">导入前会先备份本机数据库；失败条目会保留原因与行号，可修正后重新导入。</div>
+          <div class="note">Excel 导入前先预览各表条数，可选择合并或覆盖；覆盖只清空文件里存在的表，合并会追加账单/工资/奖金/存款。</div>
         </div>
       </div>
-      <figcaption><b>数据导入 / 导出 <span class="tagline">Files 集成</span></b>桌面版用系统文件对话框，iOS 改为系统「文件」选择器 + 分享导出。导入列格式与桌面版 Excel 保持一致，便于双向迁移。</figcaption>
+      <figcaption><b>数据导入 / 导出 <span class="tagline">全量 Excel</span></b>与当前工程同步：导出 8 个工作表并保存到「文件」，导入支持 CSV 和 xlsx；Excel 先展示各表条数，再选择合并或覆盖。</figcaption>
     </figure>
 
   </div>
@@ -1632,14 +1678,14 @@ body.only .theme-toggle{display:none}
 
     <div class="decision">
       <h3><span class="idx">02</span>首版范围：全做</h3>
-      <p>账单、分析（概览/年度/时间线）、薪酬与个税、存款与银行、预算、自定义分类、Excel 导入导出、CloudKit 同步全部进 1.0。</p>
+      <p>账单、分析（概览/年度/时间线）、薪酬与个税、存款与银行、预算、自定义分类、Excel 全量导入导出、文件夹 JSON 快照全部进 1.0。</p>
       <div class="rec"><b>开发顺序：</b>数据层 → 账单闭环 → 分析/年度 → 资产 → 设置/同步 → 导入导出。</div>
     </div>
 
     <div class="decision">
-      <h3><span class="idx">03</span>同步：SwiftData + CloudKit</h3>
-      <p>设备间自动同步走 CloudKit 私有库；桌面端只通过 <b>Excel 导入/导出</b> 迁移，不读取数据库文件。</p>
-      <div class="rec"><b>实现要点：</b>首次启动把本地数据上传 CloudKit；导入 Excel 按 syncId 去重；冲突以「最后修改时间」为准。</div>
+      <h3><span class="idx">03</span>同步：文件夹 JSON + Excel</h3>
+      <p>移动端把 JSON 快照写入 iCloud Drive / OneDrive / 本地目录；桌面端继续用 Excel 全量导入导出，也支持恢复桌面 `.db` 快照。</p>
+      <div class="rec"><b>实现要点：</b>JSON 包含账单、预算、工资、奖金、存款、分类和手动银行；Excel 先预览再选合并/覆盖。</div>
     </div>
 
     <div class="decision">
@@ -1656,8 +1702,8 @@ body.only .theme-toggle{display:none}
 
     <div class="decision">
       <h3><span class="idx">06</span>资产首页：分段控件</h3>
-      <p>沿用当前方案：资产 Tab 顶部用 <b>存款 / 薪酬 / 预算</b> 三段切换，不做「总览 → 二级页」的额外层级。</p>
-      <div class="rec"><b>已落地：</b>两个资产首页共享同一套头部与分段控件。</div>
+      <p>与当前工程同步：资产 Tab 顶部用 <b>预算 / 工资 / 存款</b> 三段切换，默认预算，不做「总览 → 二级页」的额外层级。</p>
+      <div class="rec"><b>已落地：</b>预算、工资、存款共享同一套头部与分段控件；工资编辑页标题为「工资详情」。</div>
     </div>
 
     <div class="decision">
@@ -1680,7 +1726,7 @@ body.only .theme-toggle{display:none}
   </div>
 </section>
 
-<footer class="board-foot">静态原型 · 数据均为示意 · 交互说明见每屏下方注释 · 更新于 2026-11-19</footer>
+<footer class="board-foot">静态原型 · 数据均为示意 · 交互说明见每屏下方注释 · 更新于 2026-11-26</footer>
 
 
 <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深浅色">

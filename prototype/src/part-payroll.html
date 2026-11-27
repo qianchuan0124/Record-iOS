@@ -1,68 +1,135 @@
 <section class="group" id="g-payroll" data-group="payroll">
   <div class="group-head">
     <span class="group-num">03</span>
-    <h2>资产 · 薪酬</h2>
-    <p>工资 / 年终奖 / 月度预算</p>
+    <h2>资产</h2>
+    <p>预算 / 工资 / 存款 · 默认进入预算</p>
   </div>
   <div class="screens">
 
     <figure>
       <div class="phone">
         {{SB}}
-        <div class="large"><h3>资产</h3><div class="icons"><svg class="ico"><use href="#i-plus"/></svg></div></div>
-        <div style="padding:0 16px 10px"><div class="seg"><span>存款</span><span class="on">薪酬</span><span>预算</span></div></div>
-        <div class="body">
-          <div class="stat-row">
-            <div class="stat"><span class="k">本年收入</span><span class="v inc">+318,420</span></div>
-            <div class="stat"><span class="k">本年个税</span><span class="v exp">-21,860</span></div>
-            <div class="stat"><span class="k">本月到手</span><span class="v">21,450</span></div>
-          </div>
-
-          <div style="padding:14px 0 4px"><div class="seg"><span class="on">全部</span><span>工资</span><span>年终奖</span></div></div>
-
-          <div class="group-card mt10">
-            <div style="padding:12px 14px;border-bottom:1px solid var(--divider-soft)">
-              <div class="flexb">
-                <span class="hstack" style="gap:8px;font-size:14px;font-weight:600">2026.10 <span class="tag salary">工资</span></span>
-                <span class="amt inc" style="font-size:17px">+21,450.00</span>
-              </div>
-              <div class="t115 muted" style="margin-top:5px">基本 20,000 · 加班 1,200 · 五险一金 -3,540 · 税 -1,280</div>
-            </div>
-            <div style="padding:12px 14px;border-bottom:1px solid var(--divider-soft)">
-              <div class="flexb">
-                <span class="hstack" style="gap:8px;font-size:14px;font-weight:600">2026.09 <span class="tag salary">工资</span></span>
-                <span class="amt inc" style="font-size:17px">+21,120.00</span>
-              </div>
-              <div class="t115 muted" style="margin-top:5px">基本 20,000 · 加班 800 · 五险一金 -3,540 · 税 -1,140</div>
-            </div>
-            <div style="padding:12px 14px">
-              <div class="flexb">
-                <span class="hstack" style="gap:8px;font-size:14px;font-weight:600">2026.02 <span class="tag bonus">年终奖</span></span>
-                <span class="amt inc" style="font-size:17px">+48,000.00</span>
-              </div>
-              <div class="t115 muted" style="margin-top:5px">奖金 52,790 · 单独计税 · 税 -4,790</div>
-            </div>
+        <div class="large"><h3>资产</h3></div>
+        <div style="padding:0 16px 10px"><div class="seg"><span class="on">预算</span><span>工资</span><span>存款</span></div></div>
+        <div class="body" style="padding-top:2px">
+          <div class="card" style="padding:18px 16px 14px;text-align:center;background:linear-gradient(135deg,var(--summary-bg),var(--surface));border-color:var(--summary-border)">
+            <div class="t115" style="color:var(--text3)">超支</div>
+            <div style="font-size:31px;font-weight:700;letter-spacing:-.03em;color:var(--exp);font-variant-numeric:tabular-nums;margin:3px 0 2px">1,502.42</div>
+            <div class="t12" style="color:var(--text3)">总预算 8,254.00 · 本月已花 9,756.42</div>
+            <div class="progress" style="margin-top:12px"><div class="fill" style="width:100%"></div></div>
+            <div class="t11 muted" style="text-align:right;margin-top:5px">100%</div>
           </div>
 
           <div class="card mt12" style="padding:13px 14px">
-            <div class="flexb" style="margin-bottom:9px">
-              <span class="t13 b600">本月预算</span>
-              <span class="t115 muted">11月 · 剩余 1,680.00</span>
+            <div class="hstack" style="gap:12px">
+              <span class="sf-ico" style="width:38px;height:38px;border-radius:11px;background:var(--brand-soft);color:var(--brand)"><svg class="ico" style="width:19px;height:19px"><use href="#i-cal"/></svg></span>
+              <div class="grow">
+                <div class="t14 b600">开销统计周期</div>
+                <div class="t115 muted" style="margin-top:2px">11.01 - 11.30</div>
+              </div>
+              <div style="text-align:right">
+                <div class="t115" style="color:var(--text2)">自然月</div>
+                <div class="t115 muted">本月收入</div>
+              </div>
+              <svg class="ico xs chev"><use href="#i-chev"/></svg>
             </div>
-            <div class="progress"><div class="fill" style="width:72%"></div></div>
-            <div class="flexb mt8" style="margin-top:7px;font-size:11px;color:var(--text3)">
-              <span>已花 4,320.00 / 6,000.00</span><span>72%</span>
+          </div>
+
+          <div class="card mt10" style="padding:14px 16px;display:flex;align-items:center">
+            <div class="grow" style="text-align:center">
+              <div class="t115 muted">本月到手</div>
+              <div class="t15 b600 inc" style="margin-top:3px">+15,854.00</div>
             </div>
-            <div class="chips mt10">
-              <span class="chip" style="padding:4px 9px;font-size:11px">房租 ¥3,500</span>
-              <span class="chip" style="padding:4px 9px;font-size:11px">餐饮 ¥2,000</span>
-              <span class="chip" style="padding:4px 9px;font-size:11px">交通 ¥500</span>
+            <div style="width:1px;height:34px;background:var(--border)"></div>
+            <div class="grow" style="text-align:center">
+              <div class="t115 muted">预算合计</div>
+              <div class="t15 b600 exp" style="margin-top:3px">-7,600.00</div>
             </div>
+          </div>
+
+          <div class="group-label" style="padding:16px 4px 8px">预算项</div>
+          <div class="group-card">
+            <div class="field"><span class="fl"><span>交通</span></span><span class="vl nums">500.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+            <div class="field"><span class="fl"><span>餐饮</span></span><span class="vl nums">2,000.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+            <div class="field"><span class="fl"><span>娱乐</span></span><span class="vl nums">600.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+            <div class="field"><span class="fl"><span>房租</span></span><span class="vl nums">3,500.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+          </div>
+          <div class="btn primary mt12">添加预算</div>
+        </div>
+        {{TABS:payroll}}
+      </div>
+      <figcaption><b>资产 · 预算 <span class="tagline">默认入口</span></b>与当前工程同步：三段顺序改为「预算 / 工资 / 存款」，默认进入预算。顶部先给超支/剩余，再给周期、本月到手和预算合计，下面按分类维护预算项。</figcaption>
+    </figure>
+
+    <figure>
+      <div class="phone">
+        {{SB}}
+        <div class="large"><h3>资产</h3></div>
+        <div style="padding:0 16px 10px"><div class="seg"><span>预算</span><span class="on">工资</span><span>存款</span></div></div>
+        <div class="body" style="padding-top:2px">
+          <div class="stat-row">
+            <div class="stat"><span class="k">税前</span><span class="v">+35.82万</span></div>
+            <div class="stat"><span class="k">税</span><span class="v exp">-2.47万</span></div>
+            <div class="stat"><span class="k">税后</span><span class="v inc">+29.11万</span></div>
+          </div>
+
+          <div class="flexb" style="padding:16px 3px 8px">
+            <span class="t13 b600">薪酬记录</span>
+            <span class="chip" style="padding:5px 10px;font-size:12px">全部年份 <svg class="ico xs"><use href="#i-chev-d"/></svg></span>
+          </div>
+
+          <div class="card" style="padding:13px 14px;margin-bottom:10px">
+            <div class="flexb">
+              <span class="hstack" style="gap:8px;font-size:15px;font-weight:650">2026.11.10 <span class="tag salary">工资</span></span>
+              <span class="amt inc" style="font-size:16px">+15,854.00</span>
+            </div>
+            <div class="flexb" style="margin-top:6px">
+              <span class="t115 muted">基本 20,000.00 · 加班 600.00</span>
+              <span class="t115 muted">个税 -1,206.00</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding:13px 14px;margin-bottom:10px">
+            <div class="flexb">
+              <span class="hstack" style="gap:8px;font-size:15px;font-weight:650">2026.10.10 <span class="tag salary">工资</span></span>
+              <span class="amt inc" style="font-size:16px">+16,427.30</span>
+            </div>
+            <div class="flexb" style="margin-top:6px">
+              <span class="t115 muted">基本 20,500.00 · 加班 737.00</span>
+              <span class="t115 muted">个税 -1,269.70</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding:13px 14px;margin-bottom:10px">
+            <div class="flexb">
+              <span class="hstack" style="gap:8px;font-size:15px;font-weight:650">2026.09.10 <span class="tag salary">工资</span></span>
+              <span class="amt inc" style="font-size:16px">+17,000.60</span>
+            </div>
+            <div class="flexb" style="margin-top:6px">
+              <span class="t115 muted">基本 21,000.00 · 加班 874.00</span>
+              <span class="t115 muted">个税 -1,333.40</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding:13px 14px">
+            <div class="flexb">
+              <span class="hstack" style="gap:8px;font-size:15px;font-weight:650">2026.08.10 <span class="tag salary">工资</span></span>
+              <span class="amt inc" style="font-size:16px">+16,223.90</span>
+            </div>
+            <div class="flexb" style="margin-top:6px">
+              <span class="t115 muted">基本 20,000.00 · 加班 1,011.00</span>
+              <span class="t115 muted">个税 -1,247.10</span>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <div class="btn sm grow">新增工资</div>
+            <div class="btn sm primary grow">新增年终奖</div>
           </div>
         </div>
         {{TABS:payroll}}
       </div>
-      <figcaption><b>资产 · 薪酬 <span class="tagline">年度汇总</span></b>与存款共用资产首页，用分段控件切换。桌面版宽表格改为「每月一张卡」：日期 + 类型、到手金额、税前构成与税；预算卡固定在列表下方。</figcaption>
+      <figcaption><b>资产 · 工资 <span class="tagline">年度汇总</span></b>顶部固定税前、税、税后三个合计；年份菜单在「薪酬记录」右侧，记录按发薪日倒序，每月一张卡，底部保留新增工资 / 年终奖两个入口。</figcaption>
     </figure>
 
     <figure>
@@ -73,36 +140,41 @@
           <div class="under-row"></div><div class="under-row"></div><div class="under-row"></div>
         </div>
         <div class="sheet-scrim"></div>
-        <div class="sheet" style="height:640px">
+        <div class="sheet" style="height:720px">
           <div class="grabber"></div>
-          <div class="sheet-head"><span class="link">取消</span><span class="st">新增工资</span><span class="link strong">保存</span></div>
+          <div class="sheet-head"><span class="link">关闭</span><span class="st">工资详情</span><span class="link strong">保存</span></div>
           <div class="sheet-body">
             <div class="group-card">
-              <div class="field"><span class="lb">日期</span><span class="vl">2026-11-10 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field"><span class="lb">日期</span><span class="vl">2026.11.24 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
               <div class="field"><span class="lb">基本工资</span><span class="vl nums">20,000.00</span></div>
-              <div class="field"><span class="lb">加班费</span><span class="vl nums">1,200.00</span></div>
-              <div class="field"><span class="lb">一次性奖金</span><span class="vl muted">0.00</span></div>
+              <div class="field"><span class="lb">加班费</span><span class="vl nums">600.00</span></div>
+              <div class="field"><span class="lb">一次性奖金</span><span class="vl muted nums">0.00</span></div>
               <div class="field"><span class="lb">五险一金</span><span class="vl nums exp">-3,540.00</span></div>
             </div>
             <div class="note"><svg class="ico xs" style="stroke:var(--brand);vertical-align:-2px"><use href="#i-bulb"/></svg> 已参考上月的基本工资与五险一金，可直接修改。</div>
 
             <div class="group-label">个税</div>
             <div class="group-card">
-              <div class="field"><span class="lb">当前税率</span><span class="vl"><span class="pri b600">10%</span><span class="t12 muted">（累计预扣）</span></span></div>
-              <div class="field"><span class="lb">税额</span><span class="vl nums exp">-1,280.00</span></div>
+              <div class="field">
+                <span class="lb">算税月份</span>
+                <span class="vl"><span class="seg" style="width:150px;padding:2px"><span class="on">本月</span><span>上月</span></span></span>
+              </div>
+              <div class="field"><span class="lb">税率</span><span class="vl"><span class="b600">10.00%</span><span class="t12 muted">（累计预扣）</span></span></div>
+              <div class="field"><span class="lb">税前</span><span class="vl nums b600">20,600.00</span></div>
+              <div class="field"><span class="lb">税额</span><span class="vl nums exp">-1,206.00</span></div>
             </div>
 
-            <div class="card mt14" style="padding:14px 16px;background:linear-gradient(135deg,var(--summary-bg),var(--surface));border-color:var(--brand-border)">
+            <div class="card mt14" style="padding:15px 16px;background:linear-gradient(135deg,var(--summary-bg),var(--surface));border-color:var(--brand-border)">
               <div class="flexb">
                 <span class="t13" style="color:var(--text2)">实际到手</span>
-                <span style="font-size:24px;font-weight:700;color:var(--brand);font-variant-numeric:tabular-nums">+21,450.00</span>
+                <span style="font-size:24px;font-weight:700;color:var(--brand);font-variant-numeric:tabular-nums">+15,854.00</span>
               </div>
             </div>
-            <div class="note">税额默认按累计预扣自动计算，也可切到「手动」直接输入，用于对齐工资条。</div>
+            <div class="note">填写完成后收起键盘或点「完成」更新税额；切换算税月份会按所选归属月计算。</div>
           </div>
         </div>
       </div>
-      <figcaption><b>新增 / 编辑工资 <span class="tagline">自动算税</span></b>沿用桌面版的累计预扣逻辑：基本 + 加班 + 一次性奖金 − 五险一金 − 个税 = 到手。税额支持自动/手动切换，到手金额实时刷新。</figcaption>
+      <figcaption><b>工资详情 <span class="tagline">自动算税</span></b>编辑已有记录时标题显示「工资详情」。税额区域固定展示算税月份、累计税率、税前和税额；不再提供手动税额切换，到手金额随当前归属月自动计算。</figcaption>
     </figure>
 
     <figure>
@@ -113,36 +185,20 @@
           <div class="under-row"></div><div class="under-row"></div><div class="under-row"></div>
         </div>
         <div class="sheet-scrim"></div>
-        <div class="sheet" style="height:580px">
+        <div class="sheet" style="height:430px">
           <div class="grabber"></div>
-          <div class="sheet-head"><span class="link">关闭</span><span class="st">本月预算</span><span class="link strong">保存</span></div>
+          <div class="sheet-head"><span class="link">关闭</span><span class="st">编辑预算</span><span class="link strong">保存</span></div>
           <div class="sheet-body">
-            <div class="card" style="padding:16px;text-align:center;background:linear-gradient(135deg,var(--summary-bg),var(--surface));border-color:var(--brand-border)">
-              <div class="t115 muted">当前预算（剩余）</div>
-              <div style="font-size:30px;font-weight:700;letter-spacing:-.02em;margin:4px 0 2px">1,680.00</div>
-              <div class="t115 muted">总预算 6,000.00 · 本月已花 4,320.00</div>
-              <div class="progress mt12"><div class="fill" style="width:72%"></div></div>
-            </div>
-
-            <div class="legend" style="grid-template-columns:1fr 1fr;margin-top:14px">
-              <div class="it"><span class="nm muted">本月到手</span><span class="pc t13 inc">+21,450</span></div>
-              <div class="it"><span class="nm muted">预算合计</span><span class="pc t13 exp">-6,000</span></div>
-            </div>
-
-            <div class="flexb" style="padding:18px 4px 8px">
-              <span class="t13 b600">预算项</span>
-              <span class="t115 pri">+ 添加预算</span>
-            </div>
             <div class="group-card">
-              <div class="field"><span class="fl"><span>房租</span></span><span class="vl nums">3,500.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
-              <div class="field"><span class="fl"><span>餐饮</span></span><span class="vl nums">2,000.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
-              <div class="field"><span class="fl"><span>交通</span></span><span class="vl nums">500.00 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field"><span class="lb">预算名称</span><span class="vl">房租</span></div>
+              <div class="field"><span class="lb">预算金额</span><span class="vl nums b600">3,000.00</span></div>
             </div>
-            <div class="note">预算项左滑可删除；关闭某笔账单的「计入预算」后，它不会扣减当月剩余预算。</div>
+            <div class="btn danger mt16"><svg class="ico sm"><use href="#i-trash"/></svg>删除预算</div>
+            <div class="note">删除按钮放在滚动内容里，键盘弹出时不会随安全区上下跳动；键盘工具栏保留「完成」。</div>
           </div>
         </div>
       </div>
-      <figcaption><b>月度预算 <span class="tagline">底部抽屉</span></b>桌面版预算在右侧抽屉里，手机改为半屏面板。核心是「剩余预算」一个数字 + 进度条，预算项列表可增删改，与账单的「计入预算」开关联动。</figcaption>
+      <figcaption><b>编辑预算 <span class="tagline">轻量弹层</span></b>预算编辑只保留名称与金额；删除按钮从底部安全区移入内容区，避免键盘出现时按钮和文字被挤压、错位。</figcaption>
     </figure>
 
   </div>

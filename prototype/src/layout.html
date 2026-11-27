@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>记账清单 · iOS App 原型 v1</title>
+<title>记账清单 · iOS App 原型 v2</title>
 <script>
   (function () {
     var params = new URLSearchParams(location.search);
@@ -23,6 +23,7 @@
   <symbol id="i-pay" viewBox="0 0 24 24"><rect x="2.8" y="6" width="18.4" height="12.4" rx="3"/><circle cx="12" cy="12.2" r="2.6"/><path d="M6.2 10.2h.01M17.8 14.2h.01"/></symbol>
   <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 9.2 12 4l9 5.2"/><path d="M5.2 9.2v8M9.7 9.2v8M14.3 9.2v8M18.8 9.2v8"/><path d="M3 20.2h18"/></symbol>
   <symbol id="i-set" viewBox="0 0 24 24"><path d="M4 7.5h16M4 16.5h16"/><circle cx="9" cy="7.5" r="2.4"/><circle cx="15" cy="16.5" r="2.4"/></symbol>
+  <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.4"/><path d="M15.8 15.8 20 20"/></symbol>
   <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6.5h16M7 12h10M10 17.5h4"/></symbol>
@@ -48,22 +49,22 @@
 </svg>
 
 <header class="board-header">
-  <div class="brand"><span class="dot">记</span>记账清单 <span class="en">Record</span></div>
-  <h1>iOS App 原型 <span style="color:var(--text3);font-weight:600">v1</span></h1>
-  <p class="sub">把桌面版「记账清单」重构为 iPhone 原生应用。已按确认的方案更新：4 Tab + 中央「＋」、「资产」合并薪酬与存款、年度页参考新版式、iOS 18+。23 个界面覆盖账单、分析、资产、设置四条主线。</p>
+  <div class="brand"><span class="dot"><img src="icons/01-ledger-glow.svg" alt=""></span>记账清单 <span class="en">Record</span></div>
+  <h1>iOS App 原型 <span style="color:var(--text3);font-weight:600">v2</span></h1>
+  <p class="sub">已按当前 SwiftUI 工程同步：使用 01A 新图标、4 Tab + 中央「＋」、资产三段默认预算、全部时间分析、年度版式、工资详情与全量 Excel 导入。23 个界面覆盖账单、分析、资产、设置四条主线。</p>
   <div class="meta">
     <span class="pill">iPhone 15 · 390 × 844</span>
     <span class="pill">目标 iOS 18+ / SwiftUI</span>
     <span class="pill">主色 <b>#6C5DD3</b></span>
     <span class="pill">结构 <b>4 Tab + 中央＋</b></span>
-    <span class="pill">数据 <b>SwiftData + CloudKit</b></span>
+    <span class="pill">数据 <b>SwiftData + Files</b></span>
   </div>
 </header>
 
 <nav class="board-nav">
   <a href="#g-bill">01 账单</a>
   <a href="#g-analysis">02 分析</a>
-  <a href="#g-payroll">03 资产·薪酬</a>
+  <a href="#g-payroll">03 资产</a>
   <a href="#g-deposit">04 资产·存款</a>
   <a href="#g-settings">05 设置</a>
   <a href="#g-decisions">方案与待确认</a>

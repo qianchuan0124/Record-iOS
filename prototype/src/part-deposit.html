@@ -9,25 +9,25 @@
     <figure>
       <div class="phone">
         {{SB}}
-        <div class="large"><h3>资产</h3><div class="icons"><svg class="ico"><use href="#i-plus"/></svg></div></div>
-        <div style="padding:0 16px 10px"><div class="seg"><span class="on">存款</span><span>薪酬</span><span>预算</span></div></div>
+        <div class="large"><h3>资产</h3></div>
+        <div style="padding:0 16px 10px"><div class="seg"><span>预算</span><span>工资</span><span class="on">存款</span></div></div>
         <div class="body">
           <div class="stat-row">
-            <div class="stat"><span class="k">银行</span><span class="v">4</span></div>
+            <div class="stat"><span class="k">银行</span><span class="v">6</span></div>
             <div class="stat"><span class="k">存款笔数</span><span class="v">6</span></div>
-            <div class="stat"><span class="k">总金额</span><span class="v sm">380,000</span></div>
-            <div class="stat"><span class="k">总利息</span><span class="v sm inc">+12,450</span></div>
+            <div class="stat"><span class="k">总金额</span><span class="v sm">44.00万</span></div>
+            <div class="stat"><span class="k">总利息</span><span class="v sm inc">+1.64万</span></div>
           </div>
 
           <div class="flexb" style="padding:16px 4px 8px">
             <span class="t13 b600">存款列表</span>
-            <span class="t115 muted">按银行分组</span>
+            <span class="t115 muted">长按拖动排序 · 左滑更新/删除</span>
           </div>
 
           <div class="group-card">
             <div style="padding:12px 14px;border-bottom:1px solid var(--divider-soft)">
               <div class="hstack" style="gap:10px">
-                <span class="bank-logo" style="background:#D7261E">招</span>
+                <span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15135205.png" alt=""></span>
                 <div class="grow">
                   <div class="t14 b600">招商银行 · 3 年定期</div>
                   <div class="t115 muted" style="margin-top:2px">2025.03.01 起 · 2028.03.01 到期</div>
@@ -43,7 +43,7 @@
             </div>
             <div style="padding:12px 14px;border-bottom:1px solid var(--divider-soft)">
               <div class="hstack" style="gap:10px">
-                <span class="bank-logo" style="background:#0066B3">建</span>
+                <span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15133351.png" alt=""></span>
                 <div class="grow">
                   <div class="t14 b600">建设银行 · 1 年定期</div>
                   <div class="t115 muted" style="margin-top:2px">2026.06.15 起 · 2027.06.15 到期</div>
@@ -59,7 +59,7 @@
             </div>
             <div style="padding:12px 14px">
               <div class="hstack" style="gap:10px">
-                <span class="bank-logo" style="background:#C8102E">工</span>
+                <span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15132946.png" alt=""></span>
                 <div class="grow">
                   <div class="t14 b600">工商银行 · 2 年定期</div>
                   <div class="t115 muted" style="margin-top:2px">2026.01.10 起 · 2028.01.10 到期</div>
@@ -83,13 +83,13 @@
           </div>
 
           <div style="display:flex;gap:10px;margin-top:14px">
-            <div class="btn sm grow">增加银行</div>
-            <div class="btn sm primary grow">增加存款</div>
+            <div class="btn sm grow">银行管理</div>
+            <div class="btn sm primary grow">新增存款</div>
           </div>
         </div>
         {{TABS:deposit}}
       </div>
-      <figcaption><b>资产 · 存款 <span class="tagline">4 Tab 首页</span></b>导航改为「账单 / 分析 / ＋ / 资产 / 设置」，薪酬与存款合并进资产。桌面版 10 列表格改为「一笔存款一张卡」，顶部四个汇总与桌面一致。</figcaption>
+      <figcaption><b>资产 · 存款 <span class="tagline">三段切换</span></b>沿用当前工程的「预算 / 工资 / 存款」三段切换，存款页顶部固定银行数、笔数、总金额和总利息；列表支持长按排序、左滑更新/删除，底部保留银行管理和新增存款。</figcaption>
     </figure>
 
     <figure>
@@ -106,11 +106,11 @@
           <div class="sheet-body">
             <div class="group-label" style="padding-top:2px">银行</div>
             <div class="bank-grid">
-              <div class="b on"><span class="bank-logo" style="background:#D7261E">招</span>招商</div>
-              <div class="b"><span class="bank-logo" style="background:#0066B3">建</span>建设</div>
-              <div class="b"><span class="bank-logo" style="background:#C8102E">工</span>工商</div>
-              <div class="b"><span class="bank-logo" style="background:#00703C">农</span>农业</div>
-              <div class="b"><span class="bank-logo" style="background:#00529C">中</span>中国</div>
+              <div class="b on"><span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15135205.png" alt=""></span>招商</div>
+              <div class="b"><span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15133351.png" alt=""></span>建设</div>
+              <div class="b"><span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15132946.png" alt=""></span>工商</div>
+              <div class="b"><span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15133167.png" alt=""></span>农业</div>
+              <div class="b"><span class="bank-logo" style="background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15133316.png" alt=""></span>中国</div>
               <div class="b"><span class="bank-logo" style="background:#1B7F79">自</span>自定义</div>
             </div>
 
@@ -149,32 +149,50 @@
           <div class="grabber"></div>
           <div class="sheet-head"><span class="link">关闭</span><span class="st">银行管理</span><span class="link strong">完成</span></div>
           <div class="sheet-body">
-            <div class="group-label" style="padding-top:2px">已添加（拖动排序）</div>
+            <div class="group-label" style="padding-top:2px">全部银行</div>
             <div class="group-card">
-              <div class="field"><span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="bank-logo sm" style="background:#D7261E">招</span>招商银行</span><span class="vl muted t12">2 笔 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
-              <div class="field"><span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="bank-logo sm" style="background:#0066B3">建</span>建设银行</span><span class="vl muted t12">1 笔 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
-              <div class="field"><span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="bank-logo sm" style="background:#C8102E">工</span>工商银行</span><span class="vl muted t12">1 笔 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
-              <div class="field"><span class="fl"><svg class="ico sm chev"><use href="#i-drag"/></svg><span class="bank-logo sm" style="background:#1B7F79">宁</span>宁波银行（自定义）</span><span class="vl muted t12">2 笔 <svg class="ico xs chev"><use href="#i-chev"/></svg></span></div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15133167.png" alt=""></span><span class="t14 b600">中国农业银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">4 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15744648.png" alt=""></span><span class="t14 b600">九江银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">3 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15132946.png" alt=""></span><span class="t14 b600">中国工商银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">4 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15747750.png" alt=""></span><span class="t14 b600">三井住友银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">0 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15748008.png" alt=""></span><span class="t14 b600">三和银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">0 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15742472.png" alt=""></span><span class="t14 b600">三湘银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">0 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15747751.png" alt=""></span><span class="t14 b600">三菱 UFJ 银行（日联）</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">0 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15746276.png" alt=""></span><span class="t14 b600">上海农商</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">0 笔</span>
+              </div>
+              <div class="field" style="padding:13px 14px">
+                <span class="fl"><span class="bank-logo" style="width:34px;height:34px;background:#fff;border:1px solid var(--border)"><img src="../Record-iOS/Resources/BankIcons/15178598.png" alt=""></span><span class="t14 b600">上海银行</span><span class="t11 muted" style="background:var(--track);border-radius:5px;padding:2px 6px;margin-left:6px">默认</span></span>
+                <span class="vl muted t12">0 笔</span>
+              </div>
             </div>
-
-            <div class="group-label">内置银行</div>
-            <div class="bank-grid">
-              <div class="b"><span class="bank-logo" style="background:#00703C">农</span>农业</div>
-              <div class="b"><span class="bank-logo" style="background:#00529C">中</span>中国</div>
-              <div class="b"><span class="bank-logo" style="background:#004B8D">交</span>交通</div>
-              <div class="b"><span class="bank-logo" style="background:#E60012">邮</span>邮储</div>
-              <div class="b"><span class="bank-logo" style="background:#005BAC">浦</span>浦发</div>
-              <div class="b"><span class="bank-logo" style="background:#CF142B">信</span>中信</div>
-              <div class="b"><span class="bank-logo" style="background:#E8112D">光</span>光大</div>
-              <div class="b"><span class="bank-logo" style="background:#004F9F">民</span>民生</div>
-            </div>
-
-            <div class="btn ghost mt16"><svg class="ico sm"><use href="#i-plus"/></svg>增加自定义银行</div>
-            <div class="note">自定义银行使用默认图标，可填写任意名称；内置银行无需重复添加。</div>
+            <div class="btn primary mt16">增加自定义银行</div>
           </div>
         </div>
       </div>
-      <figcaption><b>银行管理 <span class="tagline">排序 + 内置库</span></b>保留桌面版的拖动排序与内置银行库（60+ 家）。手机端用长按拖动替代 HTML5 drag，新增自定义银行只填名称即可。</figcaption>
+      <figcaption><b>银行管理 <span class="tagline">全部银行</span></b>与当前工程同步：一个「全部银行」列表，内置银行带「默认」标记，右侧显示该银行的使用笔数；底部只保留「增加自定义银行」，不再拆成「已添加 + 内置银行网格」。</figcaption>
     </figure>
 
   </div>
